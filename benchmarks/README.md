@@ -74,3 +74,11 @@ See [the measured report](REPORT.md), [aggregate JSON](results/summary.json),
 and individual raw runs under `results/`. Regenerate aggregates with
 `python3 benchmarks/summarize.py`. To repeat the counterbalanced second run,
 pass `--order rust_f32,transformers_sdpa,transformers_eager` and a new output path.
+
+The README charts are static PNGs generated from `results/summary.json`; they
+do not run inference. To regenerate them in a Python environment:
+
+```sh
+python3 -m pip install -r benchmarks/plot-requirements.txt
+python3 benchmarks/plot.py
+```

@@ -1,0 +1,17 @@
+{
+  "image": "ghcr.io/a-k-6/rust-embedding-runtime:0.2.2",
+  "digest": "sha256:738dc900135dfab17c7ada38a3d8ef247e2bb5caa8110aeeead090b626e34115",
+  "release_source_revision": "62dd8d2191286fdf2d1770fef655b5d42b2f253d",
+  "release_workflow": "https://github.com/A-K-6/rust-embedding-runtime/actions/runs/39672712134",
+  "workflow_result": "success",
+  "platforms": [
+    {
+      "platform": "linux/amd64",
+      "digest": "sha256:21d26d3a8a699ea5fd78c24eb587231f848146daf676a8c2fd4a55dc7cb70c2d"
+    },
+    {
+      "platform": "linux/arm64",
+      "digest": "sha256:8ef031ce458cff98812020fa7a1c8d25c56cb5977beed519aa67a9c6832d206c"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "image": "ghcr.io/a-k-6/rust-embedding-runtime:0.2.2",
+  "platform": "linux/amd64",
+  "anonymous_pull": true,
+  "image_id": "sha256:0e82b8495407892551845936f793496512927d700698ba1a88f45f2685c35832",
+  "repo_digests": [
+    "ghcr.io/a-k-6/rust-embedding-runtime@sha256:738dc900135dfab17c7ada38a3d8ef247e2bb5caa8110aeeead090b626e34115"
+  ],
+  "source_revision": "62dd8d2191286fdf2d1770fef655b5d42b2f253d",
+  "user": "65532:65532",
+  "real_model_api_smoke": "passed",
+  "cpu_limit": 2,
+  "memory_limit": "3 GiB",
+  "verified_at_utc": "2026-10-21T20:50:29.965135+00:00",
+  "checks": "health/auth, ordered batch, 768 normalized finite values, float/base64 agreement, 128 dimensions, invalid/overlong inputs"
+}

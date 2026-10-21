@@ -94,10 +94,9 @@ and SDPA inference. The goal is lower latency **and** lower memory. Results
 report both, including cases where Rust does not win. Native macOS timings
 use Accelerate and do not measure Linux ARM64 Docker performance.
 
-| CPU | Rust median / p95 | PyTorch SDPA median / p95 | Rust memory reduction |
-| --- | ---: | ---: | ---: |
-| Apple M2 | 57.3 / 75.7 ms | 62.6 / 98.4 ms | 20.9% |
-| AMD Ryzen 9 9955HX | 48.4 / 58.1 ms | 49.0 / 58.4 ms | 36.4% |
+![Uncached native CPU latency: median and p95 for Rust and PyTorch on Apple M2 and AMD Ryzen 9 9955HX](benchmarks/charts/latency.png)
+
+![Process memory: Rust uses 20.9% less physical footprint on Apple M2 and 36.4% less RSS on AMD than PyTorch SDPA](benchmarks/charts/memory.png)
 
 Two-thread native CPU, batch one, uncached 15–28-token authored queries.
 Memory uses macOS physical footprint or Linux RSS within each machine.

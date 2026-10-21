@@ -130,3 +130,22 @@ inferred simply from enabling newer instructions or fused kernels.
 The next performance acceptance target is a repeatable AMD latency win in both
 orders, including longer inputs, alongside the retained memory advantage and
 numerical gates. The present results do not close that target.
+
+## Published image verification
+
+`ghcr.io/a-k-6/rust-embedding-runtime:0.2.2` is a public multi-platform image
+with the actual pinned text model bundled. Both native GitHub runner jobs
+passed 18 Rust tests, Clippy and real-model API smoke tests before publication:
+[successful release workflow](https://github.com/A-K-6/rust-embedding-runtime/actions/runs/39672712134).
+
+The combined tag was then pulled using **empty Docker authentication
+configuration** and tested on the Apple M2's native Linux ARM64 Docker daemon
+and the AMD laptop's native Linux AMD64 Docker daemon. Both passed real-model
+health/auth, ordered-batch, normalized output, float/base64 agreement,
+dimension and invalid/overlong-input checks at two CPUs and 3 GiB limits.
+The tests use the bundled model without a model volume. These are functional
+checks; they are not container latency benchmarks.
+
+[Platform manifest and immutable digest](image-manifest-0.2.2.json),
+[ARM64 verification](image-verification-arm64.json),
+[AMD64 verification](image-verification-amd64.json).
