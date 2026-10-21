@@ -1,0 +1,5381 @@
+{
+  "status": "complete",
+  "fixture_sha256": "8c61c2f94cc2996cff4546d9ade325da2e26da09d47e4a667bf5b87eee37c525",
+  "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+  "source_revision": "c47224b92bbb79ef83be2ccb0b366ecc93de1879",
+  "rust_binary_sha256": "daeb79150efb30302ecadf6c705a1b7780cfde23f6ec22e53b34566370f9256b",
+  "cargo_lock_sha256": "d76750e480c5be8c85b6d86b20a8c4d65fd711509c8d3a6a30a8de5ea190e7a6",
+  "driver_python": "3.12.14",
+  "rust_source_sha256": "0cfc6d27b149adf22dc5def6b3808a7c605688592a9efb2c2a947704d1cf8e9f",
+  "driver_sha256": "2c343d597f9ccb28322bde21e0adea974be7b566040ccf772806799e38b3c8b2",
+  "reference_worker_sha256": "65ea1be3bb6c710b00ca2d1146df0d9a5e4a806e4bd01bc2c1cf1750d3620ff8",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "hardware": {
+    "cpu": "Apple M2",
+    "architecture": "arm64",
+    "os": "Darwin",
+    "os_release": "27.0.0",
+    "logical_cpus": 8,
+    "affinity_cpus": null
+  },
+  "protocol": {
+    "threads": 2,
+    "warmup": 5,
+    "repeats": 5,
+    "length_repeats": 3,
+    "dimensions": 768,
+    "batch_size": 1,
+    "cache": false
+  },
+  "measurement": "Batch 1; uncached; serial. wall_ms includes tokenization, JSONL IPC and vector serialization; engine_ms excludes tokenization and IPC. No HTTP/network/database/ranking in either latency.",
+  "cpu_limit": "Two intra-op/Rayon threads; PyTorch inter-op 1; BLAS/OpenMP environment capped at 2. Native host, no exclusive CPU reservation or hard quota.",
+  "backends": {
+    "transformers_eager": {
+      "ready": {
+        "ready": true,
+        "load_ms": 6236.694666964468,
+        "torch": "2.14.1",
+        "transformers": "5.20.2",
+        "python": "3.12.14",
+        "parameter_dtype": "torch.float32",
+        "device": "cpu",
+        "blas": "accelerate",
+        "veclib_maximum_threads": "2",
+        "attention": "eager",
+        "dtype": "float32",
+        "threads": 2,
+        "interop_threads": 1
+      },
+      "load_wall_ms": 6272.690291982144,
+      "rows": [
+        {
+          "id": "q01",
+          "repeat": 0,
+          "tokens": 15,
+          "engine_ms": 85.96749999560416,
+          "wall_ms": 86.6217499715276,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 83.8897920330055,
+          "wall_ms": 84.87154199974611,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 0,
+          "tokens": 16,
+          "engine_ms": 80.36316698417068,
+          "wall_ms": 81.1107910121791,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 0,
+          "tokens": 22,
+          "engine_ms": 73.23837495641783,
+          "wall_ms": 73.87266698060557,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 0,
+          "tokens": 17,
+          "engine_ms": 65.34429203020409,
+          "wall_ms": 65.98520796978846,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 65.05395798012614,
+          "wall_ms": 65.76479197246954,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 63.113458978477865,
+          "wall_ms": 63.80420800996944,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 0,
+          "tokens": 28,
+          "engine_ms": 66.96174998069182,
+          "wall_ms": 67.86054203985259,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 89.99758400022984,
+          "wall_ms": 90.77341703232378,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 0,
+          "tokens": 26,
+          "engine_ms": 82.21045898972079,
+          "wall_ms": 83.04937503999099,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 80.46299999114126,
+          "wall_ms": 81.24670799588785,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 81.37675002217293,
+          "wall_ms": 82.1863750461489,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 96.40683297766373,
+          "wall_ms": 97.14954101946205,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 93.35333399940282,
+          "wall_ms": 94.9122499441728,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 66.2841250305064,
+          "wall_ms": 67.28058395674452,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 105.56104104034603,
+          "wall_ms": 107.00054204789922,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 93.3122499845922,
+          "wall_ms": 94.16829200927168,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 0,
+          "tokens": 24,
+          "engine_ms": 74.95949999429286,
+          "wall_ms": 75.7995419553481,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 162.7149999840185,
+          "wall_ms": 163.92329201335087,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 0,
+          "tokens": 27,
+          "engine_ms": 72.65204098075628,
+          "wall_ms": 73.68949998635799,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 1,
+          "tokens": 15,
+          "engine_ms": 98.08262495789677,
+          "wall_ms": 99.05512497061864,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 74.8160409857519,
+          "wall_ms": 75.59912500437349,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 1,
+          "tokens": 16,
+          "engine_ms": 66.37670798227191,
+          "wall_ms": 67.06550001399592,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 1,
+          "tokens": 22,
+          "engine_ms": 76.51879201876,
+          "wall_ms": 77.58504198864102,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 1,
+          "tokens": 17,
+          "engine_ms": 71.8749170191586,
+          "wall_ms": 72.59004196384922,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 81.17150003090501,
+          "wall_ms": 82.03641697764397,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 72.99520797096193,
+          "wall_ms": 73.69204197311774,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 1,
+          "tokens": 28,
+          "engine_ms": 72.18258298235014,
+          "wall_ms": 72.96766695799306,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 96.83595801470801,
+          "wall_ms": 97.50033298041672,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 1,
+          "tokens": 26,
+          "engine_ms": 104.87891704542562,
+          "wall_ms": 105.60299997450784,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 72.88745802361518,
+          "wall_ms": 73.8008749904111,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 70.49495802493766,
+          "wall_ms": 71.16608298383653,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 77.12520798668265,
+          "wall_ms": 78.0615410185419,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 81.1530000064522,
+          "wall_ms": 81.84216701192781,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 89.81908397981897,
+          "wall_ms": 90.44837497640401,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 104.50416698586196,
+          "wall_ms": 105.2322500036098,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 98.03191700484604,
+          "wall_ms": 99.03925005346537,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 1,
+          "tokens": 24,
+          "engine_ms": 119.46175002958626,
+          "wall_ms": 120.18283299403265,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 112.35599999781698,
+          "wall_ms": 113.21124999085441,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 1,
+          "tokens": 27,
+          "engine_ms": 233.32612501690164,
+          "wall_ms": 234.33595901587978,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 2,
+          "tokens": 15,
+          "engine_ms": 98.93425001064315,
+          "wall_ms": 100.78620899002999,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 146.39045798685402,
+          "wall_ms": 147.4853329709731,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 2,
+          "tokens": 16,
+          "engine_ms": 115.38433301029727,
+          "wall_ms": 116.78474996006116,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 2,
+          "tokens": 22,
+          "engine_ms": 113.80887503037229,
+          "wall_ms": 114.71070896368474,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 2,
+          "tokens": 17,
+          "engine_ms": 95.64366698032245,
+          "wall_ms": 96.44629096146673,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 95.7316670101136,
+          "wall_ms": 97.93708304641768,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 155.78012500191107,
+          "wall_ms": 156.92049998324364,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 2,
+          "tokens": 28,
+          "engine_ms": 133.69250000687316,
+          "wall_ms": 134.54762496985495,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 99.08291703322902,
+          "wall_ms": 99.94062501937151,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 2,
+          "tokens": 26,
+          "engine_ms": 103.83249999722466,
+          "wall_ms": 104.7985419863835,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 101.3997919508256,
+          "wall_ms": 102.20433300128207,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 90.58854199247435,
+          "wall_ms": 91.37279097922146,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 98.67212496465072,
+          "wall_ms": 99.43062503589317,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 97.84545801812783,
+          "wall_ms": 98.73100003460422,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 74.32254200102761,
+          "wall_ms": 81.48666704073548,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 87.48904202366248,
+          "wall_ms": 88.42416701372713,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 112.83345799893141,
+          "wall_ms": 113.60333301126957,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 2,
+          "tokens": 24,
+          "engine_ms": 72.21912499517202,
+          "wall_ms": 73.21837497875094,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 74.33400000445545,
+          "wall_ms": 75.02649998059496,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 2,
+          "tokens": 27,
+          "engine_ms": 95.06799996597692,
+          "wall_ms": 95.86912504164502,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 3,
+          "tokens": 15,
+          "engine_ms": 91.22420899802819,
+          "wall_ms": 92.45229099178687,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 134.3844580114819,
+          "wall_ms": 135.25233400287107,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 3,
+          "tokens": 16,
+          "engine_ms": 89.81133298948407,
+          "wall_ms": 90.60150000732392,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 3,
+          "tokens": 22,
+          "engine_ms": 96.0062500089407,
+          "wall_ms": 96.73537500202656,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 3,
+          "tokens": 17,
+          "engine_ms": 75.86199999786913,
+          "wall_ms": 76.50399999693036,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 59.60287502966821,
+          "wall_ms": 60.31958304811269,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 66.07712502591312,
+          "wall_ms": 66.68345798971131,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 3,
+          "tokens": 28,
+          "engine_ms": 142.09379203384742,
+          "wall_ms": 142.952999973204,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 198.42349999817088,
+          "wall_ms": 199.18141700327396,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 3,
+          "tokens": 26,
+          "engine_ms": 162.89675002917647,
+          "wall_ms": 164.19037501327693,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 91.9421250000596,
+          "wall_ms": 93.32333301426843,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 112.2289170161821,
+          "wall_ms": 113.3869580226019,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 84.73537501413375,
+          "wall_ms": 85.45975002925843,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 66.41766597749665,
+          "wall_ms": 67.057250009384,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 65.47949998639524,
+          "wall_ms": 66.10754097346216,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 64.91937499959022,
+          "wall_ms": 65.5897919787094,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 68.99612495908514,
+          "wall_ms": 69.63291700230911,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 3,
+          "tokens": 24,
+          "engine_ms": 83.44529202440754,
+          "wall_ms": 84.71437502885237,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 103.41966699343175,
+          "wall_ms": 104.20599998906255,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 3,
+          "tokens": 27,
+          "engine_ms": 85.40416700998321,
+          "wall_ms": 86.25200000824407,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 4,
+          "tokens": 15,
+          "engine_ms": 94.65054195607081,
+          "wall_ms": 95.7230839994736,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 93.63779204431921,
+          "wall_ms": 94.67250003945082,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 4,
+          "tokens": 16,
+          "engine_ms": 70.72629098547623,
+          "wall_ms": 71.40929199522361,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 4,
+          "tokens": 22,
+          "engine_ms": 88.4080829564482,
+          "wall_ms": 89.07429099781439,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 4,
+          "tokens": 17,
+          "engine_ms": 86.8309999932535,
+          "wall_ms": 87.61987503385171,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 76.39733300311491,
+          "wall_ms": 77.23008398897946,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 70.29416703153402,
+          "wall_ms": 70.97137498203665,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 4,
+          "tokens": 28,
+          "engine_ms": 90.67525004502386,
+          "wall_ms": 92.00941701419652,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 86.56895800959319,
+          "wall_ms": 87.25033298833296,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 4,
+          "tokens": 26,
+          "engine_ms": 106.4404160133563,
+          "wall_ms": 107.45016700820997,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 87.0001669973135,
+          "wall_ms": 87.71091600647196,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 91.5610840311274,
+          "wall_ms": 92.28408400667831,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 72.47133302735165,
+          "wall_ms": 73.13074998091906,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 69.69445798313245,
+          "wall_ms": 70.35087503027171,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 96.45354095846415,
+          "wall_ms": 97.34608395956457,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 72.38412502920255,
+          "wall_ms": 73.11062497319654,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 161.90962499240413,
+          "wall_ms": 162.67745901132002,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 4,
+          "tokens": 24,
+          "engine_ms": 65.56829198962077,
+          "wall_ms": 66.20870903134346,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 60.769875010009855,
+          "wall_ms": 61.39045796589926,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 4,
+          "tokens": 27,
+          "engine_ms": 63.89083300018683,
+          "wall_ms": 64.52933402033523,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        }
+      ],
+      "length_rows": [
+        {
+          "tokens": 128,
+          "repeat": 0,
+          "engine_ms": 136.98624999960884,
+          "wall_ms": 137.58512499043718
+        },
+        {
+          "tokens": 128,
+          "repeat": 1,
+          "engine_ms": 147.68208301393315,
+          "wall_ms": 148.26591598102823
+        },
+        {
+          "tokens": 128,
+          "repeat": 2,
+          "engine_ms": 578.1836669775657,
+          "wall_ms": 579.3123330222443
+        },
+        {
+          "tokens": 512,
+          "repeat": 0,
+          "engine_ms": 627.6392089785077,
+          "wall_ms": 628.5136669757776
+        },
+        {
+          "tokens": 512,
+          "repeat": 1,
+          "engine_ms": 579.5027079875581,
+          "wall_ms": 580.3270839969628
+        },
+        {
+          "tokens": 512,
+          "repeat": 2,
+          "engine_ms": 535.4597080149688,
+          "wall_ms": 536.2106660031714
+        },
+        {
+          "tokens": 1024,
+          "repeat": 0,
+          "engine_ms": 1111.6755830007605,
+          "wall_ms": 1112.6323750359006
+        },
+        {
+          "tokens": 1024,
+          "repeat": 1,
+          "engine_ms": 1512.7970000030473,
+          "wall_ms": 1515.0412080110982
+        },
+        {
+          "tokens": 1024,
+          "repeat": 2,
+          "engine_ms": 1923.3854999765754,
+          "wall_ms": 1926.5073330025189
+        }
+      ],
+      "text_token_ids_max_abs_error": 0.0,
+      "memory": {
+        "rss_mib": 653.703125,
+        "physical_footprint_mib": 1642.3927764892578
+      },
+      "steady_rss_mib": 653.703125,
+      "latency_ms": {
+        "engine_ms": {
+          "count": 100,
+          "median": 87.24460451048799,
+          "p95": 155.78012500191107,
+          "mean": 92.70874168141745,
+          "min": 59.60287502966821,
+          "max": 233.32612501690164
+        },
+        "wall_ms": {
+          "count": 100,
+          "median": 88.06754151009955,
+          "p95": 156.92049998324364,
+          "mean": 93.64563337934669,
+          "min": 60.31958304811269,
+          "max": 234.33595901587978
+        }
+      },
+      "retrieval": {
+        "queries": 20,
+        "hit_at_1": 20,
+        "hit_at_5": 20
+      }
+    },
+    "transformers_sdpa": {
+      "ready": {
+        "ready": true,
+        "load_ms": 7680.492500017863,
+        "torch": "2.14.1",
+        "transformers": "5.20.2",
+        "python": "3.12.14",
+        "parameter_dtype": "torch.float32",
+        "device": "cpu",
+        "blas": "accelerate",
+        "veclib_maximum_threads": "2",
+        "attention": "sdpa",
+        "dtype": "float32",
+        "threads": 2,
+        "interop_threads": 1
+      },
+      "load_wall_ms": 7731.132832996082,
+      "rows": [
+        {
+          "id": "q01",
+          "repeat": 0,
+          "tokens": 15,
+          "engine_ms": 64.04529203427956,
+          "wall_ms": 64.75970800966024,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 69.81120799900964,
+          "wall_ms": 70.56191703304648,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 0,
+          "tokens": 16,
+          "engine_ms": 92.09920797729865,
+          "wall_ms": 93.16066704923287,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 0,
+          "tokens": 22,
+          "engine_ms": 112.25170898251235,
+          "wall_ms": 113.34629100747406,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 0,
+          "tokens": 17,
+          "engine_ms": 144.12433397956192,
+          "wall_ms": 144.90133395884186,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 86.80304203880951,
+          "wall_ms": 87.76158298132941,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 140.29466698411852,
+          "wall_ms": 141.39933296246454,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 0,
+          "tokens": 28,
+          "engine_ms": 99.36012502294034,
+          "wall_ms": 101.09766700770706,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 129.02724999003112,
+          "wall_ms": 129.9134999862872,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 0,
+          "tokens": 26,
+          "engine_ms": 129.50770801398903,
+          "wall_ms": 130.39141602348536,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 214.62420898023993,
+          "wall_ms": 215.9434999921359,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 184.07341704005376,
+          "wall_ms": 189.3253750167787,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 1627.8461249894463,
+          "wall_ms": 1632.0558339939453,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 449.8301660059951,
+          "wall_ms": 456.1074169469066,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 171.67095799231902,
+          "wall_ms": 174.1610420285724,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 129.55470802262425,
+          "wall_ms": 132.23320798715577,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 314.2149999621324,
+          "wall_ms": 320.7662500208244,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 0,
+          "tokens": 24,
+          "engine_ms": 145.9051660494879,
+          "wall_ms": 147.20050001051277,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 145.6917499890551,
+          "wall_ms": 148.17691699136049,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 0,
+          "tokens": 27,
+          "engine_ms": 79.04749998124316,
+          "wall_ms": 80.5110419751145,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 1,
+          "tokens": 15,
+          "engine_ms": 211.98041702155024,
+          "wall_ms": 213.2264169631526,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 141.3065000087954,
+          "wall_ms": 142.67550001386553,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 1,
+          "tokens": 16,
+          "engine_ms": 63.05541703477502,
+          "wall_ms": 63.71120800031349,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 1,
+          "tokens": 22,
+          "engine_ms": 127.10916699143127,
+          "wall_ms": 128.8200420094654,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 1,
+          "tokens": 17,
+          "engine_ms": 218.51933398284018,
+          "wall_ms": 221.6115000192076,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 212.56708295550197,
+          "wall_ms": 213.86208303738385,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 193.34229099331424,
+          "wall_ms": 195.22975001018494,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 1,
+          "tokens": 28,
+          "engine_ms": 136.0660420032218,
+          "wall_ms": 138.56237498112023,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 117.8309170063585,
+          "wall_ms": 118.95770800765604,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 1,
+          "tokens": 26,
+          "engine_ms": 93.36183400591835,
+          "wall_ms": 94.18200002983212,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 89.3760000471957,
+          "wall_ms": 90.27045796392485,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 124.42616699263453,
+          "wall_ms": 125.73450000490993,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 109.73099997499958,
+          "wall_ms": 110.52770895184949,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 90.29058297164738,
+          "wall_ms": 91.0314170178026,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 103.63245900953189,
+          "wall_ms": 104.32874999241903,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 136.1598750227131,
+          "wall_ms": 136.9100830052048,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 104.83029100578278,
+          "wall_ms": 105.63537495909259,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 1,
+          "tokens": 24,
+          "engine_ms": 127.87595798727125,
+          "wall_ms": 128.6522499867715,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 120.99854199914262,
+          "wall_ms": 121.78058398421854,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 1,
+          "tokens": 27,
+          "engine_ms": 245.31316698994488,
+          "wall_ms": 247.7669170475565,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 2,
+          "tokens": 15,
+          "engine_ms": 103.32658397965133,
+          "wall_ms": 107.48333402443677,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 96.30270802881569,
+          "wall_ms": 97.27233299054205,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 2,
+          "tokens": 16,
+          "engine_ms": 114.33845898136497,
+          "wall_ms": 115.46312499558553,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 2,
+          "tokens": 22,
+          "engine_ms": 155.90024995617568,
+          "wall_ms": 156.88483300618827,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 2,
+          "tokens": 17,
+          "engine_ms": 159.96704099234194,
+          "wall_ms": 161.26937500666827,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 214.32724996702746,
+          "wall_ms": 215.4258749797009,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 243.93275001784787,
+          "wall_ms": 244.92058297619224,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 2,
+          "tokens": 28,
+          "engine_ms": 113.37579198880121,
+          "wall_ms": 114.33079204289243,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 157.67195803346112,
+          "wall_ms": 159.0591249987483,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 2,
+          "tokens": 26,
+          "engine_ms": 158.5952079622075,
+          "wall_ms": 159.41362496232614,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 160.82608298165724,
+          "wall_ms": 162.1900000027381,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 140.24883299134672,
+          "wall_ms": 141.78762503433973,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 100.14895902713761,
+          "wall_ms": 100.94445798313245,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 132.88462499622256,
+          "wall_ms": 134.1010409523733,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 123.1360420351848,
+          "wall_ms": 124.11466700723395,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 98.26845902716741,
+          "wall_ms": 99.04512501088902,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 156.49262501392514,
+          "wall_ms": 157.5730000040494,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 2,
+          "tokens": 24,
+          "engine_ms": 128.64650000119582,
+          "wall_ms": 132.90658296318725,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 140.2551659848541,
+          "wall_ms": 141.21587498812005,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 2,
+          "tokens": 27,
+          "engine_ms": 127.3845830000937,
+          "wall_ms": 129.03416698100045,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 3,
+          "tokens": 15,
+          "engine_ms": 149.47462495183572,
+          "wall_ms": 150.7994580315426,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 136.60366600379348,
+          "wall_ms": 138.56724998913705,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 3,
+          "tokens": 16,
+          "engine_ms": 240.14337500557303,
+          "wall_ms": 242.8404579986818,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 3,
+          "tokens": 22,
+          "engine_ms": 178.48266602959484,
+          "wall_ms": 181.23783398186788,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 3,
+          "tokens": 17,
+          "engine_ms": 277.200874988921,
+          "wall_ms": 278.35012500872836,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 116.08225002419204,
+          "wall_ms": 118.6335000093095,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 113.37241699220613,
+          "wall_ms": 114.22524997033179,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 3,
+          "tokens": 28,
+          "engine_ms": 138.59829102875665,
+          "wall_ms": 139.86087503144518,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 136.97891595074907,
+          "wall_ms": 137.95462501002476,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 3,
+          "tokens": 26,
+          "engine_ms": 143.64745799684897,
+          "wall_ms": 145.71916597196832,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 291.3968329667114,
+          "wall_ms": 292.8062920109369,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 126.3770000077784,
+          "wall_ms": 127.50491697806865,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 96.04233299614862,
+          "wall_ms": 97.15074999257922,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 103.5911250510253,
+          "wall_ms": 104.97645899886265,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 103.02183299791068,
+          "wall_ms": 103.9086669916287,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 104.51662499690428,
+          "wall_ms": 106.60933301551268,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 121.30558304488659,
+          "wall_ms": 123.57287498889491,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 3,
+          "tokens": 24,
+          "engine_ms": 110.66674999892712,
+          "wall_ms": 111.56849999679253,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 149.7874169726856,
+          "wall_ms": 153.53287500329316,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 3,
+          "tokens": 27,
+          "engine_ms": 136.20958395767957,
+          "wall_ms": 137.18779099872336,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 4,
+          "tokens": 15,
+          "engine_ms": 113.35870804032311,
+          "wall_ms": 114.15829200996086,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 128.51737497840077,
+          "wall_ms": 129.2794169858098,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 4,
+          "tokens": 16,
+          "engine_ms": 128.90704203164205,
+          "wall_ms": 129.90895804250613,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 4,
+          "tokens": 22,
+          "engine_ms": 94.06804200261831,
+          "wall_ms": 94.84383300878108,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 4,
+          "tokens": 17,
+          "engine_ms": 122.59904097300023,
+          "wall_ms": 123.34783299593255,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 97.03379200072959,
+          "wall_ms": 97.8487910469994,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 86.44874999299645,
+          "wall_ms": 87.19320804812014,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 4,
+          "tokens": 28,
+          "engine_ms": 80.89454198488966,
+          "wall_ms": 81.90145797561854,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 78.95529200322926,
+          "wall_ms": 79.73445899551734,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 4,
+          "tokens": 26,
+          "engine_ms": 88.36212498135865,
+          "wall_ms": 89.383166981861,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 105.56191601790488,
+          "wall_ms": 106.50950000854209,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 147.30420795967802,
+          "wall_ms": 149.06024996889755,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 139.99975001206622,
+          "wall_ms": 140.75024996418506,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 119.6593749918975,
+          "wall_ms": 121.07866699807346,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 122.71366704953834,
+          "wall_ms": 123.5689590102993,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 160.05429200595245,
+          "wall_ms": 160.87483399314806,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 149.22366698738188,
+          "wall_ms": 150.0320000341162,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 4,
+          "tokens": 24,
+          "engine_ms": 107.34208300709724,
+          "wall_ms": 108.5386669728905,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 91.3876669947058,
+          "wall_ms": 92.20204199664295,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 4,
+          "tokens": 27,
+          "engine_ms": 110.00508302822709,
+          "wall_ms": 111.06841696891934,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        }
+      ],
+      "length_rows": [
+        {
+          "tokens": 128,
+          "repeat": 0,
+          "engine_ms": 256.59016700228676,
+          "wall_ms": 257.54841696470976
+        },
+        {
+          "tokens": 128,
+          "repeat": 1,
+          "engine_ms": 283.2489999709651,
+          "wall_ms": 284.1427089879289
+        },
+        {
+          "tokens": 128,
+          "repeat": 2,
+          "engine_ms": 562.8443329478614,
+          "wall_ms": 563.6488330201246
+        },
+        {
+          "tokens": 512,
+          "repeat": 0,
+          "engine_ms": 1660.6704170117155,
+          "wall_ms": 1662.5766250072047
+        },
+        {
+          "tokens": 512,
+          "repeat": 1,
+          "engine_ms": 1080.0972079741769,
+          "wall_ms": 1081.9742500316352
+        },
+        {
+          "tokens": 512,
+          "repeat": 2,
+          "engine_ms": 921.2820419925265,
+          "wall_ms": 922.7452920167707
+        },
+        {
+          "tokens": 1024,
+          "repeat": 0,
+          "engine_ms": 2053.815041028429,
+          "wall_ms": 2056.8121669930406
+        },
+        {
+          "tokens": 1024,
+          "repeat": 1,
+          "engine_ms": 2498.2152080046944,
+          "wall_ms": 2501.2806250015274
+        },
+        {
+          "tokens": 1024,
+          "repeat": 2,
+          "engine_ms": 2688.444208004512,
+          "wall_ms": 2690.8164999913424
+        }
+      ],
+      "text_token_ids_max_abs_error": 0.0,
+      "memory": {
+        "rss_mib": 443.734375,
+        "physical_footprint_mib": 1683.064697265625
+      },
+      "steady_rss_mib": 443.734375,
+      "latency_ms": {
+        "engine_ms": {
+          "count": 100,
+          "median": 128.196666482836,
+          "p95": 245.31316698994488,
+          "mean": 153.69482500012964,
+          "min": 63.05541703477502,
+          "max": 1627.8461249894463
+        },
+        "wall_ms": {
+          "count": 100,
+          "median": 129.15679198340513,
+          "p95": 247.7669170475565,
+          "mean": 155.19976669864263,
+          "min": 63.71120800031349,
+          "max": 1632.0558339939453
+        }
+      },
+      "retrieval": {
+        "queries": 20,
+        "hit_at_1": 20,
+        "hit_at_5": 20
+      }
+    },
+    "rust_f32": {
+      "ready": {
+        "cpu_backend": "accelerate",
+        "device": "cpu",
+        "dtype": "f32",
+        "fused_rms_norm": true,
+        "fused_rope": true,
+        "gemm_avx512_runtime_dispatch": false,
+        "linear_weight_bytes": 546832384,
+        "load_ms": 3977.226584,
+        "max_tokens": 1024,
+        "packed_weight_bytes": 0,
+        "ready": true,
+        "threads": 2,
+        "weight_quantization": "f32"
+      },
+      "load_wall_ms": 3993.156792013906,
+      "rows": [
+        {
+          "id": "q01",
+          "repeat": 0,
+          "tokens": 15,
+          "engine_ms": 90.122042,
+          "wall_ms": 90.58658400317654,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 104.146833,
+          "wall_ms": 104.54212501645088,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 0,
+          "tokens": 16,
+          "engine_ms": 81.584375,
+          "wall_ms": 82.09550002356991,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 0,
+          "tokens": 22,
+          "engine_ms": 83.386541,
+          "wall_ms": 83.75091600464657,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 0,
+          "tokens": 17,
+          "engine_ms": 78.04962499999999,
+          "wall_ms": 78.40012502856553,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 100.076541,
+          "wall_ms": 100.73387500597164,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 108.810667,
+          "wall_ms": 109.20125001575798,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 0,
+          "tokens": 28,
+          "engine_ms": 174.676209,
+          "wall_ms": 175.30250002164394,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 117.758459,
+          "wall_ms": 119.55191602464765,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 0,
+          "tokens": 26,
+          "engine_ms": 104.87816699999999,
+          "wall_ms": 105.40749999927357,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 123.6245,
+          "wall_ms": 124.02812496293336,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 89.75733299999999,
+          "wall_ms": 90.32408305210993,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 0,
+          "tokens": 19,
+          "engine_ms": 67.1065,
+          "wall_ms": 67.61083303717896,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 0,
+          "tokens": 20,
+          "engine_ms": 93.63375,
+          "wall_ms": 94.16525001870468,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 91.00570900000001,
+          "wall_ms": 91.36820799903944,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 138.4795,
+          "wall_ms": 139.0958339907229,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 0,
+          "tokens": 21,
+          "engine_ms": 139.925417,
+          "wall_ms": 140.539166983217,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 0,
+          "tokens": 24,
+          "engine_ms": 184.751,
+          "wall_ms": 185.30025001382455,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 0,
+          "tokens": 18,
+          "engine_ms": 106.458,
+          "wall_ms": 106.8945829756558,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 0,
+          "tokens": 27,
+          "engine_ms": 148.16125,
+          "wall_ms": 149.6819169842638,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 1,
+          "tokens": 15,
+          "engine_ms": 117.868375,
+          "wall_ms": 118.34416602505371,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 96.722291,
+          "wall_ms": 97.25049999542534,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 1,
+          "tokens": 16,
+          "engine_ms": 92.923958,
+          "wall_ms": 93.28679199097678,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 1,
+          "tokens": 22,
+          "engine_ms": 88.67712499999999,
+          "wall_ms": 89.3803330254741,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 1,
+          "tokens": 17,
+          "engine_ms": 108.718416,
+          "wall_ms": 109.30387501139194,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 130.413209,
+          "wall_ms": 130.88333402993158,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 100.736042,
+          "wall_ms": 101.11212503397837,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 1,
+          "tokens": 28,
+          "engine_ms": 91.933417,
+          "wall_ms": 92.55795902572572,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 77.05404200000001,
+          "wall_ms": 77.83429202390835,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 1,
+          "tokens": 26,
+          "engine_ms": 74.44408399999999,
+          "wall_ms": 74.92729200748727,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 75.756667,
+          "wall_ms": 76.46362500963733,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 89.86354200000001,
+          "wall_ms": 90.85187502205372,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 1,
+          "tokens": 19,
+          "engine_ms": 82.557958,
+          "wall_ms": 83.65737501299009,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 1,
+          "tokens": 20,
+          "engine_ms": 76.767541,
+          "wall_ms": 77.20633299322799,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 72.929416,
+          "wall_ms": 73.46479099942371,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 71.151083,
+          "wall_ms": 71.46420801291242,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 1,
+          "tokens": 21,
+          "engine_ms": 77.353417,
+          "wall_ms": 78.09958304278553,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 1,
+          "tokens": 24,
+          "engine_ms": 66.338208,
+          "wall_ms": 66.73704198328778,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 1,
+          "tokens": 18,
+          "engine_ms": 67.665709,
+          "wall_ms": 67.94350000564009,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 1,
+          "tokens": 27,
+          "engine_ms": 148.197667,
+          "wall_ms": 148.6088330275379,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 2,
+          "tokens": 15,
+          "engine_ms": 115.378,
+          "wall_ms": 116.25008302507922,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 100.57804200000001,
+          "wall_ms": 101.08195903012529,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 2,
+          "tokens": 16,
+          "engine_ms": 73.08116700000001,
+          "wall_ms": 74.07824997790158,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 2,
+          "tokens": 22,
+          "engine_ms": 76.621833,
+          "wall_ms": 77.30091601843014,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 2,
+          "tokens": 17,
+          "engine_ms": 85.979417,
+          "wall_ms": 86.62929199635983,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 87.368292,
+          "wall_ms": 87.71020802669227,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 71.305333,
+          "wall_ms": 71.70345797203481,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 2,
+          "tokens": 28,
+          "engine_ms": 77.233333,
+          "wall_ms": 77.76199997169897,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 81.46525,
+          "wall_ms": 83.58354098163545,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 2,
+          "tokens": 26,
+          "engine_ms": 129.28270799999999,
+          "wall_ms": 129.77316603064537,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 116.22225,
+          "wall_ms": 117.67924996092916,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 84.349542,
+          "wall_ms": 84.67612497042865,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 2,
+          "tokens": 19,
+          "engine_ms": 72.80575,
+          "wall_ms": 73.11191700864583,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 2,
+          "tokens": 20,
+          "engine_ms": 70.168458,
+          "wall_ms": 70.54704200709239,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 83.34512500000001,
+          "wall_ms": 83.64962501218542,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 82.1295,
+          "wall_ms": 83.63083295989782,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 2,
+          "tokens": 21,
+          "engine_ms": 76.55612500000001,
+          "wall_ms": 76.89812500029802,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 2,
+          "tokens": 24,
+          "engine_ms": 79.969541,
+          "wall_ms": 80.42758400551975,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 2,
+          "tokens": 18,
+          "engine_ms": 78.52458299999999,
+          "wall_ms": 78.94133299123496,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 2,
+          "tokens": 27,
+          "engine_ms": 77.011417,
+          "wall_ms": 77.41204201010987,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 3,
+          "tokens": 15,
+          "engine_ms": 88.171125,
+          "wall_ms": 88.62774999579415,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 83.965125,
+          "wall_ms": 84.38050001859665,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 3,
+          "tokens": 16,
+          "engine_ms": 72.970917,
+          "wall_ms": 73.39558296371251,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 3,
+          "tokens": 22,
+          "engine_ms": 82.659459,
+          "wall_ms": 83.01025000400841,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 3,
+          "tokens": 17,
+          "engine_ms": 77.730458,
+          "wall_ms": 78.20341602200642,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 88.73895900000001,
+          "wall_ms": 89.69508297741413,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 78.034042,
+          "wall_ms": 78.62812501844019,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 3,
+          "tokens": 28,
+          "engine_ms": 82.37154100000001,
+          "wall_ms": 82.7917080023326,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 90.86616599999999,
+          "wall_ms": 91.40570904128253,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 3,
+          "tokens": 26,
+          "engine_ms": 85.60295900000001,
+          "wall_ms": 85.98854200681672,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 77.69524999999999,
+          "wall_ms": 77.98887504031882,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 88.069125,
+          "wall_ms": 88.3917500032112,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 3,
+          "tokens": 19,
+          "engine_ms": 82.35437499999999,
+          "wall_ms": 83.93133396748453,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 3,
+          "tokens": 20,
+          "engine_ms": 93.382458,
+          "wall_ms": 93.7937920098193,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 64.349583,
+          "wall_ms": 64.65558399213478,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 87.477583,
+          "wall_ms": 88.36608298588544,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 3,
+          "tokens": 21,
+          "engine_ms": 79.04641699999999,
+          "wall_ms": 79.66816698899493,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 3,
+          "tokens": 24,
+          "engine_ms": 70.922958,
+          "wall_ms": 71.23775000218302,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 3,
+          "tokens": 18,
+          "engine_ms": 76.514084,
+          "wall_ms": 76.80541701847687,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 3,
+          "tokens": 27,
+          "engine_ms": 81.24920800000001,
+          "wall_ms": 81.57520898384973,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q01",
+          "repeat": 4,
+          "tokens": 15,
+          "engine_ms": 83.280417,
+          "wall_ms": 83.58616702025756,
+          "top5": [
+            "aurora",
+            "plants",
+            "moon",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q02",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 75.170791,
+          "wall_ms": 75.46099997125566,
+          "top5": [
+            "aurora",
+            "moon",
+            "plants",
+            "boiling",
+            "ssh"
+          ],
+          "expected": "aurora"
+        },
+        {
+          "id": "q03",
+          "repeat": 4,
+          "tokens": 16,
+          "engine_ms": 67.324667,
+          "wall_ms": 67.61637498857453,
+          "top5": [
+            "boiling",
+            "plants",
+            "aurora",
+            "cache",
+            "vectors"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q04",
+          "repeat": 4,
+          "tokens": 22,
+          "engine_ms": 79.658958,
+          "wall_ms": 79.93804098805413,
+          "top5": [
+            "boiling",
+            "plants",
+            "vectors",
+            "aurora",
+            "cache"
+          ],
+          "expected": "boiling"
+        },
+        {
+          "id": "q05",
+          "repeat": 4,
+          "tokens": 17,
+          "engine_ms": 88.72791600000001,
+          "wall_ms": 89.10420798929408,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "boiling",
+            "index"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q06",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 74.987417,
+          "wall_ms": 75.28287498280406,
+          "top5": [
+            "plants",
+            "aurora",
+            "moon",
+            "index",
+            "cache"
+          ],
+          "expected": "plants"
+        },
+        {
+          "id": "q07",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 72.77775,
+          "wall_ms": 73.225750005804,
+          "top5": [
+            "ssh",
+            "backup",
+            "vectors",
+            "rust",
+            "aurora"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q08",
+          "repeat": 4,
+          "tokens": 28,
+          "engine_ms": 76.075792,
+          "wall_ms": 76.49466703878716,
+          "top5": [
+            "ssh",
+            "backup",
+            "rust",
+            "plants",
+            "index"
+          ],
+          "expected": "ssh"
+        },
+        {
+          "id": "q09",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 74.27304099999999,
+          "wall_ms": 74.57649998832494,
+          "top5": [
+            "rust",
+            "cache",
+            "backup",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q10",
+          "repeat": 4,
+          "tokens": 26,
+          "engine_ms": 71.945167,
+          "wall_ms": 72.33749999431893,
+          "top5": [
+            "rust",
+            "backup",
+            "cache",
+            "index",
+            "ssh"
+          ],
+          "expected": "rust"
+        },
+        {
+          "id": "q11",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 71.450209,
+          "wall_ms": 71.79612497566268,
+          "top5": [
+            "index",
+            "cache",
+            "backup",
+            "rust",
+            "vectors"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q12",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 74.812333,
+          "wall_ms": 75.16016601584852,
+          "top5": [
+            "index",
+            "backup",
+            "cache",
+            "vectors",
+            "ssh"
+          ],
+          "expected": "index"
+        },
+        {
+          "id": "q13",
+          "repeat": 4,
+          "tokens": 19,
+          "engine_ms": 77.41029200000001,
+          "wall_ms": 77.70579197676852,
+          "top5": [
+            "cache",
+            "rust",
+            "index",
+            "backup",
+            "ssh"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q14",
+          "repeat": 4,
+          "tokens": 20,
+          "engine_ms": 78.682209,
+          "wall_ms": 79.1193749755621,
+          "top5": [
+            "cache",
+            "rust",
+            "backup",
+            "vectors",
+            "boiling"
+          ],
+          "expected": "cache"
+        },
+        {
+          "id": "q15",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 80.826792,
+          "wall_ms": 81.33058302337304,
+          "top5": [
+            "moon",
+            "aurora",
+            "boiling",
+            "plants",
+            "backup"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q16",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 125.12266699999999,
+          "wall_ms": 129.24483296228573,
+          "top5": [
+            "moon",
+            "aurora",
+            "plants",
+            "boiling",
+            "index"
+          ],
+          "expected": "moon"
+        },
+        {
+          "id": "q17",
+          "repeat": 4,
+          "tokens": 21,
+          "engine_ms": 70.31675,
+          "wall_ms": 71.36066700331867,
+          "top5": [
+            "backup",
+            "cache",
+            "index",
+            "rust",
+            "ssh"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q18",
+          "repeat": 4,
+          "tokens": 24,
+          "engine_ms": 103.98787499999999,
+          "wall_ms": 104.41437503322959,
+          "top5": [
+            "backup",
+            "ssh",
+            "cache",
+            "rust",
+            "vectors"
+          ],
+          "expected": "backup"
+        },
+        {
+          "id": "q19",
+          "repeat": 4,
+          "tokens": 18,
+          "engine_ms": 118.398,
+          "wall_ms": 119.13816700689495,
+          "top5": [
+            "vectors",
+            "backup",
+            "ssh",
+            "rust",
+            "cache"
+          ],
+          "expected": "vectors"
+        },
+        {
+          "id": "q20",
+          "repeat": 4,
+          "tokens": 27,
+          "engine_ms": 83.64883400000001,
+          "wall_ms": 84.10995797021315,
+          "top5": [
+            "vectors",
+            "backup",
+            "boiling",
+            "aurora",
+            "rust"
+          ],
+          "expected": "vectors"
+        }
+      ],
+      "length_rows": [
+        {
+          "tokens": 128,
+          "repeat": 0,
+          "engine_ms": 190.99225,
+          "wall_ms": 191.28862500656396
+        },
+        {
+          "tokens": 128,
+          "repeat": 1,
+          "engine_ms": 187.541167,
+          "wall_ms": 187.884374987334
+        },
+        {
+          "tokens": 128,
+          "repeat": 2,
+          "engine_ms": 166.632416,
+          "wall_ms": 166.9114999822341
+        },
+        {
+          "tokens": 512,
+          "repeat": 0,
+          "engine_ms": 672.6355000000001,
+          "wall_ms": 673.1456659617834
+        },
+        {
+          "tokens": 512,
+          "repeat": 1,
+          "engine_ms": 701.4510419999999,
+          "wall_ms": 701.8825000268407
+        },
+        {
+          "tokens": 512,
+          "repeat": 2,
+          "engine_ms": 640.74675,
+          "wall_ms": 641.1012079915963
+        },
+        {
+          "tokens": 1024,
+          "repeat": 0,
+          "engine_ms": 1407.553875,
+          "wall_ms": 1407.9057500348426
+        },
+        {
+          "tokens": 1024,
+          "repeat": 1,
+          "engine_ms": 1690.470458,
+          "wall_ms": 1690.853292006068
+        },
+        {
+          "tokens": 1024,
+          "repeat": 2,
+          "engine_ms": 1898.298917,
+          "wall_ms": 1899.032665998675
+        }
+      ],
+      "text_token_ids_max_abs_error": 0.0,
+      "memory": {
+        "rss_mib": 851.578125,
+        "physical_footprint_mib": 1178.29833984375
+      },
+      "steady_rss_mib": 851.578125,
+      "latency_ms": {
+        "engine_ms": {
+          "count": 100,
+          "median": 82.6087085,
+          "p95": 138.4795,
+          "mean": 90.34889919999999,
+          "min": 64.349583,
+          "max": 184.751
+        },
+        "wall_ms": {
+          "count": 100,
+          "median": 83.64022898604162,
+          "p95": 139.0958339907229,
+          "mean": 90.94348874350544,
+          "min": 64.65558399213478,
+          "max": 185.30025001382455
+        }
+      },
+      "retrieval": {
+        "queries": 20,
+        "hit_at_1": 20,
+        "hit_at_5": 20
+      }
+    }
+  },
+  "parity": {
+    "transformers_eager": {
+      "reference": "transformers_eager",
+      "vectors": 33,
+      "max_abs_error": 0.0,
+      "min_cosine": 1.0,
+      "comparisons": [
+        {
+          "id": "doc:aurora",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:boiling",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:plants",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:ssh",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:rust",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:index",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:cache",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:moon",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:backup",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "doc:vectors",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q01",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q02",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q03",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q04",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q05",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q06",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q07",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q08",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q09",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q10",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q11",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q12",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q13",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q14",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q15",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q16",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q17",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q18",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q19",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "query:q20",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "length:128",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "length:512",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        },
+        {
+          "id": "length:1024",
+          "max_abs_error": 0.0,
+          "cosine": 1.0
+        }
+      ]
+    },
+    "transformers_sdpa": {
+      "reference": "transformers_eager",
+      "vectors": 33,
+      "max_abs_error": 2.514570951461792e-07,
+      "min_cosine": 0.9999999999982068,
+      "comparisons": [
+        {
+          "id": "doc:aurora",
+          "max_abs_error": 1.2293457984924316e-07,
+          "cosine": 0.9999999999994281
+        },
+        {
+          "id": "doc:boiling",
+          "max_abs_error": 1.7508864402770996e-07,
+          "cosine": 0.9999999999992207
+        },
+        {
+          "id": "doc:plants",
+          "max_abs_error": 1.6309786587953568e-07,
+          "cosine": 0.9999999999991709
+        },
+        {
+          "id": "doc:ssh",
+          "max_abs_error": 2.514570951461792e-07,
+          "cosine": 0.9999999999982068
+        },
+        {
+          "id": "doc:rust",
+          "max_abs_error": 1.3783574104309082e-07,
+          "cosine": 0.9999999999994361
+        },
+        {
+          "id": "doc:index",
+          "max_abs_error": 1.7136335372924805e-07,
+          "cosine": 0.9999999999988067
+        },
+        {
+          "id": "doc:cache",
+          "max_abs_error": 2.0302832126617432e-07,
+          "cosine": 0.9999999999986318
+        },
+        {
+          "id": "doc:moon",
+          "max_abs_error": 1.4156103134155273e-07,
+          "cosine": 0.9999999999994327
+        },
+        {
+          "id": "doc:backup",
+          "max_abs_error": 1.7508864402770996e-07,
+          "cosine": 0.9999999999991707
+        },
+        {
+          "id": "doc:vectors",
+          "max_abs_error": 1.30385160446167e-07,
+          "cosine": 0.9999999999994083
+        },
+        {
+          "id": "query:q01",
+          "max_abs_error": 1.2852251529693604e-07,
+          "cosine": 0.9999999999995354
+        },
+        {
+          "id": "query:q02",
+          "max_abs_error": 1.6205012798309326e-07,
+          "cosine": 0.9999999999995024
+        },
+        {
+          "id": "query:q03",
+          "max_abs_error": 1.1920928955078125e-07,
+          "cosine": 0.9999999999995802
+        },
+        {
+          "id": "query:q04",
+          "max_abs_error": 1.1920928955078125e-07,
+          "cosine": 0.9999999999993683
+        },
+        {
+          "id": "query:q05",
+          "max_abs_error": 1.0710209608078003e-07,
+          "cosine": 0.9999999999998079
+        },
+        {
+          "id": "query:q06",
+          "max_abs_error": 7.636845111846924e-08,
+          "cosine": 0.9999999999997862
+        },
+        {
+          "id": "query:q07",
+          "max_abs_error": 1.2665987014770508e-07,
+          "cosine": 0.9999999999997098
+        },
+        {
+          "id": "query:q08",
+          "max_abs_error": 1.8067657947540283e-07,
+          "cosine": 0.9999999999993323
+        },
+        {
+          "id": "query:q09",
+          "max_abs_error": 8.940696716308594e-08,
+          "cosine": 0.9999999999997067
+        },
+        {
+          "id": "query:q10",
+          "max_abs_error": 1.4668330550193787e-07,
+          "cosine": 0.9999999999992935
+        },
+        {
+          "id": "query:q11",
+          "max_abs_error": 9.685754776000977e-08,
+          "cosine": 0.9999999999997158
+        },
+        {
+          "id": "query:q12",
+          "max_abs_error": 2.086162567138672e-07,
+          "cosine": 0.9999999999989133
+        },
+        {
+          "id": "query:q13",
+          "max_abs_error": 1.6763806343078613e-07,
+          "cosine": 0.9999999999993094
+        },
+        {
+          "id": "query:q14",
+          "max_abs_error": 1.1734664440155029e-07,
+          "cosine": 0.9999999999995393
+        },
+        {
+          "id": "query:q15",
+          "max_abs_error": 8.940696716308594e-08,
+          "cosine": 0.9999999999997211
+        },
+        {
+          "id": "query:q16",
+          "max_abs_error": 7.450580596923828e-08,
+          "cosine": 0.999999999999833
+        },
+        {
+          "id": "query:q17",
+          "max_abs_error": 1.0617077350616455e-07,
+          "cosine": 0.9999999999996037
+        },
+        {
+          "id": "query:q18",
+          "max_abs_error": 1.2852251529693604e-07,
+          "cosine": 0.9999999999995419
+        },
+        {
+          "id": "query:q19",
+          "max_abs_error": 8.940696716308594e-08,
+          "cosine": 0.9999999999996947
+        },
+        {
+          "id": "query:q20",
+          "max_abs_error": 1.3783574104309082e-07,
+          "cosine": 0.9999999999993356
+        },
+        {
+          "id": "length:128",
+          "max_abs_error": 1.3224780559539795e-07,
+          "cosine": 0.9999999999994014
+        },
+        {
+          "id": "length:512",
+          "max_abs_error": 1.424923539161682e-07,
+          "cosine": 0.999999999999336
+        },
+        {
+          "id": "length:1024",
+          "max_abs_error": 1.7881393432617188e-07,
+          "cosine": 0.9999999999993074
+        }
+      ]
+    },
+    "rust_f32": {
+      "reference": "transformers_eager",
+      "vectors": 33,
+      "max_abs_error": 2.749391994471412e-07,
+      "min_cosine": 0.9999999999978452,
+      "comparisons": [
+        {
+          "id": "doc:aurora",
+          "max_abs_error": 1.8145217894893761e-07,
+          "cosine": 0.9999999999990227
+        },
+        {
+          "id": "doc:boiling",
+          "max_abs_error": 1.7461620330228023e-07,
+          "cosine": 0.9999999999990385
+        },
+        {
+          "id": "doc:plants",
+          "max_abs_error": 1.7464582840196266e-07,
+          "cosine": 0.9999999999989553
+        },
+        {
+          "id": "doc:ssh",
+          "max_abs_error": 1.7974102973876416e-07,
+          "cosine": 0.9999999999987013
+        },
+        {
+          "id": "doc:rust",
+          "max_abs_error": 1.955293464639407e-07,
+          "cosine": 0.9999999999992853
+        },
+        {
+          "id": "doc:index",
+          "max_abs_error": 1.6790147781137188e-07,
+          "cosine": 0.9999999999989688
+        },
+        {
+          "id": "doc:cache",
+          "max_abs_error": 2.1613620853483395e-07,
+          "cosine": 0.9999999999985512
+        },
+        {
+          "id": "doc:moon",
+          "max_abs_error": 1.87273056149323e-07,
+          "cosine": 0.9999999999988667
+        },
+        {
+          "id": "doc:backup",
+          "max_abs_error": 1.5125051498754427e-07,
+          "cosine": 0.9999999999991991
+        },
+        {
+          "id": "doc:vectors",
+          "max_abs_error": 2.14560318012591e-07,
+          "cosine": 0.9999999999991609
+        },
+        {
+          "id": "query:q01",
+          "max_abs_error": 1.618571472128405e-07,
+          "cosine": 0.9999999999996265
+        },
+        {
+          "id": "query:q02",
+          "max_abs_error": 1.4896891403076706e-07,
+          "cosine": 0.9999999999995647
+        },
+        {
+          "id": "query:q03",
+          "max_abs_error": 2.1418762208291753e-07,
+          "cosine": 0.9999999999996669
+        },
+        {
+          "id": "query:q04",
+          "max_abs_error": 1.5495071412074957e-07,
+          "cosine": 0.9999999999994267
+        },
+        {
+          "id": "query:q05",
+          "max_abs_error": 1.224894714546565e-07,
+          "cosine": 0.9999999999997147
+        },
+        {
+          "id": "query:q06",
+          "max_abs_error": 9.164325714960952e-08,
+          "cosine": 0.9999999999997288
+        },
+        {
+          "id": "query:q07",
+          "max_abs_error": 1.462572479238311e-07,
+          "cosine": 0.9999999999996128
+        },
+        {
+          "id": "query:q08",
+          "max_abs_error": 1.310855674771516e-07,
+          "cosine": 0.9999999999993925
+        },
+        {
+          "id": "query:q09",
+          "max_abs_error": 1.6787434577864024e-07,
+          "cosine": 0.9999999999995505
+        },
+        {
+          "id": "query:q10",
+          "max_abs_error": 1.6688278198229156e-07,
+          "cosine": 0.9999999999993372
+        },
+        {
+          "id": "query:q11",
+          "max_abs_error": 1.0427776527682786e-07,
+          "cosine": 0.9999999999996501
+        },
+        {
+          "id": "query:q12",
+          "max_abs_error": 1.8275929975462846e-07,
+          "cosine": 0.9999999999989999
+        },
+        {
+          "id": "query:q13",
+          "max_abs_error": 1.7269973756617318e-07,
+          "cosine": 0.9999999999995774
+        },
+        {
+          "id": "query:q14",
+          "max_abs_error": 1.7180855655524185e-07,
+          "cosine": 0.9999999999992699
+        },
+        {
+          "id": "query:q15",
+          "max_abs_error": 1.4433441164474203e-07,
+          "cosine": 0.9999999999997318
+        },
+        {
+          "id": "query:q16",
+          "max_abs_error": 7.461703967898137e-08,
+          "cosine": 0.9999999999997686
+        },
+        {
+          "id": "query:q17",
+          "max_abs_error": 1.48397827137714e-07,
+          "cosine": 0.9999999999994931
+        },
+        {
+          "id": "query:q18",
+          "max_abs_error": 1.2812167167822186e-07,
+          "cosine": 0.9999999999995148
+        },
+        {
+          "id": "query:q19",
+          "max_abs_error": 1.2240455626866265e-07,
+          "cosine": 0.9999999999996694
+        },
+        {
+          "id": "query:q20",
+          "max_abs_error": 2.749391994471412e-07,
+          "cosine": 0.9999999999978452
+        },
+        {
+          "id": "length:128",
+          "max_abs_error": 2.3461577987327065e-07,
+          "cosine": 0.999999999999225
+        },
+        {
+          "id": "length:512",
+          "max_abs_error": 1.6586429596454622e-07,
+          "cosine": 0.9999999999991898
+        },
+        {
+          "id": "length:1024",
+          "max_abs_error": 1.6404467487185492e-07,
+          "cosine": 0.9999999999988269
+        }
+      ]
+    }
+  },
+  "backend_order": [
+    "transformers_eager",
+    "transformers_sdpa",
+    "rust_f32"
+  ],
+  "parity_pass": true,
+  "ranking_agreement": {
+    "transformers_eager": 20,
+    "transformers_sdpa": 20,
+    "rust_f32": 20
+  }
+}

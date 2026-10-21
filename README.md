@@ -11,12 +11,13 @@ Community implementation; not affiliated with Google.
 
 ```sh
 docker run --rm -p 127.0.0.1:8080:8080 --cpus=2 --memory=3g \
-  ghcr.io/a-k-6/rust-embedding-runtime:0.2.0
+  ghcr.io/a-k-6/rust-embedding-runtime:0.2.1
 ```
 
 The image includes the pinned text model. Inference needs no downloads, Python,
 GPU, or external service. The image supports Linux AMD64 and ARM64; Docker selects the native image
-automatically. On macOS it runs inside Docker’s Linux VM.
+automatically. ARM64 requires a CPU with NEON and FP16 instructions (such as
+Apple Silicon through Docker). On macOS it runs inside Docker’s Linux VM.
 
 ```sh
 curl http://localhost:8080/v1/embeddings \
@@ -79,10 +80,29 @@ processes batches sequentially, with at most eight queued batches; overload
 returns 503. Batching is an API convenience, not fused batch inference.
 
 F32 is the default. Quantization can reduce memory but is not guaranteed faster.
-This is an initial community release: numerical parity with the official
-implementation and broad relevance benchmarks remain to be established.
+Numerical agreement with the official implementation is checked on the
+[CPU comparison fixtures](benchmarks/REPORT.md). Broader relevance remains
+unestablished; the authored retrieval pilot contains only 20 queries.
 Image smoke tests verify real inference, normalization, API behavior, and
 consistency across output encodings and dimensions.
+
+## CPU comparison
+
+See [measured results and raw runs](benchmarks/REPORT.md) for the Apple M2
+and AMD Ryzen 9 9955HX comparison against official Transformers/PyTorch eager
+and SDPA inference. The goal is lower latency **and** lower memory. Results
+report both, including cases where Rust does not win. Native macOS timings
+use Accelerate and do not measure Linux ARM64 Docker performance.
+
+| CPU | Rust median / p95 | PyTorch SDPA median / p95 | Rust memory reduction |
+| --- | ---: | ---: | ---: |
+| Apple M2 | 57.3 / 75.7 ms | 62.6 / 98.4 ms | 20.9% |
+| AMD Ryzen 9 9955HX | 48.4 / 58.1 ms | 49.0 / 58.4 ms | 36.4% |
+
+Two-thread native CPU, batch one, uncached 15–28-token authored queries.
+Memory uses macOS physical footprint or Linux RSS within each machine.
+The AMD latency winner changes with run order; its speed target remains open.
+The linked report includes eager attention, longer inputs, raw timings and limits.
 
 ## Build locally
 

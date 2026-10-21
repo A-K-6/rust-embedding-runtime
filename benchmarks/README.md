@@ -70,4 +70,7 @@ capacity or production tail-latency conclusions.
 The official reference follows the model's documented text-only loading,
 mean-pooling and normalization recipe:
 [model card](https://huggingface.co/google/embeddinggemma-2/blob/914f7f89142e33e77833254d9c9b90c3cef7303b/README.md).
-Raw safe results and a measured summary will be added after collection.
+See [the measured report](REPORT.md), [aggregate JSON](results/summary.json),
+and individual raw runs under `results/`. Regenerate aggregates with
+`python3 benchmarks/summarize.py`. To repeat the counterbalanced second run,
+pass `--order rust_f32,transformers_sdpa,transformers_eager` and a new output path.
