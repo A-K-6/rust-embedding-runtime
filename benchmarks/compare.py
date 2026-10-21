@@ -17,10 +17,23 @@ import time
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 BACKENDS = ('transformers_eager', 'transformers_sdpa', 'rust_f32')
+WAIT_ENV_KEYS = ('OMP_WAIT_POLICY', 'GOMP_SPINCOUNT', 'OMP_DYNAMIC', 'OMP_PROC_BIND')
 
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def runtime_wait_environment(pid=None):
+    if pid is None:
+        return {key: os.environ.get(key) for key in WAIT_ENV_KEYS}
+    wanted = {key.encode(): key for key in WAIT_ENV_KEYS}
+    values = {}
+    for item in Path(f'/proc/{pid}/environ').read_bytes().split(b'\0'):
+        key, separator, value = item.partition(b'=')
+        if separator and key in wanted:
+            values[wanted[key]] = os.fsdecode(value)
+    return {key: values.get(key) for key in WAIT_ENV_KEYS}
 
 
 def distribution(values):
@@ -286,6 +299,7 @@ def main():
             'hardware':{'cpu':cpu(),'architecture':platform.machine(),'os':platform.system(),'os_release':platform.release(),
                         'logical_cpus':os.cpu_count(),'affinity_cpus':sorted(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else None},
             'worker_cpu_selection':cpu_selection,
+            'runtime_wait_environment':runtime_wait_environment(),
             'protocol':data['protocol'],
             'measurement':'Batch 1; uncached; serial. wall_ms includes tokenization, JSONL IPC and vector serialization; engine_ms excludes tokenization and IPC. No HTTP/network/database/ranking in either latency.',
             'cpu_limit':'Two intra-op/Rayon threads; PyTorch inter-op 1; BLAS/OpenMP environment capped at 2. Native host, no exclusive CPU reservation or hard quota.',
@@ -310,8 +324,13 @@ def main():
             worker=Worker(command, cpus=args.cpus)
             try:
                 validate_ready(name, worker.ready)
+                wait_environment = runtime_wait_environment(worker.process.pid if platform.system() == 'Linux' else None)
+                if wait_environment != result['runtime_wait_environment']:
+                    raise ValueError('Worker wait environment differs from the declared spawn environment')
                 entry={'ready':worker.ready,'load_wall_ms':worker.load_wall_ms,'rows':[],'length_rows':[],
-                       'ready_affinity':worker.affinity, 'text_token_ids_max_abs_error':0.0}
+                       'ready_affinity':worker.affinity, 'text_token_ids_max_abs_error':0.0,
+                       'runtime_wait_environment':wait_environment,
+                       'wait_environment_verification':'linux_proc_environ' if platform.system() == 'Linux' else 'spawn_environment'}
                 corpus=[]
                 vectors={}
                 for doc in data['documents']:

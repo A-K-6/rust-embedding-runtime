@@ -113,6 +113,7 @@ def report(result):
             memory = f'{entry["short_query_memory"]["rss_mib"]:.1f} / {entry["post_long_memory"]["rss_mib"]:.1f} / {entry["post_long_memory"]["peak_rss_mib"]:.1f}'
             lengths = ' / '.join(f'{entry["length_latency_ms"][str(length)]["wall_ms"]["median"]:.2f}' for length in (128, 512, 1024))
             lines.append(f'| {count} | {LABELS[name]} | '+' | '.join(latency)+f' | {memory} | {lengths} |')
+    for count, setting in result['settings'].items():
         lines += ['', f'{count} threads: quality status **{setting["status"]}**, worker CPUs {setting["worker_cpus"]}; '
                   f'LLC domains {setting["last_level_cache_domains"]}; order '+', '.join(LABELS[name] for name in setting['backend_order'])+'.', '']
     lines += ['Numerical agreement requires 33 vectors/backend, maximum absolute error at most 1e-4 and cosine at least .99999. '

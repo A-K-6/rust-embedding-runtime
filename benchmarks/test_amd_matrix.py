@@ -52,7 +52,23 @@ class AcceptanceTests(unittest.TestCase):
         self.assertEqual(summary['backends']['rust_f32']['query']['wall_ms']['count'], 600)
         self.assertEqual(summary['backends']['rust_f32']['lengths']['1024']['engine_ms']['count'], 18)
         self.assertIn('every order', markdown(summary))
+        self.assertFalse(summary['runtime_wait_environment_recorded'])
+        self.assertIn('unrecorded in this legacy evidence', markdown(summary))
         json.dumps(summary, allow_nan=False)
+
+    def test_changed_runtime_wait_policy_across_orders_rejected(self):
+        runs = valid_runs()
+        policy = {'OMP_WAIT_POLICY': 'PASSIVE', 'GOMP_SPINCOUNT': '0', 'OMP_DYNAMIC': None, 'OMP_PROC_BIND': None}
+        for run in runs:
+            run['runtime_wait_environment'] = policy.copy()
+            for entry in run['backends'].values():
+                entry['runtime_wait_environment'] = policy.copy()
+        summary = aggregate(runs, [f'{i}.json' for i in range(6)])
+        self.assertTrue(summary['runtime_wait_environment_recorded'])
+        self.assertEqual(summary['runtime_wait_environment'], policy)
+        runs[-1]['runtime_wait_environment']['OMP_WAIT_POLICY'] = 'ACTIVE'
+        with self.assertRaisesRegex(ValueError, 'runtime_wait_environment'):
+            aggregate(runs, [f'{i}.json' for i in range(6)])
 
     def test_negative_quality_and_numerical_gates(self):
         for mutate in (

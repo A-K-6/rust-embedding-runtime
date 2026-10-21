@@ -8,7 +8,7 @@ from pathlib import Path
 import platform
 import subprocess
 
-from compare import BACKENDS, HERE, ROOT, distribution, parse_cpu_list, sha, source_hashes, validate_acceptance
+from compare import BACKENDS, HERE, ROOT, distribution, parse_cpu_list, runtime_wait_environment, sha, source_hashes, validate_acceptance
 
 LABELS = {'transformers_eager': 'PyTorch eager', 'transformers_sdpa': 'PyTorch SDPA', 'rust_f32': 'Rust F32'}
 ORDERS = tuple(itertools.permutations(BACKENDS))
@@ -51,6 +51,9 @@ def relative_latency(rust, reference):
 def aggregate(runs, files):
     if len(runs) != len(ORDERS) or len(files) != len(ORDERS):
         raise ValueError('Exactly six complete runs are required')
+    wait_environment = runs[0].get('runtime_wait_environment')
+    if any(run.get('runtime_wait_environment') != wait_environment for run in runs):
+        raise ValueError('Run provenance changed: runtime_wait_environment')
     shared = ('fixture_sha256', 'model_revision', 'source_revision', 'rust_binary_sha256',
               'cargo_lock_sha256', 'rust_source_sha256', 'source_file_sha256', 'driver_sha256',
               'reference_worker_sha256', 'build_provenance', 'rustc', 'driver_python',
@@ -69,6 +72,8 @@ def aggregate(runs, files):
                 raise ValueError(f'Run provenance changed: {key}')
         for name in BACKENDS:
             entry = run['backends'][name]
+            if wait_environment is not None and entry.get('runtime_wait_environment') != wait_environment:
+                raise ValueError('Backend runtime wait environment differs from the run declaration')
             stable_ready = {key: value for key, value in entry['ready'].items() if key != 'load_ms'}
             first_ready = {key: value for key, value in runs[0]['backends'][name]['ready'].items() if key != 'load_ms'}
             if stable_ready != first_ready:
@@ -84,6 +89,8 @@ def aggregate(runs, files):
                 if not isinstance(value, (float, int)) or not math.isfinite(value) or value <= 0:
                     raise ValueError('Memory samples must be finite and positive')
     summary = {key: runs[0][key] for key in shared}
+    summary['runtime_wait_environment'] = wait_environment
+    summary['runtime_wait_environment_recorded'] = wait_environment is not None
     summary.update({'status': 'complete', 'schedule': [list(order) for order in ORDERS], 'raw_files': files,
                     'backends': {}, 'comparisons': {},
                     'scope': 'Native AMD64 CPU; same frozen public fixture; batch one; two kernel threads; six sequential orders. No core reservation, fixed frequency, HTTP or database in these timings.',
@@ -135,6 +142,7 @@ def aggregate(runs, files):
 def markdown(summary):
     lines = ['# AMD64 CPU matrix', '', summary['scope'], '',
              f"CPU: {summary['hardware']['cpu']}. Each backend has 600 measured short-query requests; each long-input length has 18.", '',
+             'Runtime wait environment: '+(json.dumps(summary['runtime_wait_environment'], sort_keys=True) if summary['runtime_wait_environment_recorded'] else 'unrecorded in this legacy evidence')+'.', '',
              '| Backend | Engine median / p95 (ms) | Wall median / p95 (ms) | Short RSS / post-long RSS / peak RSS (MiB) |',
              '| --- | ---: | ---: | ---: |']
     for name in BACKENDS:
@@ -187,6 +195,7 @@ def main():
     manifest = {'status': 'running', 'schedule': schedule, 'matrix_driver_sha256': sha(Path(__file__)),
                 'source_file_sha256': source, 'compare_driver_sha256': driver_hash, 'rust_binary_sha256': binary_hash,
                 'reference_worker_sha256': reference_hash,
+                'runtime_wait_environment': runtime_wait_environment(),
                 'build_provenance_declaration': args.build_provenance,
                 'worker_cpus': args.cpus, 'driver_affinity_modified': False,
                 'note': 'Order fixed before measurement. Caller declaration records build flags; runtime environment does not prove them.'}
@@ -196,6 +205,8 @@ def main():
     save_manifest()
     runs = []
     def validate_unchanged():
+        if runtime_wait_environment() != manifest['runtime_wait_environment']:
+            raise ValueError('Runtime wait environment changed during the matrix')
         if (source_hashes() != source or sha(args.rust) != binary_hash or sha(HERE/'compare.py') != driver_hash or
                 sha(HERE/'reference_worker.py') != reference_hash or sha(Path(__file__)) != manifest['matrix_driver_sha256']):
             raise ValueError('Source, binary or benchmark driver changed during the matrix')
@@ -210,6 +221,8 @@ def main():
                 command.extend(['--cpus', ','.join(map(str, args.cpus))])
             subprocess.run(command, check=True, cwd=ROOT)
             run = json.loads((args.output_dir/item['file']).read_text())
+            if run.get('runtime_wait_environment') != manifest['runtime_wait_environment']:
+                raise ValueError('New run is missing the prespecified runtime wait environment')
             if run['source_file_sha256'] != source or run['rust_binary_sha256'] != binary_hash or run['driver_sha256'] != driver_hash:
                 raise ValueError('Run provenance does not match the prespecified matrix')
             runs.append(run)
