@@ -1,11 +1,13 @@
 """Model-free acceptance, topology and provenance checks for the AMD harness."""
 import copy
 import json
+import subprocess
+import sys
 from pathlib import Path
 import tempfile
 import unittest
 
-from amd_matrix import BACKENDS, ORDERS, aggregate, markdown
+from amd_matrix import BACKENDS, ORDERS, aggregate, markdown, interpreter_path
 from compare import parse_cpu_list, source_hashes, validate_acceptance, validate_affinity, validate_worker_cpus
 
 
@@ -156,6 +158,16 @@ class AffinityAndProvenanceTests(unittest.TestCase):
             self.assertEqual(len(hashes), 5)
             (root/'src/nested/kernel.rs').write_text('changed')
             self.assertNotEqual(hashes, source_hashes(root))
+
+
+class InterpreterTests(unittest.TestCase):
+    def test_subprocess_preserves_virtual_environment(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            environment = Path(temporary)/'environment'
+            subprocess.run([sys.executable, '-m', 'venv', '--without-pip', str(environment)], check=True)
+            python = environment/'bin/python'
+            prefix = subprocess.check_output([interpreter_path(python), '-c', 'import sys; print(sys.prefix)'], text=True).strip()
+            self.assertEqual(Path(prefix), environment)
 
 
 if __name__ == '__main__':

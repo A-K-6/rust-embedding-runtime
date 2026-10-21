@@ -17,6 +17,12 @@ LATENCY_METRICS = ('engine_ms', 'wall_ms')
 PERCENTILES = ('median', 'p95')
 
 
+def interpreter_path(path):
+    # A virtualenv's python is often a symlink. Resolving it loses pyvenv.cfg
+    # discovery and silently runs the base interpreter without its packages.
+    return str(path.expanduser().absolute())
+
+
 def memory_samples(entry):
     return {'short_rss_mib': entry['short_query_memory']['rss_mib'],
             'post_long_rss_mib': entry['post_long_memory']['rss_mib'],
@@ -196,7 +202,7 @@ def main():
     try:
         for item in schedule:
             validate_unchanged()
-            command = [str(args.python.resolve()), str(HERE/'compare.py'), '--python', str(args.python.resolve()),
+            command = [interpreter_path(args.python), str(HERE/'compare.py'), '--python', interpreter_path(args.python),
                        '--rust', str(args.rust.resolve()), '--model', str(args.model.resolve()),
                        '--order', ','.join(item['backend_order']), '--build-provenance', args.build_provenance,
                        '--output', str((args.output_dir/item['file']).resolve())]
