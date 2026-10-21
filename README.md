@@ -113,9 +113,12 @@ docker run --rm -p 127.0.0.1:8080:8080 rust-embedding-runtime
 use rust_embedding_runtime::{Input, QuantMode, Runtime};
 use std::path::Path;
 
-let mut runtime = Runtime::load(Path::new("model"), QuantMode::F32)?;
-let (vectors, tokens) = runtime.embed(&[Input::Text("Hello, world".into())], 768)?;
-# Ok::<(), anyhow::Error>(())
+fn main() -> anyhow::Result<()> {
+    let mut runtime = Runtime::load(Path::new("model"), QuantMode::F32)?;
+    let (vectors, tokens) = runtime.embed(&[Input::Text("Hello, world".into())], 768)?;
+    println!("{} vectors, {tokens} tokens", vectors.len());
+    Ok(())
+}
 ```
 
 The standalone `embedding-jsonl` binary also accepts one JSON request per line:
