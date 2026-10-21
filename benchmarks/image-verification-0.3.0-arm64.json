@@ -1,0 +1,48 @@
+{
+  "image": "ghcr.io/a-k-6/rust-embedding-runtime:0.3.0",
+  "platform": "linux/arm64",
+  "anonymous_pull": true,
+  "daemon_architecture": "aarch64",
+  "image_id": "sha256:c49bf7a38905e13900adabb374aeebf967a87f2ee3d94d7c45b1f660cf9fe0ec",
+  "repo_digests": [
+    "ghcr.io/a-k-6/rust-embedding-runtime@sha256:c49bf7a38905e13900adabb374aeebf967a87f2ee3d94d7c45b1f660cf9fe0ec"
+  ],
+  "source_revision": "2589f2648b0c3fb298b89ada332fdd4426ff60b2",
+  "user": "65532:65532",
+  "configured_runtime_environment": {
+    "THREADS": "2",
+    "QUANTIZATION": "f32",
+    "OMP_WAIT_POLICY": "PASSIVE",
+    "GOMP_SPINCOUNT": "0"
+  },
+  "real_model_api_smoke": "passed",
+  "official_reference_parity": {
+    "reference": "Official PyTorch eager CPU F32",
+    "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+    "reference_artifact_sha256": "d1dc177ea465ef242e44d254a5c004e3cbcffc35df481891304a825cef21ffbb",
+    "vectors": 3,
+    "max_abs_error": 2.523884177207947e-07,
+    "min_cosine": 0.9999999999978292,
+    "comparisons": [
+      {
+        "id": "q01",
+        "max_abs_error": 1.4901161193847656e-07,
+        "cosine": 0.9999999999997398
+      },
+      {
+        "id": "q10",
+        "max_abs_error": 1.341104507446289e-07,
+        "cosine": 0.9999999999995557
+      },
+      {
+        "id": "q20",
+        "max_abs_error": 2.523884177207947e-07,
+        "cosine": 0.9999999999978292
+      }
+    ]
+  },
+  "cpu_limit": 2,
+  "memory_limit": "3 GiB",
+  "verified_at_utc": "2026-10-21T22:05:02.032436+00:00",
+  "checks": "health/auth, ordered batch, 768 normalized finite values, float/base64 agreement, 128 dimensions, invalid/overlong inputs"
+}

@@ -5,6 +5,7 @@ import base64
 import json
 import math
 import os
+from pathlib import Path
 import socket
 import struct
 import subprocess
@@ -64,6 +65,22 @@ def main():
             else:
                 raise AssertionError('server did not become ready')
             assert request('/health')[0] == 200
+            reference_path = Path(__file__).resolve().parents[1]/'benchmarks/image-reference-0.3.0.json'
+            reference = json.loads(reference_path.read_text())
+            for case in reference['cases']:
+                status, value = request('/v1/embeddings', {
+                    'model': 'google/embeddinggemma-2', 'input': case['text'],
+                    'encoding_format': 'float',
+                })
+                assert status == 200
+                actual, expected = value['data'][0]['embedding'], case['embedding']
+                assert len(actual) == len(expected) == 768
+                assert all(math.isfinite(x) for x in actual)
+                assert value['usage']['prompt_tokens'] == case['tokens']
+                error = max(abs(a-b) for a,b in zip(actual, expected))
+                cosine = sum(a*b for a,b in zip(actual, expected))/math.sqrt(
+                    sum(a*a for a in actual)*sum(b*b for b in expected))
+                assert error <= 1e-4 and cosine >= .99999, (case['id'], error, cosine)
             assert request('/v1/models', auth=False)[0] == 401
             assert request('/v1/models')[1]['data'][0]['id'] == 'google/embeddinggemma-2'
             payload = {'model': 'google/embeddinggemma-2', 'input': [
@@ -97,7 +114,7 @@ def main():
                 status, error = request('/v1/embeddings', invalid)
                 assert status == 400 and 'error' in error, (status, error)
             assert request('/health')[0] == 200
-            print('PASS: real model, health/auth, ordered batch, normalized vectors, base64, dimensions, invalid/overlong inputs')
+            print('PASS: real model, PyTorch reference agreement, health/auth, ordered batch, normalized vectors, base64, dimensions, invalid/overlong inputs')
         except BaseException:
             if container:
                 subprocess.run(['docker', 'logs', container], check=False)

@@ -208,3 +208,35 @@ shared GNU runtime libraries; Linux ARM64 uses Candle. Native benchmark numbers
 above are not container performance measurements. Images include the actual
 pinned model and undergo real inference/API checks on each native architecture
 before publication.
+
+## Published image verification
+
+[v0.3.0](https://github.com/A-K-6/rust-embedding-runtime/releases/tag/v0.3.0)
+publishes `ghcr.io/a-k-6/rust-embedding-runtime:0.3.0` and `latest`.
+The combined index digest is
+`sha256:c49bf7a38905e13900adabb374aeebf967a87f2ee3d94d7c45b1f660cf9fe0ec`;
+its source is `2589f2648b0c3fb298b89ada332fdd4426ff60b2`.
+The [release workflow](https://github.com/A-K-6/rust-embedding-runtime/actions/runs/39682297623)
+built native AMD64 and ARM64 images and passed real-model/API tests before
+publishing the combined tag.
+
+After publication, anonymous pulls with separate empty Docker authentication
+configs and real API tests passed on the Ryzen laptop's native AMD64 Docker
+engine and the Apple M2's native ARM64 Docker engine. Both ran with two CPUs,
+3 GiB memory and the non-root image user. Tests include bearer authentication,
+ordered batches, normalized vectors, base64 agreement, dimensions, limits and
+three embeddings checked against official PyTorch eager F32 output.
+
+| Container architecture | Maximum absolute reference error | Minimum cosine agreement |
+| --- | ---: | ---: |
+| Linux AMD64 | 2.198e-7 | 0.9999999999978 |
+| Linux ARM64 | 2.524e-7 | 0.9999999999978 |
+
+The [reference artifact](image-reference-0.3.0.json) contains pinned model/fixture
+hashes, reference-worker hash and versions, and outputs for authored queries
+q01/q10/q20. Current [API smoke tests](../tests/smoke.py) use those vectors.
+Safe receipts: [AMD64](image-verification-0.3.0-amd64.json),
+[ARM64](image-verification-0.3.0-arm64.json),
+[published platform manifests](image-manifest-0.3.0.json).
+These are functional and numerical container checks; the performance tables
+above measure native binaries.

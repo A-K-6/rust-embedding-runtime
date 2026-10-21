@@ -85,7 +85,8 @@ F32 is the default. Quantization can reduce memory but is not guaranteed faster.
 Numerical agreement with the official implementation is checked on the
 [CPU comparison fixtures](benchmarks/AMD_REPORT.md). Broader relevance remains
 unestablished; the authored retrieval pilot contains only 20 queries.
-Image smoke tests verify real inference, normalization, API behavior, and
+Image smoke tests verify real inference, agreement with PyTorch reference
+vectors, normalization, API behavior, and
 consistency across output encodings and dimensions.
 
 ## CPU comparison
@@ -140,7 +141,7 @@ OMP_WAIT_POLICY=PASSIVE GOMP_SPINCOUNT=0 THREADS=2 ./target/release/embedding-ru
 
 The helper verifies the upstream source archive before building. Linear weights
 are reordered once at startup and the original linear allocation is released;
-encoder weights and arithmetic remain F32. See the
+linear weights and encoder arithmetic remain F32. See the
 [backend build and ownership details](crates/aocl-kernels/README.md).
 The Docker build selects this backend automatically for AMD64.
 The image also uses passive OpenMP waiting to reduce contention with Rayon
