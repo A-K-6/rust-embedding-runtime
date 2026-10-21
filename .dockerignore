@@ -1,5 +1,6 @@
 .git
 target
+**/target
 model
 __pycache__
 tests/reference

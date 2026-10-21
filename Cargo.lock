@@ -44,6 +44,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
 
 [[package]]
+name = "aocl-kernels"
+version = "0.1.0"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "atomic-waker"
 version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1218,9 +1225,10 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
 name = "rust-embedding-runtime"
-version = "0.2.2"
+version = "0.3.0"
 dependencies = [
  "anyhow",
+ "aocl-kernels",
  "axum",
  "base64 0.22.1",
  "candle-core",

@@ -5,6 +5,8 @@
 #![forbid(unsafe_code)]
 use anyhow::{bail, Context, Result};
 use candle_core::quantized::{GgmlDType, QMatMul, QTensor};
+#[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+use candle_core::CpuStorage;
 use candle_core::{DType, Device, Tensor};
 use candle_nn::{Module, VarBuilder};
 use serde::{Deserialize, Serialize};
@@ -17,10 +19,27 @@ use std::{
 };
 use tokenizers::Tokenizer;
 mod activation;
+#[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+mod aocl;
+mod profile;
 const MAX_TOKENS: usize = 1024;
 const MAX_INPUT_BYTES: usize = 65536;
 const MAX_HEADER_BYTES: u64 = 4 * 1024 * 1024;
 const VOCABULARY: usize = 262144;
+
+fn f32_backend() -> &'static str {
+    #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+    if aocl_kernels::available() {
+        return "aocl-dlp";
+    }
+    if candle_core::utils::has_accelerate() {
+        "accelerate"
+    } else if candle_core::utils::has_mkl() {
+        "mkl"
+    } else {
+        "gemm"
+    }
+}
 
 #[derive(Deserialize)]
 struct Weight {
@@ -118,6 +137,7 @@ impl Norm {
         })
     }
     fn forward(&self, x: &Tensor) -> candle_core::Result<Tensor> {
+        let _span = profile::span("rms_norm");
         // One CPU kernel replaces the separate square/reduce/sqrt/divide/scale chain.
         candle_nn::ops::rms_norm(&x.contiguous()?, &self.scale, 1e-6)
     }
@@ -169,6 +189,8 @@ impl QuantMode {
 // not dequantize the weight into a float tensor.
 enum ProjectionWeight {
     Float(Tensor),
+    #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+    Reordered(std::sync::Arc<aocl_kernels::PackedLinear>),
     Packed(std::sync::Arc<QTensor>, QMatMul),
 }
 
@@ -182,7 +204,32 @@ struct QuantProjection {
 impl QuantProjection {
     fn new(weight: &Tensor, mode: QuantMode) -> candle_core::Result<Self> {
         let weight = match mode.ggml_dtype() {
-            None => ProjectionWeight::Float(weight.to_dtype(DType::F32)?),
+            None => {
+                let weight = weight.to_dtype(DType::F32)?;
+                #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+                if aocl_kernels::available() {
+                    let (output, input) = weight.dims2()?;
+                    let (storage, layout) = weight.storage_and_layout();
+                    let candle_core::Storage::Cpu(CpuStorage::F32(values)) = &*storage else {
+                        candle_core::bail!("F32 weight storage mismatch")
+                    };
+                    let Some((start, end)) = layout.contiguous_offsets() else {
+                        candle_core::bail!("F32 weights must be contiguous before reordering")
+                    };
+                    let reordered = aocl_kernels::PackedLinear::new(
+                        &values[start..end],
+                        output,
+                        input,
+                        rayon::current_num_threads().min(64),
+                    )
+                    .map_err(|error| candle_core::Error::Msg(error.to_string()))?;
+                    return Ok(Self {
+                        mode,
+                        weight: ProjectionWeight::Reordered(std::sync::Arc::new(reordered)),
+                    });
+                }
+                ProjectionWeight::Float(weight)
+            }
             Some(dtype) => {
                 let packed = std::sync::Arc::new(QTensor::quantize(weight, dtype)?);
                 let matmul = QMatMul::QTensor(packed.clone());
@@ -205,6 +252,8 @@ impl QuantProjection {
     fn storage_bytes(&self) -> usize {
         match &self.weight {
             ProjectionWeight::Float(w) => w.elem_count() * w.dtype().size_in_bytes(),
+            #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+            ProjectionWeight::Reordered(w) => w.storage_bytes(),
             ProjectionWeight::Packed(packed, _) => packed.storage_size_in_bytes(),
         }
     }
@@ -212,8 +261,15 @@ impl QuantProjection {
 
 impl Module for QuantProjection {
     fn forward(&self, x: &Tensor) -> candle_core::Result<Tensor> {
+        let _span = profile::span("linear");
         match &self.weight {
-            ProjectionWeight::Float(w) => candle_nn::Linear::new(w.clone(), None).forward(x),
+            ProjectionWeight::Float(w) => {
+                candle_nn::Linear::new(w.clone(), None).forward(&x.contiguous()?)
+            }
+            #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+            ProjectionWeight::Reordered(w) => {
+                x.contiguous()?.apply_op1_no_bwd(&aocl::Linear(w.clone()))
+            }
             // The quantized CPU kernel only accepts contiguous float32 input.
             ProjectionWeight::Packed(_, matmul) => matmul.forward(&x.contiguous()?),
         }
@@ -441,6 +497,7 @@ impl Layer {
         let k = repeat(&k)?;
         let v = repeat(&v)?;
         // Reference attention scaling is 1.0, not 1/sqrt(head_dim).
+        let attention_span = profile::span("attention");
         let scores = q
             .matmul(&k.transpose(2, 3)?.contiguous()?)?
             .broadcast_add(mask)?;
@@ -451,6 +508,7 @@ impl Layer {
                 .transpose(1, 2)?
                 .contiguous()?
                 .reshape((1, n, 4 * self.head_dim))?;
+        drop(attention_span);
         let h = x.add(&self.post_attn.forward(&self.o.forward(&attention)?)?)?;
         let f = self.pre_ff.forward(&h)?;
         let f = activation::gelu_mul(&self.gate.forward(&f)?, &self.up.forward(&f)?)?;
@@ -534,8 +592,10 @@ impl Encoder {
         self.packed_weight_bytes
     }
     fn encode(&self, ids: &[u32], dims: usize) -> Result<Vec<f32>> {
+        let _span = profile::span("encoder_total");
         validate_input(ids, dims)?;
         let n = ids.len();
+        let embedding_span = profile::span("embedding_lookup");
         let t = Tensor::new(ids, &Device::Cpu)?;
         let mut h = (self
             .embed
@@ -543,9 +603,11 @@ impl Encoder {
             .to_dtype(DType::F32)?
             .unsqueeze(0)?
             * (512f64).sqrt())?;
+        drop(embedding_span);
         let ple = self
             .ple_norm
             .forward(&(self.ple.forward(&h)? * (512f64).powf(-0.5))?.reshape((1, n, 24, 512))?)?;
+        let positions_span = profile::span("positions_and_masks");
         let rope = |hd: usize, theta: f32| -> candle_core::Result<(Tensor, Tensor)> {
             let mut cos = Vec::with_capacity(n * hd / 2);
             let mut sin = Vec::with_capacity(n * hd / 2);
@@ -576,6 +638,7 @@ impl Encoder {
             })
             .collect();
         let sliding_mask = Tensor::from_vec(mask, (1, 1, n, n), &Device::Cpu)?;
+        drop(positions_span);
         for (i, l) in self.layers.iter().enumerate() {
             h = l.forward(
                 &h,
@@ -655,6 +718,8 @@ struct Response {
     embedding: Vec<f32>,
     tokens: usize,
     elapsed_ms: f64,
+    #[cfg(feature = "profile")]
+    profile_ms: std::collections::BTreeMap<&'static str, f64>,
 }
 const USAGE: &str = "usage: embedding-jsonl [--quant f32|q8_0|q4_k] MODEL_DIR";
 
@@ -706,7 +771,8 @@ pub fn run_jsonl() -> Result<()> {
             "fused_rms_norm": true,
             "fused_rope": true,
             "gemm_avx512_runtime_dispatch": false,
-            "cpu_backend": if candle_core::utils::has_accelerate() { "accelerate" } else { "gemm" },
+            "cpu_backend": f32_backend(),
+            "aocl_version": if f32_backend() == "aocl-dlp" { Some("5.3.2") } else { None },
             "load_ms": start.elapsed().as_secs_f64() * 1000.,
             "max_tokens": MAX_TOKENS,
             "dtype": "f32",
@@ -725,7 +791,10 @@ pub fn run_jsonl() -> Result<()> {
         };
         let result = (|| -> Result<Response> {
             let bytes = frame?;
+            #[cfg(feature = "profile")]
+            let _ = profile::take();
             let r: Request = serde_json::from_slice(&bytes)?;
+            let tokenize_span = profile::span("tokenization");
             let ids = match (r.text, r.ids) {
                 (Some(text), None) => {
                     let e = tokenizer
@@ -736,12 +805,15 @@ pub fn run_jsonl() -> Result<()> {
                 (None, Some(ids)) => ids,
                 _ => bail!("provide exactly one of text or ids"),
             };
+            drop(tokenize_span);
             let start = Instant::now();
             let embedding = model.encode(&ids, r.dims)?;
             Ok(Response {
                 embedding,
                 tokens: ids.len(),
                 elapsed_ms: start.elapsed().as_secs_f64() * 1000.,
+                #[cfg(feature = "profile")]
+                profile_ms: profile::take(),
             })
         })();
         match result {

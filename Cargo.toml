@@ -1,6 +1,6 @@
 [package]
 name = "rust-embedding-runtime"
-version = "0.2.2"
+version = "0.3.0"
 edition = "2021"
 rust-version = "1.98"
 license = "Apache-2.0"
@@ -8,6 +8,17 @@ description = "Community Rust CPU text-embedding runtime for EmbeddingGemma 2"
 repository = "https://github.com/A-K-6/rust-embedding-runtime"
 exclude = ["model/", "tests/reference/"]
 default-run = "embedding-runtime"
+
+[features]
+profile = []
+aocl = ["dep:aocl-kernels"]
+
+[workspace]
+members = ["crates/aocl-kernels"]
+default-members = ["."]
+
+[target.'cfg(all(target_os = "linux", target_arch = "x86_64"))'.dependencies]
+aocl-kernels = { path = "crates/aocl-kernels", optional = true }
 
 [target.'cfg(target_os = "macos")'.dependencies]
 candle-core = { version = "=0.11.0", features = ["accelerate"] }

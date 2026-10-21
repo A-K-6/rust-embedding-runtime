@@ -50,6 +50,7 @@ impl CustomOp2 for GeluMul {
 }
 
 pub(crate) fn gelu_mul(a: &Tensor, b: &Tensor) -> Result<Tensor> {
+    let _span = crate::profile::span("activation");
     // Accelerate already provides vectorized tanh on native macOS.
     if candle_core::utils::has_accelerate() {
         a.gelu()?.mul(b)

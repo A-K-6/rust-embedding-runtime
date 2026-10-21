@@ -78,12 +78,11 @@ fn default_mode_is_float_and_keeps_exact_reference_behavior() {
     assert_eq!(projection.mode(), QuantMode::F32);
     assert!(
         !projection.is_quantized(),
-        "F32 mode must keep an f32 weight tensor"
+        "F32 mode must preserve full-precision weights"
     );
-    assert_eq!(
-        projection.storage_bytes(),
-        OUT * IN * 4,
-        "F32 mode must store one f32 per weight"
+    assert!(
+        (OUT * IN * 4..=OUT.next_multiple_of(64) * IN * 4).contains(&projection.storage_bytes()),
+        "F32 storage may pad output rows for a reordered kernel, without quantization or a duplicate full matrix"
     );
 
     let x = input_2d();

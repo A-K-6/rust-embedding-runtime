@@ -2,6 +2,51 @@ use super::*;
 use candle_core::D;
 
 #[test]
+fn f32_projection_preserves_strided_batches_and_tail_dimensions() {
+    let device = Device::Cpu;
+    let weights = Tensor::from_vec(
+        (0..17 * 19)
+            .map(|i| (i as f32 * 0.13).sin())
+            .collect::<Vec<_>>(),
+        (17, 19),
+        &device,
+    )
+    .unwrap();
+    let input = Tensor::from_vec(
+        (0..3 * 7 * 19)
+            .map(|i| (i as f32 * 0.07).cos())
+            .collect::<Vec<_>>(),
+        (3, 7, 19),
+        &device,
+    )
+    .unwrap()
+    .transpose(0, 1)
+    .unwrap();
+    let projection = QuantProjection::new(&weights, QuantMode::F32).unwrap();
+    let expected = input
+        .contiguous()
+        .unwrap()
+        .reshape((21, 19))
+        .unwrap()
+        .matmul(&weights.t().unwrap())
+        .unwrap()
+        .reshape((7, 3, 17))
+        .unwrap();
+    let actual = projection.forward(&input).unwrap();
+    assert_eq!(actual.dims(), &[7, 3, 17]);
+    for (a, b) in actual
+        .flatten_all()
+        .unwrap()
+        .to_vec1::<f32>()
+        .unwrap()
+        .into_iter()
+        .zip(expected.flatten_all().unwrap().to_vec1::<f32>().unwrap())
+    {
+        assert!((a - b).abs() < 2e-5, "projection drift: {a} vs {b}");
+    }
+}
+
+#[test]
 fn fused_rms_norm_preserves_unfused_math_on_strided_inputs() {
     let device = Device::Cpu;
     let input = Tensor::from_vec(

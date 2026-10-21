@@ -7,7 +7,7 @@ import subprocess
 metadata = json.loads(subprocess.check_output(['cargo', 'metadata', '--locked', '--format-version', '1']))
 sections = ['Third-party dependency licenses and notices\nGenerated from Cargo.lock. Project code is licensed separately.\n']
 for package in sorted(metadata['packages'], key=lambda p: (p['name'], p['version'])):
-    if package['name'] == 'rust-embedding-runtime':
+    if package['id'] in metadata['workspace_members']:
         continue
     root = Path(package['manifest_path']).parent
     files = [p for p in root.iterdir() if p.is_file() and p.name.upper().startswith(('LICENSE', 'LICENCE', 'NOTICE', 'COPYING', 'COPYRIGHT'))]

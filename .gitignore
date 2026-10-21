@@ -1,5 +1,8 @@
 /target/
+**/target/
+/crates/*/Cargo.lock
 /model/
+/model
 /tests/reference/
 __pycache__/
 .env

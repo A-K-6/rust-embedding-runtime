@@ -1,0 +1,11 @@
+[package]
+name = "aocl-kernels"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.98"
+license = "Apache-2.0"
+description = "Checked persistent F32 linear kernels using a pinned external AOCL-DLP build"
+publish = false
+
+[build-dependencies]
+cc = "=1.9.0"

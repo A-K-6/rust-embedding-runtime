@@ -15,3 +15,10 @@ The community implementation adds CPU loading, packed quantization, bounded
 input validation, a Rust library, and an HTTP embeddings service.
 Dependencies retain their own licenses. The root Apache-2.0 license applies
 to this project's code; model and dependency licenses remain applicable.
+
+Optional Linux x86_64 F32 backend: AMD AOCL-DLP 5.3.2, BSD-3-Clause,
+revision fe36da707e6f25e8b3e2b742dfa5957d4484fca5. Its Xbyak JIT assembler
+retains its BSD-3-Clause notice. Upstream: https://github.com/amd/aocl-dlp
+The AMD64 image links GCC compiler runtimes with the GCC Runtime Library
+Exception. Their source is available from https://gcc.gnu.org/gcc-14/ .
+Backend and runtime notices are included in the image's backend/ license folder.
