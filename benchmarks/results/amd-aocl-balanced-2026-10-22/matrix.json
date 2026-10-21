@@ -1,0 +1,88 @@
+{
+  "status": "complete",
+  "schedule": [
+    {
+      "file": "run-01.json",
+      "backend_order": [
+        "transformers_eager",
+        "transformers_sdpa",
+        "rust_f32"
+      ]
+    },
+    {
+      "file": "run-02.json",
+      "backend_order": [
+        "transformers_eager",
+        "rust_f32",
+        "transformers_sdpa"
+      ]
+    },
+    {
+      "file": "run-03.json",
+      "backend_order": [
+        "transformers_sdpa",
+        "transformers_eager",
+        "rust_f32"
+      ]
+    },
+    {
+      "file": "run-04.json",
+      "backend_order": [
+        "transformers_sdpa",
+        "rust_f32",
+        "transformers_eager"
+      ]
+    },
+    {
+      "file": "run-05.json",
+      "backend_order": [
+        "rust_f32",
+        "transformers_eager",
+        "transformers_sdpa"
+      ]
+    },
+    {
+      "file": "run-06.json",
+      "backend_order": [
+        "rust_f32",
+        "transformers_sdpa",
+        "transformers_eager"
+      ]
+    }
+  ],
+  "matrix_driver_sha256": "067fff09117d788f95d3a0e0bfba29b56b4f6b9a8f361692e250688c836da0a4",
+  "source_file_sha256": {
+    ".cargo/config.toml": "55b9a220d70ed41be2f7b839e0196693acbb7ea3ce026d63f304199e2b68e61f",
+    "Cargo.lock": "7dfefea982d509c6859ba62f75dbf2e15532bc0a455684957c8903f79939403f",
+    "Cargo.toml": "d469d595fe67ce91c63daa69d062a15e17d058c1baac72f0bd61a5f0feccc3ec",
+    "crates/aocl-kernels/Cargo.toml": "d0be2e5bd72a942d8fadf5a2b35e5e4f1d850666926ae5691e88dc73d446ba18",
+    "crates/aocl-kernels/build.rs": "1fc0a1f3cd1a5628d4af1d521c539680d3e4e34b9845d9de1b3f0ad7fb2fd7d4",
+    "crates/aocl-kernels/csrc/aocl_checked_shim.c": "1a2c044f874181f6c5bd6c4738a357d67f860052c034dcd6ca2a8c0573c18e40",
+    "crates/aocl-kernels/csrc/aocl_checked_shim.h": "93516554a408837e41399658c038c46ffa90aea62b393b0486587faadf41eecf",
+    "crates/aocl-kernels/src/lib.rs": "34c2bfbbca4122a4a6cf02dededbdb66585108773b6c8172fbf5e2e8ff6fc992",
+    "crates/aocl-kernels/src/tests.rs": "5273dbd69f54a5b161291c1bb6b4568855b2514be038ae4d8c7d59cefdc02c55",
+    "scripts/build_aocl.py": "2a1afcc8892cebc1ce490fdb51c0ac0120aa5263087e9513eb2608e9b08be2bf",
+    "src/activation.rs": "c90403f41e8606dd0cd92e10ee0ba6614478647b8c4a7db872164277453fda2e",
+    "src/aocl.rs": "e7a3a6920dff8b0447328b943876f3d251ecbfcaafa756cd03d1663953c9ddde",
+    "src/jsonl.rs": "6bd0b85af57eb9d7f76b9b34a13e36693ed99d6a3547d457ca01681145940137",
+    "src/kernel_tests.rs": "d093666c64ce90059fc914147b246ad77a7c816e827e9b6dfd9183281f0d592f",
+    "src/lib.rs": "41a7f47c37ed2fbe6e0541ad1a877edebe447da04fd1b92ead72403bfaa9092d",
+    "src/main.rs": "0c69a9652e43e835196c643d01f9d78ec8997473cb2584fcb5c52cd33cb47818",
+    "src/profile.rs": "44819cbac30c071c91bcdf80421004ff9e0d11f66a3de74d9c5db11abd42ad74",
+    "src/quantization_tests.rs": "6d0ed9134bbad7588c76baeb94c8018772cfa8548da07439ed5d1ccf1da127ac",
+    "src/server/tests.rs": "d52663f32847424aec485b6ebcc1a6b4c9f5cd41808a201a9ba6030f93aae02a",
+    "src/server.rs": "1a9ced49a885150fa4e3c8b7170676c54475843aab4ebab41949c0056d303a10"
+  },
+  "compare_driver_sha256": "5e7587e8d488ac80a854c686e763837349c7966d336b766318515acdb8352a92",
+  "rust_binary_sha256": "5e9a16c435433d432a68c9a9da91a8dc2fe6466038a48607e40b8919efd7dede",
+  "reference_worker_sha256": "65ea1be3bb6c710b00ca2d1146df0d9a5e4a806e4bd01bc2c1cf1750d3620ff8",
+  "build_provenance_declaration": "cargo +1.98.0 build --release --locked --features aocl --bins; AOCL_STATIC_RUNTIME=1; AOCL5.3.2 fe36da7 GCC15.2 CMake4.1.2 OpenMP; no RUSTFLAGS or target-cpu=native",
+  "worker_cpus": [
+    0,
+    1
+  ],
+  "driver_affinity_modified": false,
+  "note": "Order fixed before measurement. Caller declaration records build flags; runtime environment does not prove them.",
+  "completed_runs": 6,
+  "speed_and_memory_goal_met": true
+}

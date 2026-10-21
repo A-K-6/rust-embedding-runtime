@@ -11,13 +11,15 @@ Community implementation; not affiliated with Google.
 
 ```sh
 docker run --rm -p 127.0.0.1:8080:8080 --cpus=2 --memory=3g \
-  ghcr.io/a-k-6/rust-embedding-runtime:0.2.2
+  ghcr.io/a-k-6/rust-embedding-runtime:0.3.0
 ```
 
 The image includes the pinned text model. Inference needs no downloads, Python,
 GPU, or external service. The image supports Linux AMD64 and ARM64; Docker selects the native image
 automatically. ARM64 requires a CPU with NEON and FP16 instructions (such as
 Apple Silicon through Docker). On macOS it runs inside Docker’s Linux VM.
+AMD64 images use runtime-dispatched AOCL-DLP F32 kernels on AVX2/FMA CPUs.
+Other supported CPUs use Candle kernels. No result cache or GPU is required.
 
 ```sh
 curl http://localhost:8080/v1/embeddings \
@@ -81,39 +83,68 @@ returns 503. Batching is an API convenience, not fused batch inference.
 
 F32 is the default. Quantization can reduce memory but is not guaranteed faster.
 Numerical agreement with the official implementation is checked on the
-[CPU comparison fixtures](benchmarks/REPORT.md). Broader relevance remains
+[CPU comparison fixtures](benchmarks/AMD_REPORT.md). Broader relevance remains
 unestablished; the authored retrieval pilot contains only 20 queries.
 Image smoke tests verify real inference, normalization, API behavior, and
 consistency across output encodings and dimensions.
 
 ## CPU comparison
 
-See [measured results and raw runs](benchmarks/REPORT.md) for the Apple M2
-and AMD Ryzen 9 9955HX comparison against official Transformers/PyTorch eager
-and SDPA inference. The goal is lower latency **and** lower memory. Results
-report both, including cases where Rust does not win. Native macOS timings
-use Accelerate and do not measure Linux ARM64 Docker performance.
+See the [AMD optimization report and raw runs](benchmarks/AMD_REPORT.md) for
+the v0.3 comparison against official Transformers/PyTorch eager and SDPA.
+The [earlier two-machine report](benchmarks/REPORT.md) preserves the Apple M2
+measurements. The goal is lower latency **and** lower memory. Native macOS
+timings use Accelerate and do not measure Linux ARM64 Docker performance.
+
+On the tested Ryzen 9 9955HX, the two-thread Rust build has **53.5% lower median
+request latency** (23.9 ms versus 51.5 ms), **52.2% lower p95**, and **30.3%
+lower post-test RSS** than PyTorch SDPA. Both latency
+and memory wins hold in all six backend orders. This is sequential batch-one
+latency; concurrent serving throughput has not been measured.
+The same passive OpenMP waiting is applied to every backend. The report also
+retains the earlier control round, where SDPA's median was 49.9 ms.
 
 ![Uncached native CPU latency: median and p95 for Rust and PyTorch on Apple M2 and AMD Ryzen 9 9955HX](benchmarks/charts/latency.png)
 
-![Process memory: Rust uses 20.9% less physical footprint on Apple M2 and 36.4% less RSS on AMD than PyTorch SDPA](benchmarks/charts/memory.png)
+![Process memory for Rust and PyTorch, compared within each machine](benchmarks/charts/memory.png)
 
 Two-thread native CPU, batch one, uncached 15–28-token authored queries.
 Memory uses macOS physical footprint or Linux RSS within each machine.
-The AMD latency winner changes with run order; its speed target remains open.
-The linked report includes eager attention, longer inputs, raw timings and limits.
+The AMD report includes all six backend orders, longer inputs, numerical checks
+and raw evidence. These measurements describe the tested CPUs and software;
+they do not establish the fastest runtime across all consumer or server CPUs.
+An [exploratory core sweep](benchmarks/AMD_REPORT.md#thread-scaling-and-openmp-waiting)
+reached 19.2 ms median / 21.3 ms p95 with eight Rust threads on this CPU.
 
 ## Build locally
 
 Requires Rust 1.98+ and a C build toolchain; model acquisition uses Python 3.10+
-and the standard library. Native macOS builds use Apple Accelerate; Linux
-builds use Candle’s portable CPU kernels.
+and the standard library. Native macOS builds use Apple Accelerate; the default
+Linux source build uses Candle’s portable CPU kernels.
 
 ```sh
 python3 scripts/download_model.py
 cargo test --locked
 cargo run --release --bin embedding-runtime
 ```
+
+For the optimized Linux AMD64 backend, build the pinned AOCL dependency once.
+This needs GCC 13+, CMake 3.26+, Ninja and OpenMP development files:
+
+```sh
+python3 scripts/build_aocl.py --output "$PWD/.aocl" --jobs 2
+AOCL_ROOT="$PWD/.aocl" \
+  cargo build --release --locked --features aocl --bins
+OMP_WAIT_POLICY=PASSIVE GOMP_SPINCOUNT=0 THREADS=2 ./target/release/embedding-runtime
+```
+
+The helper verifies the upstream source archive before building. Linear weights
+are reordered once at startup and the original linear allocation is released;
+encoder weights and arithmetic remain F32. See the
+[backend build and ownership details](crates/aocl-kernels/README.md).
+The Docker build selects this backend automatically for AMD64.
+The image also uses passive OpenMP waiting to reduce contention with Rayon
+between linear operations. Source builds can select the same environment above.
 
 The downloader pins upstream revision
 `914f7f89142e33e77833254d9c9b90c3cef7303b`, verifies source checksums, and extracts
@@ -129,6 +160,11 @@ docker run --rm -p 127.0.0.1:8080:8080 rust-embedding-runtime
 ```
 
 ## Rust library
+
+Choose the Rayon pool size before loading the model; the AOCL weight handles
+retain that thread count. For a small CPU allocation, start the application with
+`RAYON_NUM_THREADS=2 OMP_WAIT_POLICY=PASSIVE GOMP_SPINCOUNT=0`. The HTTP server
+configures its own pool from `THREADS`.
 
 ```rust,no_run
 use rust_embedding_runtime::{Input, QuantMode, Runtime};

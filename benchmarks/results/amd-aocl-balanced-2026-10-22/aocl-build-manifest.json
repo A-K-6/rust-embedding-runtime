@@ -1,0 +1,135 @@
+{
+  "project": "AOCL-DLP",
+  "version": "5.3.2",
+  "revision": "fe36da707e6f25e8b3e2b742dfa5957d4484fca5",
+  "source_url": "https://codeload.github.com/amd/aocl-dlp/tar.gz/fe36da707e6f25e8b3e2b742dfa5957d4484fca5",
+  "source_sha256": "694d4464e790159a57c069c123132f2a7e8145c3d1182f449b838aa11ba4032b",
+  "source_archive_bytes": 2425875,
+  "platform": "Linux x86_64",
+  "compilers": {
+    "c": {
+      "family": "GCC",
+      "version": "15.2.0",
+      "target": "x86_64-linux-gnu",
+      "znver4_compile_probe": "passed"
+    },
+    "cxx": {
+      "family": "GCC",
+      "version": "15.2.0",
+      "target": "x86_64-linux-gnu",
+      "znver4_compile_probe": "passed"
+    }
+  },
+  "tools": {
+    "cmake": "4.1.2",
+    "ninja": "1.13.2"
+  },
+  "build": {
+    "generator": "Ninja",
+    "target": "aocl-dlp_static",
+    "jobs": 8,
+    "options": {
+      "CMAKE_BUILD_TYPE": "Release",
+      "CMAKE_POSITION_INDEPENDENT_CODE": "ON",
+      "DLP_THREADING_MODEL": "openmp",
+      "BUILD_TESTING": "OFF",
+      "BUILD_BENCHMARKS": "OFF",
+      "BUILD_EXAMPLES": "OFF",
+      "BUILD_DOXYGEN": "OFF",
+      "BUILD_SPHINX": "OFF"
+    },
+    "inherited_compiler_flags": false,
+    "global_architecture_override": false,
+    "compiler_static_runtimes": true
+  },
+  "artifacts": {
+    "include/aocl_dlp.h": {
+      "sha256": "c6779d5a20c07616240d4a95d71797ed140c8963728a01ef7ba1de01843cd4ce",
+      "bytes": 2128
+    },
+    "include/aocl_dlp_config.h": {
+      "sha256": "490eabc2ffff2ef0fc0147d159803c9868acd390ff15dfd4ad3adbdd97dab6d6",
+      "bytes": 1409
+    },
+    "include/classic/aocl_bf16_type.h": {
+      "sha256": "b77e343afb110374bff6726f8cb5aee9b28fe357932d94ca536e09eabe1a4d9f",
+      "bytes": 2032
+    },
+    "include/classic/aocl_eltwise_ops_interface_apis.h": {
+      "sha256": "b1808770adbf8b0b14f8221392a153f0b6ab8a24a05b9670887cbbf7d10e33e6",
+      "bytes": 6455
+    },
+    "include/classic/aocl_fp16_convert.h": {
+      "sha256": "1f028609a3841557eee97c056ff8dafe2aa20688507ba2bc35b3671830c3ac73",
+      "bytes": 6062
+    },
+    "include/classic/aocl_fp16_type.h": {
+      "sha256": "7774729fada9a37cfed16cbcbc20b55d610141bd77aa6909e614d6074bb3933f",
+      "bytes": 2876
+    },
+    "include/classic/aocl_gemm_interface_apis.h": {
+      "sha256": "386f5ba48fc19b5dc31cd56aae07383147d44a28b4569598a25cf3eba68760fb",
+      "bytes": 97730
+    },
+    "include/classic/aocl_gemm_metadata.h": {
+      "sha256": "a35e67481d8c8b504b86d6d006f64e708c72b9174edff10b2b6a9bfb50273df0",
+      "bytes": 25403
+    },
+    "include/classic/aocl_lib_interface_apis.h": {
+      "sha256": "e8cd7bad0ea38ce44165d5971787d16e7cc925046df1fe31b69ae7df0f446c71",
+      "bytes": 5776
+    },
+    "include/classic/aocl_util_interface_apis.h": {
+      "sha256": "cc3dc5138e7d8dfd24de7832a2ce94893b54441633ea07335cb8f0484c112856",
+      "bytes": 2753
+    },
+    "include/classic/dlp_base_types.h": {
+      "sha256": "4c46c877ed5ce58cd63dc0937c40c7bd86db12aa7139cb18a92c44a077a28d30",
+      "bytes": 3656
+    },
+    "include/classic/dlp_compat.h": {
+      "sha256": "a272995d4cfba4394859d0509b5201a97e01a7edaf7d1ba1dbb40535d4563937",
+      "bytes": 23811
+    },
+    "include/classic/dlp_defines.h": {
+      "sha256": "14df2623821a49c09225fc3b9f734d38cf296628d1bc9f87d6831b802caa5108",
+      "bytes": 1985
+    },
+    "include/classic/dlp_errors.h": {
+      "sha256": "bd2fb2f0ecfb7e45a87ac5351849905f4708d822e0c231c5f5996b4ecc052763",
+      "bytes": 3873
+    },
+    "include/classic/dlp_macros.h": {
+      "sha256": "aec5ad16b76c378b7fb5c214d9fcf4aec02815ce5b1dafb65a8c3c8b5c1d39c3",
+      "bytes": 2381
+    },
+    "include/classic/dlp_simd_casts.h": {
+      "sha256": "a25bf6e2f948b3baff54bb8e65a2401fd2b5e750956667b35ab30c19b9bae33a",
+      "bytes": 2018
+    },
+    "lib/libaocl-dlp.a": {
+      "sha256": "8c768b57e2dcb3374a814a0cfdf5b915f4d402e74018a603cca2ed67a35c1ebe",
+      "bytes": 17958554
+    },
+    "lib/libatomic.a": {
+      "sha256": "86b090b8bf16ac71d576e237cebe8adfdd16aaf16eb63b47009e11bd3e808224",
+      "bytes": 140472
+    },
+    "lib/libgomp.a": {
+      "sha256": "68605406a76270eb795beb5f17780fe78cd45049c3858bdac2b6219c45b203ec",
+      "bytes": 644628
+    },
+    "lib/libstdc++.a": {
+      "sha256": "993dfc23322500e516204ea416b98af99140eafd6c498b5a519cd847e024ef0b",
+      "bytes": 6730712
+    },
+    "share/licenses/aocl-dlp/LICENSE": {
+      "sha256": "991645d551f6cc57c807a297affefa674de63b2695499da04372f04a7cf210cf",
+      "bytes": 3539
+    },
+    "share/licenses/aocl-dlp/NOTICES": {
+      "sha256": "50b7575b0e96652cd8eb2a9298298bea64e36fb7937f8a739ff32decb9f30219",
+      "bytes": 7818
+    }
+  }
+}

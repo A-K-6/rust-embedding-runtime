@@ -1,6 +1,7 @@
 .git
 target
 **/target
+.aocl
 model
 __pycache__
 tests/reference

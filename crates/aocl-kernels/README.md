@@ -40,6 +40,23 @@ On non-Linux/x86_64 targets the crate builds a stub and needs no AOCL installati
 
 ## Pinned external build
 
+The repository's checked build helper is the simplest setup on Linux x86_64:
+
+```sh
+python3 scripts/build_aocl.py --output "$PWD/.aocl" --jobs 2
+AOCL_ROOT="$PWD/.aocl" \
+  cargo test --workspace --locked --features aocl
+```
+
+It needs Python 3.10+, GCC 13+, CMake 3.26+, Ninja and GNU OpenMP development
+files. It checks the pinned archive hash, builds only the static library, and
+saves compiler/source/artifact hashes in `.aocl/build-manifest.json`. The output
+directory must be new. For compiler archives that support PIE, the optional
+`--static-runtime` copies static GNU runtime archives and `AOCL_STATIC_RUNTIME=1`
+links them into the Rust executable. Other builds use shared compiler runtimes.
+The Docker build uses GCC 14.3 on Debian 12 for its runtime ABI and bundles
+matching shared GNU libraries, preserving PIE even when `libgomp.a` is not PIC.
+
 There is no download or network operation in `build.rs`. On Linux x86_64 set
 `AOCL_ROOT` to an installed AOCL-DLP prefix with this contract:
 
@@ -108,3 +125,5 @@ and its vendored Xbyak runtime JIT assembler use BSD-3-Clause. Preserve
 [AOCL-DLP-NOTICES.txt](licenses/AOCL-DLP-NOTICES.txt) in binary distributions.
 Upstream also lists optional documentation dependencies under BSD-2-Clause and
 BSD-3-Clause; documentation components are disabled in the build above.
+Static GNU runtime builds also carry the GCC Runtime Library Exception and
+GPLv3 notices under `licenses/`; see the repository's `NOTICE` for source links.

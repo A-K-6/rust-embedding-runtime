@@ -1,5 +1,9 @@
 # CPU results: EmbeddingGemma 2 text inference
 
+**Historical v0.2 results.** The [v0.3 AMD optimization report](AMD_REPORT.md)
+supersedes the AMD conclusions below. The Apple M2 measurements remain the
+latest native macOS comparison; they have not been rerun with v0.3.
+
 Measured 2026-10-22 with actual pinned model weights. The goal is **lower
 uncached latency and lower memory**, while preserving output agreement.
 

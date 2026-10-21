@@ -5,8 +5,9 @@ with native CPU execution. Reference backends use the official Hugging Face
 Transformers model implementation on PyTorch, with eager and SDPA attention.
 Rust uses Candle 0.11.0 with fused RMS normalization and rotary embedding
 operations, plus parallel fused GELU/multiply on Linux. Native macOS uses
-Apple Accelerate; Linux uses portable GEMM. An AVX-512 experiment was rejected
-after it regressed measured latency on the tested AMD CPU. All compute uses F32; the unchanged vocabulary table stays
+Apple Accelerate; optimized Linux x86_64 builds use AOCL-DLP 5.3.2 with
+persistent F32 weight reordering. Source builds without `--features aocl` use
+portable GEMM. All compute uses F32; the unchanged vocabulary table stays
 stored in BF16 in Rust and is expanded to F32 by PyTorch.
 
 ## Reproduce
@@ -31,6 +32,47 @@ python3.12 -m venv .venv-benchmark
 No model download, network request or external service is used during timing.
 The model revision and all three asset checksums are checked before inference.
 The fixture checksum in `freeze.json` was fixed before the measured runs.
+
+For the v0.3 AMD comparison, first build the optimized backend as described in
+the root README, then run all six backend orders. Choose two online CPU IDs
+that identify distinct physical cores in one last-level cache domain; the
+driver validates this and all worker thread affinity masks. Place the driver on
+a disjoint CPU pair. IDs 0,1 and 8,9 below are the measured laptop's topology;
+inspect your machine and choose suitable IDs before running:
+
+```sh
+OMP_WAIT_POLICY=PASSIVE GOMP_SPINCOUNT=0 \
+  taskset -c 8,9 .venv-benchmark/bin/python benchmarks/amd_matrix.py \
+  --python .venv-benchmark/bin/python --rust target/release/embedding-jsonl \
+  --cpus 0,1 \
+  --build-provenance 'cargo build --release --locked --features aocl --bins; record AOCL_ROOT, AOCL_STATIC_RUNTIME, compiler versions and flags used' \
+  --output-dir benchmarks/results/my-amd-matrix
+```
+
+The build provenance string is a caller declaration. Supply the commands and
+flags actually used; runtime environment variables cannot prove compiler flags.
+Each output directory must be new. Raw runs, matrix schedule, source/binary
+hashes, quality gates and an aggregate report are retained together.
+The driver records the four whitelisted OpenMP wait/binding settings and checks
+them against each Linux worker's environment; all six orders must match.
+The [AMD report](AMD_REPORT.md) links the completed six-order comparison.
+
+`scaling.py` separately screens equal 1/2/4/8/16-thread configurations, using
+distinct physical cores and one rotated backend order per setting. It records
+cache domains, numerical gates, short/post-long/peak RSS and all raw timings.
+This exploratory sweep is not a substitute for the six-order acceptance test:
+
+```sh
+.venv-benchmark/bin/python benchmarks/scaling.py \
+  --python .venv-benchmark/bin/python --rust target/release/embedding-jsonl \
+  --cpus 0-15 --build-provenance 'record the exact build used' \
+  --output-dir benchmarks/results/my-scaling
+```
+
+`wait_policy.py` separately tests Rust in default–passive–passive–default order
+at 2/4/8/16 threads, with actual process environment checks, fixed quality gates,
+CPU-time deltas and both memory phases. It uses the same arguments as
+`scaling.py` except `--python` is unnecessary. Run these CPU probes sequentially.
 
 ## Method
 
@@ -62,7 +104,7 @@ The fixture checksum in `freeze.json` was fixed before the measured runs.
 
 Compare backends within each machine. The Mac and laptop have different CPUs,
 operating systems and libraries, so the results cannot isolate an ISA effect.
-The published comparison uses two sequential runs per backend on shared
+The historical v0.2 comparison uses two sequential runs per backend on shared
 laptops, reversing backend order for the second run. It has no CPU isolation
 or fixed frequency. Repeat locally before drawing
 capacity or production tail-latency conclusions.
@@ -70,12 +112,14 @@ capacity or production tail-latency conclusions.
 The official reference follows the model's documented text-only loading,
 mean-pooling and normalization recipe:
 [model card](https://huggingface.co/google/embeddinggemma-2/blob/914f7f89142e33e77833254d9c9b90c3cef7303b/README.md).
-See [the measured report](REPORT.md), [aggregate JSON](results/summary.json),
-and individual raw runs under `results/`. Regenerate aggregates with
-`python3 benchmarks/summarize.py`. To repeat the counterbalanced second run,
+See [the historical report](REPORT.md), [v0.2 aggregate JSON](results/summary.json),
+and individual raw runs under `results/`. The historical `summarize.py` requires
+the unchanged v0.2 source; run it from a `v0.2.2` checkout. The v0.3 matrix
+validates and summarizes its own six runs. To repeat the old second run,
 pass `--order rust_f32,transformers_sdpa,transformers_eager` and a new output path.
 
-The README charts are static PNGs generated from `results/summary.json`; they
+The README charts are static PNGs generated from historical Apple data in
+`results/summary.json` and the new AMD six-order summary; they
 do not run inference. To regenerate them in a Python environment:
 
 ```sh
