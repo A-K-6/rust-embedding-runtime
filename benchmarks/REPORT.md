@@ -75,7 +75,8 @@ Raw runs: [amd64-ryzen-9955hx-forward.json](results/amd64-ryzen-9955hx-forward.j
   are max error <=1e-4 and cosine >=0.99999. All four runs pass.
 - Model/activation code was measured at
   [`ce1b663`](https://github.com/A-K-6/rust-embedding-runtime/tree/ce1b6632149722abf2f7a17d22b0cfe1a42aa662).
-  The v0.2.1 patch changes package metadata and Linux ARM64 build configuration;
+  The v0.2.2 packaging patches change the build compiler to Rust 1.98, package
+  metadata and Linux ARM64 build configuration;
   native benchmark model/activation source is identical. The aggregation script
   verifies those files and the measured commit's lockfile before summarizing.
 - Frozen fixture SHA-256:

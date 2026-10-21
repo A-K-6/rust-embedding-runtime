@@ -4,7 +4,7 @@ WORKDIR /build
 COPY scripts/download_model.py ./download_model.py
 RUN python download_model.py --output /model && chmod -R a+rX /model
 
-FROM rust:1.91-bookworm AS build
+FROM rust:1.98-bookworm AS build
 WORKDIR /build
 COPY Cargo.toml Cargo.lock ./
 COPY .cargo ./.cargo

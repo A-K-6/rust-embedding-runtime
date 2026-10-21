@@ -1,8 +1,8 @@
 [package]
 name = "rust-embedding-runtime"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
-rust-version = "1.91"
+rust-version = "1.98"
 license = "Apache-2.0"
 description = "Community Rust CPU text-embedding runtime for EmbeddingGemma 2"
 repository = "https://github.com/A-K-6/rust-embedding-runtime"

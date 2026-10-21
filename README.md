@@ -11,7 +11,7 @@ Community implementation; not affiliated with Google.
 
 ```sh
 docker run --rm -p 127.0.0.1:8080:8080 --cpus=2 --memory=3g \
-  ghcr.io/a-k-6/rust-embedding-runtime:0.2.1
+  ghcr.io/a-k-6/rust-embedding-runtime:0.2.2
 ```
 
 The image includes the pinned text model. Inference needs no downloads, Python,
@@ -106,7 +106,7 @@ The linked report includes eager attention, longer inputs, raw timings and limit
 
 ## Build locally
 
-Requires Rust 1.91+ and a C build toolchain; model acquisition uses Python 3.10+
+Requires Rust 1.98+ and a C build toolchain; model acquisition uses Python 3.10+
 and the standard library. Native macOS builds use Apple Accelerate; Linux
 builds use Candle’s portable CPU kernels.
 
