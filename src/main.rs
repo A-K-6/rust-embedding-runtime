@@ -8,6 +8,10 @@ use std::{net::SocketAddr, path::PathBuf};
 
 fn main() -> Result<()> {
     std::env::set_var("TOKENIZERS_PARALLELISM", "false");
+    std::env::set_var(
+        "VECLIB_MAXIMUM_THREADS",
+        std::env::var("THREADS").unwrap_or_else(|_| "2".into()),
+    );
     tokio::runtime::Builder::new_multi_thread()
         .worker_threads(2)
         .enable_all()

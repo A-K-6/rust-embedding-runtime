@@ -29,4 +29,4 @@ for package in sorted(metadata['packages'], key=lambda p: (p['name'], p['version
     sections.append(heading)
     for path in sorted(set(files)):
         sections.append('\n' + path.name + '\n' + path.read_text(errors='replace') + '\n')
-Path('THIRD_PARTY_LICENSES.txt').write_text(''.join(sections).rstrip() + '\n')
+Path('THIRD_PARTY_LICENSES.txt').write_text('\n'.join(line.rstrip() for line in ''.join(sections).splitlines()).rstrip() + '\n')

@@ -36,9 +36,13 @@ def main():
         args.model, config=config, dtype=torch.float32, local_files_only=True,
         attn_implementation=args.attention, output_loading_info=True,
     )
-    if info.get('missing_keys') or info.get('unexpected_keys') or info.get('mismatched_keys'):
+    if info.get('missing_keys') or info.get('unexpected_keys') or info.get('mismatched_keys') or info.get('error_msgs'):
         raise RuntimeError('Reference model did not load the exact text state dictionary')
     model.eval()
+    if any(p.dtype != torch.float32 for p in model.parameters()):
+        raise RuntimeError('Reference parameters must all use float32')
+    if model.language_model.config._attn_implementation != args.attention:
+        raise RuntimeError('Attention backend did not match request')
     if next(model.parameters()).device.type != 'cpu':
         raise RuntimeError('Reference must run on CPU')
     blas = re.search(r'BLAS_INFO=([^,]+)', torch.__config__.show())
@@ -65,7 +69,10 @@ def main():
                 inputs = torch.tensor([ids], dtype=torch.long)
                 # Official text model projects each token; mean pooling and
                 # normalization match the documented SentenceTransformers recipe.
-                output = model(input_ids=inputs).last_hidden_state.mean(dim=1)[0, :dims]
+                hidden = model(input_ids=inputs).last_hidden_state
+                if hidden.shape[-1] != 768:
+                    raise RuntimeError('Official model must return projected 768-dimensional token states')
+                output = hidden.mean(dim=1)[0, :dims]
                 output = torch.nn.functional.normalize(output, dim=0).tolist()
             response = {'embedding': output, 'tokens': len(ids), 'elapsed_ms': 1000*(time.perf_counter()-start)}
         except Exception as error:

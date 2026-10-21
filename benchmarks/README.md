@@ -38,13 +38,20 @@ The fixture checksum in `freeze.json` was fixed before the measured runs.
   Text tokenization is checked against common explicit token IDs for every query.
 - Twenty authored multilingual retrieval queries, ten authored documents,
   five warmups, five query repeats (100 measured requests per backend).
-  Document indexing is excluded from query latency.
+  Document indexing is excluded from query latency. The p95 describes this
+  mixed prompt set, including its different token lengths; it is not isolated
+  scheduling jitter.
 - Separate 128/512/1,024-token inputs, with one warmup and three measured repeats
   per length. These length cases use identical explicit token IDs across backends.
 - Model time excludes tokenization and JSONL IPC. Request wall time includes
   tokenization, IPC and vector serialization. Neither includes HTTP or ranking.
-- Memory is steady process RSS after inference, not peak memory. Framework
-  overhead and vocabulary storage precision differ. Startup wall time includes
+- Memory is measured after the long-input tests. Linux reports process RSS and
+  peak RSS; macOS reports the kernel physical-footprint ledger (including
+  compressed-memory accounting) as well as RSS. macOS RSS alone can undercount
+  memory under compression, so the comparison uses physical footprint there. Framework
+  overhead and vocabulary storage precision differ. Keeping the vocabulary
+  table in BF16 saves 256 MiB relative to its F32 representation, without
+  changing the source values or F32 encoder compute. Startup wall time includes
   framework imports and Rust's asset verification; it is not isolated weight-load time.
 - Numerical agreement compares normalized output vectors with PyTorch eager,
   including documents, queries and each long input. Retrieval hit@1/5 uses only

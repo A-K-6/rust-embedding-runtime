@@ -9,10 +9,13 @@ repository = "https://github.com/A-K-6/rust-embedding-runtime"
 exclude = ["model/", "tests/reference/"]
 default-run = "embedding-runtime"
 
+[target.'cfg(target_os = "macos")'.dependencies]
+candle-core = { version = "=0.11.0", features = ["accelerate"] }
+
 [dependencies]
 anyhow = "1"
-candle-core = "=0.9.2"
-candle-nn = "=0.9.2"
+candle-core = "=0.11.0"
+candle-nn = "=0.11.0"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tokenizers = { version = "=0.22.2", default-features = false, features = ["fancy-regex"] }

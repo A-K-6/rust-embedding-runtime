@@ -86,7 +86,9 @@ consistency across output encodings and dimensions.
 
 ## Build locally
 
-Requires Rust 1.91+; model acquisition uses Python 3.10+ and the standard library.
+Requires Rust 1.91+ and a C build toolchain; model acquisition uses Python 3.10+
+and the standard library. Native macOS builds use Apple Accelerate; Linux
+builds use Candle’s portable CPU kernels.
 
 ```sh
 python3 scripts/download_model.py

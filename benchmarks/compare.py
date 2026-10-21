@@ -77,14 +77,47 @@ class Worker:
         if len(vector)!=768 or not all(math.isfinite(x) for x in vector) or abs(sum(x*x for x in vector)-1)>1e-4:
             raise ValueError('invalid embedding')
         return value, wall
-    def rss_mib(self):
-        return int(subprocess.check_output(['ps','-o','rss=','-p',str(self.process.pid)],text=True).strip())/1024
+    def memory(self):
+        pid = self.process.pid
+        values = {'rss_mib': int(subprocess.check_output(['ps','-o','rss=','-p',str(pid)],text=True).strip())/1024}
+        if platform.system() == 'Darwin':
+            # macOS RSS excludes compressed pages; use the kernel footprint ledger.
+            import ctypes
+            class Usage(ctypes.Structure):
+                _fields_ = [('uuid', ctypes.c_ubyte*16)] + [(name, ctypes.c_uint64) for name in [
+                    'user_time','system_time','idle_wakeups','interrupt_wakeups','pageins',
+                    'wired_size','resident_size','physical_footprint','start_time','exit_time']]
+            usage = Usage()
+            proc = ctypes.CDLL('/usr/lib/libproc.dylib', use_errno=True)
+            proc.proc_pid_rusage.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_void_p]
+            proc.proc_pid_rusage.restype = ctypes.c_int
+            if proc.proc_pid_rusage(pid, 0, ctypes.byref(usage)) != 0:
+                raise OSError(ctypes.get_errno(), 'Cannot measure process footprint')
+            values['physical_footprint_mib'] = usage.physical_footprint / 1024**2
+        else:
+            status = Path(f'/proc/{pid}/status').read_text()
+            for line in status.splitlines():
+                if line.startswith('VmHWM:'):
+                    values['peak_rss_mib'] = int(line.split()[1])/1024
+        return values
     def close(self):
         if self.process.poll() is None:
             self.process.terminate()
             try:self.process.wait(timeout=10)
             except subprocess.TimeoutExpired:
                 self.process.kill();self.process.wait()
+
+
+def validate_ready(name, ready):
+    if ready.get('threads') != 2:
+        raise ValueError('Backend must report two CPU kernel threads')
+    if name.startswith('transformers_'):
+        if ready.get('parameter_dtype') != 'torch.float32' or ready.get('device') != 'cpu':
+            raise ValueError('Reference must use CPU float32 parameters')
+        if ready.get('attention') != name.removeprefix('transformers_'):
+            raise ValueError('Reference attention backend mismatch')
+    elif ready.get('weight_quantization') != 'f32':
+        raise ValueError('Rust must use F32 linear weights')
 
 
 def cpu():
@@ -107,6 +140,9 @@ def main():
     if sha(fixture_path)!=json.loads((HERE/'freeze.json').read_text())['fixtures_sha256']:
         raise ValueError('Frozen fixture checksum mismatch')
     data=json.loads(fixture_path.read_text())
+    manifest=json.loads((args.model/'manifest.json').read_text())
+    if manifest['revision'] != data['model_revision']:raise ValueError('Model revision label mismatch')
+    if data['protocol']['threads'] != 2 or data['protocol']['dimensions'] != 768:raise ValueError('Unsupported protocol settings')
     from tokenizers import Tokenizer
     tokenizer=Tokenizer.from_file(str(args.model/'tokenizer.json'))
     # Reuse the pinned-model verifier without importing the inference frameworks.
@@ -117,7 +153,7 @@ def main():
         if sha(args.model/name)!=checksum:raise ValueError('Model checksum mismatch')
     result={'status':'running','fixture_sha256':sha(fixture_path),'model_revision':data['model_revision'],
             'source_revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
-            'rust_binary_sha256':sha(args.rust), 'driver_python':platform.python_version(),
+            'rust_binary_sha256':sha(args.rust), 'cargo_lock_sha256':sha(ROOT/'Cargo.lock'), 'driver_python':platform.python_version(),
             'rust_source_sha256':sha(ROOT/'src/lib.rs'), 'driver_sha256':sha(Path(__file__)),
             'reference_worker_sha256':sha(HERE/'reference_worker.py'),
             'rustc':subprocess.check_output(['rustc','--version'],text=True).strip(),
@@ -141,6 +177,7 @@ def main():
             print(f'Starting {name}',flush=True)
             worker=Worker(command)
             try:
+                validate_ready(name, worker.ready)
                 entry={'ready':worker.ready,'load_wall_ms':worker.load_wall_ms,'rows':[],'length_rows':[], 'text_token_ids_max_abs_error':0.0}
                 corpus=[]
                 vectors={}
@@ -177,7 +214,8 @@ def main():
                         value,wall=worker.encode({'ids':ids})
                         entry['length_rows'].append({'tokens':n,'repeat':repeat,'engine_ms':value['elapsed_ms'],'wall_ms':wall})
                         if repeat==0:vectors['length:'+str(n)]=value['embedding']
-                entry['steady_rss_mib']=worker.rss_mib()
+                entry['memory']=worker.memory()
+                entry['steady_rss_mib']=entry['memory']['rss_mib']
                 entry['latency_ms']={metric:distribution([r[metric] for r in entry['rows']]) for metric in ['engine_ms','wall_ms']}
                 first=[r for r in entry['rows'] if r['repeat']==0]
                 entry['retrieval']={'queries':len(first),'hit_at_1':sum(r['top5'][0]==r['expected'] for r in first),
@@ -196,6 +234,10 @@ def main():
             result['parity'][name]={'reference':reference_name,'vectors':len(comparisons),
                                     'max_abs_error':max(r['max_abs_error'] for r in comparisons),
                                     'min_cosine':min(r['cosine'] for r in comparisons),'comparisons':comparisons}
+        result['parity_pass'] = all(r['max_abs_error'] <= 1e-4 and r['min_cosine'] >= 0.99999 for r in result['parity'].values())
+        reference_rows=[r for r in result['backends'][reference_name]['rows'] if r['repeat']==0]
+        result['ranking_agreement']={name:sum(a['top5']==b['top5'] for a,b in zip(reference_rows,[r for r in entry['rows'] if r['repeat']==0])) for name,entry in result['backends'].items()}
+        if not result['parity_pass']:raise ValueError('Output parity gate failed')
         result['status']='complete'
     except BaseException as error:
         result['status']='failed';result['failure_type']=type(error).__name__
