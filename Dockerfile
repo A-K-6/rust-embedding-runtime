@@ -1,20 +1,25 @@
 # syntax=docker/dockerfile:1
-FROM python:3.12-slim-bookworm AS model
+ARG TARGETARCH
+FROM python:3.12-slim-bookworm AS python-tools
+
+FROM python-tools AS model
 WORKDIR /build
 COPY scripts/download_model.py ./download_model.py
 RUN python download_model.py --output /model && chmod -R a+rX /model
 
-FROM gcc:14.3-bookworm@sha256:5e927c284bf55a7dc796262e311a0703344f62f41f5621eb56843111b1d37e15 AS aocl
-ARG TARGETARCH
+FROM gcc:14.3-bookworm@sha256:5e927c284bf55a7dc796262e311a0703344f62f41f5621eb56843111b1d37e15 AS aocl-amd64
 # Python is a build tool only; both stages use the Debian 12 ABI.
-COPY --from=model /usr/local/ /usr/local/
+COPY --from=python-tools /usr/local/ /usr/local/
 COPY scripts/build_aocl.py /build_aocl.py
-RUN if [ "$TARGETARCH" = "amd64" ]; then \
-      apt-get update && apt-get install -y --no-install-recommends ninja-build \
+RUN apt-get update && apt-get install -y --no-install-recommends ninja-build \
       && rm -rf /var/lib/apt/lists/* && ldconfig \
       && python3 -m pip install --no-cache-dir cmake==4.1.2 \
-      && python3 /build_aocl.py --output /opt/aocl --jobs 2 --static-runtime; \
-    else mkdir -p /opt/aocl/lib /opt/aocl/include /opt/aocl/share/licenses; fi
+      && python3 /build_aocl.py --output /opt/aocl --jobs 2 --static-runtime
+
+FROM python-tools AS aocl-arm64
+RUN mkdir -p /opt/aocl/lib /opt/aocl/include /opt/aocl/share/licenses
+
+FROM aocl-${TARGETARCH} AS aocl
 
 FROM rust:1.98-bookworm AS build
 WORKDIR /build

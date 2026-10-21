@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [main]
+    branches: [main, worktree/amd-cpu]
   pull_request:
 permissions:
   contents: read
@@ -18,3 +18,16 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --locked --all-targets -- -D warnings
       - run: cargo test --locked
+      - run: python3 -m unittest discover -s benchmarks -p test_amd_matrix.py
+  image:
+    if: github.ref == 'refs/heads/worktree/amd-cpu'
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" --tag runtime-test .
+      - run: python3 tests/smoke.py --image runtime-test
