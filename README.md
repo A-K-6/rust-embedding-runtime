@@ -11,12 +11,12 @@ Community implementation; not affiliated with Google.
 
 ```sh
 docker run --rm -p 127.0.0.1:8080:8080 --cpus=2 --memory=3g \
-  ghcr.io/a-k-6/rust-embedding-runtime:0.1.0
+  ghcr.io/a-k-6/rust-embedding-runtime:0.2.0
 ```
 
 The image includes the pinned text model. Inference needs no downloads, Python,
-GPU, or external service. The first published image targets Linux AMD64;
-build from source on other supported Rust/Candle CPU platforms.
+GPU, or external service. The image supports Linux AMD64 and ARM64; Docker selects the native image
+automatically. On macOS it runs inside Docker’s Linux VM.
 
 ```sh
 curl http://localhost:8080/v1/embeddings \
@@ -135,8 +135,8 @@ cargo test --locked
 python3 tests/smoke.py --binary target/release/embedding-runtime --model model
 ```
 
-CI tests the Rust code. A `v*` tag builds a Linux AMD64 image, runs real-model
-smoke tests against it, and publishes to GHCR only after those checks pass.
+CI tests the Rust code. A `v*` tag builds native Linux AMD64 and ARM64 images, runs real-model
+smoke tests on each architecture, and publishes the combined image only after both pass.
 Image tags include the version and `latest`. Public image pulls need no login.
 
 The core model implementation lives in `src/lib.rs`; HTTP transport lives in

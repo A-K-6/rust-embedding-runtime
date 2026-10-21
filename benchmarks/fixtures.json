@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "provenance": "Public authored examples; no private traffic or organization data.",
+  "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+  "query_prefix": "task: search result | query: ",
+  "document_template": "title: {title} | text: {text}",
+  "documents": [
+    {
+      "id": "aurora",
+      "title": "Auroras",
+      "text": "Auroras form when charged particles from the sun interact with gases in Earth’s atmosphere."
+    },
+    {
+      "id": "boiling",
+      "title": "Boiling water",
+      "text": "At standard atmospheric pressure, pure water boils at 100 degrees Celsius. Lower pressure reduces its boiling point."
+    },
+    {
+      "id": "plants",
+      "title": "Photosynthesis",
+      "text": "Plants use sunlight, water and carbon dioxide to make sugars through photosynthesis, releasing oxygen."
+    },
+    {
+      "id": "ssh",
+      "title": "Secure Shell",
+      "text": "SSH provides encrypted remote access to a computer. Public key authentication uses a private key kept by the client."
+    },
+    {
+      "id": "rust",
+      "title": "Rust ownership",
+      "text": "Rust ownership and borrowing manage memory without a garbage collector. A value has one owner and references obey borrowing rules."
+    },
+    {
+      "id": "index",
+      "title": "Database indexes",
+      "text": "A database index can speed up row lookup, but takes storage and adds work to inserts and updates."
+    },
+    {
+      "id": "cache",
+      "title": "Cache expiration",
+      "text": "A cache stores reusable results. A time to live specifies when an entry expires and must be fetched again."
+    },
+    {
+      "id": "moon",
+      "title": "Moon phases",
+      "text": "The Moon reflects sunlight. Its phases change because we see different portions of its sunlit half as it orbits Earth."
+    },
+    {
+      "id": "backup",
+      "title": "Backups",
+      "text": "A backup is an independent copy of data used for recovery. Test restoration regularly and keep copies in separate locations."
+    },
+    {
+      "id": "vectors",
+      "title": "Text embeddings",
+      "text": "Text embeddings represent text as numerical vectors. Similarity between normalized vectors can be measured with their dot product."
+    }
+  ],
+  "queries": [
+    {
+      "id": "q01",
+      "expected": "aurora",
+      "text": "What causes the northern lights?"
+    },
+    {
+      "id": "q02",
+      "expected": "aurora",
+      "text": "چرا شفق قطبی به وجود می‌آید؟"
+    },
+    {
+      "id": "q03",
+      "expected": "boiling",
+      "text": "At what temperature does water boil?"
+    },
+    {
+      "id": "q04",
+      "expected": "boiling",
+      "text": "¿A qué temperatura hierve el agua al nivel del mar?"
+    },
+    {
+      "id": "q05",
+      "expected": "plants",
+      "text": "How do plants turn sunlight into food?"
+    },
+    {
+      "id": "q06",
+      "expected": "plants",
+      "text": "植物はどうやって太陽の光から栄養を作りますか？"
+    },
+    {
+      "id": "q07",
+      "expected": "ssh",
+      "text": "How can I securely connect to a remote computer?"
+    },
+    {
+      "id": "q08",
+      "expected": "ssh",
+      "text": "چطور با کلید خصوصی به یک کامپیوتر از راه دور وصل شوم؟"
+    },
+    {
+      "id": "q09",
+      "expected": "rust",
+      "text": "How does Rust manage memory without garbage collection?"
+    },
+    {
+      "id": "q10",
+      "expected": "rust",
+      "text": "Comment Rust gère-t-il la mémoire sans ramasse-miettes ?"
+    },
+    {
+      "id": "q11",
+      "expected": "index",
+      "text": "Why would I add an index to a database table?"
+    },
+    {
+      "id": "q12",
+      "expected": "index",
+      "text": "لماذا يساعد الفهرس على البحث في قاعدة البيانات؟"
+    },
+    {
+      "id": "q13",
+      "expected": "cache",
+      "text": "What does a cached entry time to live mean?"
+    },
+    {
+      "id": "q14",
+      "expected": "cache",
+      "text": "زمان انقضای یک مقدار کش شده یعنی چه؟"
+    },
+    {
+      "id": "q15",
+      "expected": "moon",
+      "text": "Why does the Moon appear to change shape?"
+    },
+    {
+      "id": "q16",
+      "expected": "moon",
+      "text": "为什么月亮看起来会改变形状？"
+    },
+    {
+      "id": "q17",
+      "expected": "backup",
+      "text": "How can I make sure my backups can recover lost data?"
+    },
+    {
+      "id": "q18",
+      "expected": "backup",
+      "text": "¿Cómo compruebo que una copia de seguridad se puede restaurar?"
+    },
+    {
+      "id": "q19",
+      "expected": "vectors",
+      "text": "How do I compare two normalized text embeddings?"
+    },
+    {
+      "id": "q20",
+      "expected": "vectors",
+      "text": "چطور شباهت دو بردار امبدینگ نرمال شده را حساب کنم؟"
+    }
+  ],
+  "length_tokens": [
+    128,
+    512,
+    1024
+  ],
+  "length_source": "The sun provides energy. Plants use sunlight and water to grow. Scientific measurements help us understand the natural world. ",
+  "protocol": {
+    "threads": 2,
+    "warmup": 5,
+    "repeats": 5,
+    "length_repeats": 3,
+    "dimensions": 768,
+    "batch_size": 1,
+    "cache": false
+  }
+}

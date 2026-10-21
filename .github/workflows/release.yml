@@ -9,8 +9,16 @@ concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: false
 jobs:
-  publish:
-    runs-on: ubuntu-24.04
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +34,7 @@ jobs:
           test "$VERSION" = "$(sed -n 's/^version = "\([^"]*\)"/\1/p' Cargo.toml | head -1)"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
-      - name: Build image
+      - name: Build native image
         run: docker build --tag runtime-test .
       - name: Test real inference
         run: python3 tests/smoke.py --image runtime-test
@@ -34,9 +42,26 @@ jobs:
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
-      - name: Publish verified image
+      - name: Publish verified platform image
+        env:
+          ARCH: ${{ matrix.arch }}
         run: |
-          docker tag runtime-test "$IMAGE:$VERSION"
-          docker tag runtime-test "$IMAGE:latest"
-          docker push "$IMAGE:$VERSION"
-          docker push "$IMAGE:latest"
+          docker tag runtime-test "$IMAGE:$VERSION-$ARCH"
+          docker push "$IMAGE:$VERSION-$ARCH"
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: docker/setup-buildx-action@v3
+      - name: Authenticate to GHCR
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+      - name: Publish multi-platform image
+        shell: bash
+        run: |
+          IMAGE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          VERSION="${GITHUB_REF_NAME#v}"
+          docker buildx imagetools create --tag "$IMAGE:$VERSION" --tag "$IMAGE:latest" \
+            "$IMAGE:$VERSION-amd64" "$IMAGE:$VERSION-arm64"
+          docker buildx imagetools inspect "$IMAGE:$VERSION"

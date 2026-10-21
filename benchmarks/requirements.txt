@@ -1,0 +1,6 @@
+# Linux: install with --index https://download.pytorch.org/whl/cpu to avoid CUDA packages.
+torch==2.14.1
+transformers==5.20.2
+tokenizers==0.23.3
+safetensors==0.8.0
+numpy==2.5.2
