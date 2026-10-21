@@ -1,8 +1,9 @@
 name: CI
 on:
   push:
-    branches: [main, worktree/amd-cpu]
+    branches: [main]
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -20,7 +21,7 @@ jobs:
       - run: cargo test --locked
       - run: python3 -m unittest discover -s benchmarks -p test_amd_matrix.py
   image:
-    if: github.ref == 'refs/heads/worktree/amd-cpu'
+    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
