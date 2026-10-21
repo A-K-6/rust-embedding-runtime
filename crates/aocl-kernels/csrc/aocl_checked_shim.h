@@ -20,6 +20,10 @@ int runtime_aocl_packed_forward(const runtime_aocl_packed *h,
     const float *a, size_t a_len, int64_t m, float *c, size_t c_len);
 void runtime_aocl_packed_destroy(runtime_aocl_packed *h);
 int runtime_aocl_available(void);
+/* Ask the process allocator to return unused pages; live allocations are kept.
+ * Return 1 if glibc released memory, or 0 if none was released/unsupported.
+ */
+int runtime_aocl_release_unused_memory(void);
 #ifdef __cplusplus
 }
 #endif

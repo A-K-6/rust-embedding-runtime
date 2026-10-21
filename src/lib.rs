@@ -27,6 +27,13 @@ const MAX_INPUT_BYTES: usize = 65536;
 const MAX_HEADER_BYTES: u64 = 4 * 1024 * 1024;
 const VOCABULARY: usize = 262144;
 
+fn release_startup_scratch() -> bool {
+    #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+    return aocl_kernels::release_unused_memory();
+    #[cfg(not(all(feature = "aocl", target_os = "linux", target_arch = "x86_64")))]
+    false
+}
+
 fn f32_backend() -> &'static str {
     #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
     if aocl_kernels::available() {
@@ -775,10 +782,14 @@ pub fn run_jsonl() -> Result<()> {
     let model = Encoder::load(dir, mode)?;
     let tokenizer = Tokenizer::from_file(dir.join("tokenizer.json"))
         .map_err(|e| anyhow::anyhow!(e.to_string()))?;
+    // Loading/parsing leaves large freed buffers in glibc arenas. Release those
+    // pages once before readiness; live weights and tokenizer data stay owned.
+    let startup_allocator_trimmed = release_startup_scratch();
     eprintln!(
         "{}",
         serde_json::json!({
             "ready": true,
+            "startup_allocator_trimmed": startup_allocator_trimmed,
             "threads": rayon::current_num_threads(),
             "fused_rms_norm": true,
             "fused_rope": true,
@@ -959,11 +970,13 @@ impl Runtime {
     /// Load the pinned text checkpoint after checking every bundled asset hash.
     pub fn load(dir: &Path, mode: QuantMode) -> Result<Self> {
         verify_model(dir)?;
-        Ok(Self {
+        let runtime = Self {
             encoder: Encoder::load(dir, mode)?,
             tokenizer: Tokenizer::from_file(dir.join("tokenizer.json"))
                 .map_err(|_| anyhow::anyhow!("cannot load tokenizer"))?,
-        })
+        };
+        release_startup_scratch();
+        Ok(runtime)
     }
 
     /// Encode raw text without adding a task prefix, returning normalized vectors.

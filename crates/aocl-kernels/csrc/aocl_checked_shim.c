@@ -3,6 +3,9 @@
 #include <aocl_dlp.h>
 #include <limits.h>
 #include <stdlib.h>
+#if defined(__GLIBC__)
+#include <malloc.h>
+#endif
 
 _Static_assert(sizeof(md_t)==8, "AOCL dimension ABI must be int64");
 _Static_assert(sizeof(msz_t)==8, "AOCL size ABI must be uint64");
@@ -22,6 +25,13 @@ int runtime_aocl_available(void) {
 #if defined(__x86_64__) && (defined(__GNUC__) || defined(__clang__))
     __builtin_cpu_init();
     return __builtin_cpu_supports("avx2") && __builtin_cpu_supports("fma");
+#else
+    return 0;
+#endif
+}
+int runtime_aocl_release_unused_memory(void) {
+#if defined(__GLIBC__)
+    return malloc_trim(0) != 0;
 #else
     return 0;
 #endif
