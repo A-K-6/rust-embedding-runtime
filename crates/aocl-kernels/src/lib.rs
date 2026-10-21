@@ -301,10 +301,19 @@ mod allocator_tests {
 
     #[test]
     fn repeated_heap_cleanup_preserves_live_data_and_packed_forward() {
-        // The no-op fallback must also tolerate repeated calls.
+        // Hardware support is independent of the allocator: a compiled glibc
+        // backend can trim even when AVX2/FMA is unavailable.
         if !available() {
-            assert!(!release_unused_memory());
-            assert!(!release_unused_memory());
+            #[cfg(not(all(target_os = "linux", target_arch = "x86_64")))]
+            {
+                assert!(!release_unused_memory());
+                assert!(!release_unused_memory());
+            }
+            #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
+            {
+                let _ = release_unused_memory();
+                let _ = release_unused_memory();
+            }
             return;
         }
         // Cross packing panels and heap pages while keeping source weights,

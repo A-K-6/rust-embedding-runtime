@@ -67,6 +67,10 @@ jobs:
         run: |
           IMAGE="ghcr.io/${GITHUB_REPOSITORY,,}"
           VERSION="${GITHUB_REF_NAME#v}"
-          docker buildx imagetools create --tag "$IMAGE:$VERSION" --tag "$IMAGE:latest" \
+          TAGS=(--tag "$IMAGE:$VERSION")
+          if [[ "$VERSION" != *-* ]]; then
+            TAGS+=(--tag "$IMAGE:latest")
+          fi
+          docker buildx imagetools create "${TAGS[@]}" \
             "$IMAGE:$VERSION-amd64" "$IMAGE:$VERSION-arm64"
           docker buildx imagetools inspect "$IMAGE:$VERSION"

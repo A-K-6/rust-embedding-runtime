@@ -117,6 +117,21 @@ they do not establish the fastest runtime across all consumer or server CPUs.
 An [exploratory core sweep](benchmarks/AMD_REPORT.md#thread-scaling-and-openmp-waiting)
 reached 19.2 ms median / 21.3 ms p95 with eight Rust threads on this CPU.
 
+## Startup memory candidate
+
+The next candidate releases unused glibc heap pages once after loading the model
+and tokenizer. A separate four-process Ryzen probe reduced post-inference RSS
+from **1,121.9–1,122.3 MiB to 924.8–929.8 MiB**, about 17%. Startup peak remained
+about 1,150 MiB, and this cleanup did not demonstrate a latency improvement.
+Weights, tokenizer and inference kernels are unchanged. The cleanup applies to
+Linux/glibc AOCL builds; other targets retain their existing behavior.
+
+![Startup cleanup: every fresh process, retained RSS and startup peak](benchmarks/charts/startup-memory.png)
+
+See the [protocol](benchmarks/STARTUP_MEMORY.md) and
+[all four raw trials](benchmarks/results/startup-memory-2026-10-22/REPORT.md).
+This short-input memory probe is separate from the v0.3 PyTorch comparison above.
+
 ## Build locally
 
 Requires Rust 1.98+ and a C build toolchain; model acquisition uses Python 3.10+
