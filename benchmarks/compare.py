@@ -33,6 +33,7 @@ class Worker:
                                         text=True, encoding='utf-8', bufsize=1,
                                         env={**os.environ, 'RAYON_NUM_THREADS':'2', 'TOKENIZERS_PARALLELISM':'false',
                                              'OMP_NUM_THREADS':'2', 'MKL_NUM_THREADS':'2', 'OPENBLAS_NUM_THREADS':'2',
+                                             'VECLIB_MAXIMUM_THREADS':'2', 'BLIS_NUM_THREADS':'2',
                                              'HF_HUB_OFFLINE':'1', 'TRANSFORMERS_OFFLINE':'1'})
         self.events = queue.Queue()
         self.output = queue.Queue()
@@ -124,7 +125,7 @@ def main():
                         'logical_cpus':os.cpu_count(),'affinity_cpus':sorted(os.sched_getaffinity(0)) if hasattr(os,'sched_getaffinity') else None},
             'protocol':data['protocol'],
             'measurement':'Batch 1; uncached; serial. wall_ms includes tokenization, JSONL IPC and vector serialization; engine_ms excludes tokenization and IPC. No HTTP/network/database/ranking in either latency.',
-            'cpu_limit':'Two intra-op/Rayon threads; PyTorch inter-op 1. Native host, no exclusive CPU reservation or hard quota.',
+            'cpu_limit':'Two intra-op/Rayon threads; PyTorch inter-op 1; BLAS/OpenMP environment capped at 2. Native host, no exclusive CPU reservation or hard quota.',
             'backends':{},'parity':{}}
     baseline_vectors={}
     reference_name='transformers_eager'

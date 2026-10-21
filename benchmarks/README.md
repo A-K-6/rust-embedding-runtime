@@ -32,7 +32,8 @@ The fixture checksum in `freeze.json` was fixed before the measured runs.
 ## Method
 
 - Batch size one, two Rayon/PyTorch intra-op threads, one PyTorch inter-op thread.
-  Native laptop execution; these are thread limits, not reserved cores or a CPU quota.
+  BLAS/OpenMP thread environment variables are also set to two, including
+  Apple Accelerate’s `VECLIB_MAXIMUM_THREADS`. Native laptop execution; these are thread limits, not reserved cores or a CPU quota.
 - Same model revision, input prefixes, tokenizer asset and dimensions (768).
   Text tokenization is checked against common explicit token IDs for every query.
 - Twenty authored multilingual retrieval queries, ten authored documents,

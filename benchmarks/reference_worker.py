@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 import sys
 import time
@@ -38,10 +39,15 @@ def main():
     if info.get('missing_keys') or info.get('unexpected_keys') or info.get('mismatched_keys'):
         raise RuntimeError('Reference model did not load the exact text state dictionary')
     model.eval()
+    if next(model.parameters()).device.type != 'cpu':
+        raise RuntimeError('Reference must run on CPU')
+    blas = re.search(r'BLAS_INFO=([^,]+)', torch.__config__.show())
     tokenizer = Tokenizer.from_file(str(args.model/'tokenizer.json'))
     print(json.dumps({'ready': True, 'load_ms': 1000*(time.perf_counter()-started),
                       'torch': torch.__version__, 'transformers': transformers.__version__,
                       'python': sys.version.split()[0], 'parameter_dtype': str(next(model.parameters()).dtype),
+                      'device': str(next(model.parameters()).device), 'blas': blas.group(1) if blas else 'unknown',
+                      'veclib_maximum_threads': os.environ.get('VECLIB_MAXIMUM_THREADS'),
                       'attention': model.language_model.config._attn_implementation, 'dtype': 'float32',
                       'threads': torch.get_num_threads(), 'interop_threads': torch.get_num_interop_threads()}),
           file=sys.stderr, flush=True)
