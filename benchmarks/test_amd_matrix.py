@@ -167,7 +167,7 @@ class InterpreterTests(unittest.TestCase):
             subprocess.run([sys.executable, '-m', 'venv', '--without-pip', str(environment)], check=True)
             python = environment/'bin/python'
             prefix = subprocess.check_output([interpreter_path(python), '-c', 'import sys; print(sys.prefix)'], text=True).strip()
-            self.assertEqual(Path(prefix), environment)
+            self.assertEqual(Path(prefix).resolve(), environment.resolve())
 
 
 if __name__ == '__main__':
