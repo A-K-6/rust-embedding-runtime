@@ -116,7 +116,7 @@ def validate_ready(name, ready):
             raise ValueError('Reference must use CPU float32 parameters')
         if ready.get('attention') != name.removeprefix('transformers_'):
             raise ValueError('Reference attention backend mismatch')
-    elif ready.get('weight_quantization') != 'f32':
+    elif ready.get('weight_quantization') != 'f32' or ready.get('device') != 'cpu' or ready.get('dtype') != 'f32':
         raise ValueError('Rust must use F32 linear weights')
 
 

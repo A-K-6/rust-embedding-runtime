@@ -36,6 +36,10 @@ jobs:
           echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
       - name: Build native image
         run: docker build --tag runtime-test .
+      - name: Verify native architecture
+        env:
+          EXPECTED_ARCH: ${{ matrix.arch }}
+        run: test "$(docker image inspect --format '{{.Architecture}}' runtime-test)" = "$EXPECTED_ARCH"
       - name: Test real inference
         run: python3 tests/smoke.py --image runtime-test
       - name: Authenticate to GHCR

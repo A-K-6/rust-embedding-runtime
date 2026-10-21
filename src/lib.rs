@@ -715,7 +715,7 @@ pub fn run_jsonl() -> Result<()> {
         serde_json::json!({
             "ready": true,
             "threads": rayon::current_num_threads(),
-            "cpu_backend": if cfg!(target_os = "macos") { "accelerate" } else { "gemm" },
+            "cpu_backend": if candle_core::utils::has_accelerate() { "accelerate" } else { "gemm" },
             "load_ms": start.elapsed().as_secs_f64() * 1000.,
             "max_tokens": MAX_TOKENS,
             "dtype": "f32",
