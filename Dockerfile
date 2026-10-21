@@ -7,6 +7,7 @@ RUN python download_model.py --output /model && chmod -R a+rX /model
 FROM rust:1.91-bookworm AS build
 WORKDIR /build
 COPY Cargo.toml Cargo.lock ./
+COPY .cargo ./.cargo
 COPY src ./src
 RUN cargo build --release --locked --bin embedding-runtime
 

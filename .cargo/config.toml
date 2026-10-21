@@ -1,0 +1,4 @@
+# gemm-f16's AArch64 inline assembly needs FP16 enabled when built on Linux.
+# This affects the minimum CPU requirement, not the model's F32 compute mode.
+[target.aarch64-unknown-linux-gnu]
+rustflags = ["-C", "target-feature=+fp16"]
