@@ -133,6 +133,7 @@ def main():
     p.add_argument('--rust',required=True,type=Path)
     p.add_argument('--python',required=True,type=Path,help='Python with reference requirements installed')
     p.add_argument('--model',default=ROOT/'model',type=Path)
+    p.add_argument('--order',default='transformers_eager,transformers_sdpa,rust_f32',help='Each backend exactly once; reverse for a counterbalanced second run')
     p.add_argument('--output',required=True,type=Path)
     args=p.parse_args()
     if args.output.exists():p.error('Refusing to overwrite benchmark evidence')
@@ -168,6 +169,11 @@ def main():
     commands=[('transformers_eager',[str(args.python),str(HERE/'reference_worker.py'),str(args.model),'--attention','eager']),
               ('transformers_sdpa',[str(args.python),str(HERE/'reference_worker.py'),str(args.model),'--attention','sdpa']),
               ('rust_f32',[str(args.rust),str(args.model)])]
+    names=args.order.split(',')
+    available=dict(commands)
+    if len(names)!=3 or set(names)!=set(available):p.error('--order must name each backend exactly once')
+    commands=[(name,available[name]) for name in names]
+    result['backend_order']=names
     all_vectors={}
     def save():
         args.output.parent.mkdir(parents=True,exist_ok=True)

@@ -5,7 +5,7 @@
 #![forbid(unsafe_code)]
 use anyhow::{bail, Context, Result};
 use candle_core::quantized::{GgmlDType, QMatMul, QTensor};
-use candle_core::{DType, Device, Tensor, D};
+use candle_core::{DType, Device, Tensor};
 use candle_nn::{Module, VarBuilder};
 use serde::{Deserialize, Serialize};
 use std::{
@@ -104,27 +104,21 @@ fn load_weights(path: &Path) -> Result<HashMap<String, Tensor>> {
 
 #[derive(Clone)]
 struct Norm {
-    scale: Option<Tensor>,
-    eps: f64,
+    scale: Tensor,
 }
 impl Norm {
     fn new(vb: VarBuilder, size: usize, scale: bool) -> candle_core::Result<Self> {
         Ok(Self {
             scale: if scale {
-                Some(vb.get(size, "weight")?)
+                vb.get(size, "weight")?
             } else {
-                None
+                Tensor::ones(size, DType::F32, &Device::Cpu)?
             },
-            eps: 1e-6,
         })
     }
     fn forward(&self, x: &Tensor) -> candle_core::Result<Tensor> {
-        let denom = (x.sqr()?.mean_keepdim(D::Minus1)? + self.eps)?.sqrt()?;
-        let y = x.broadcast_div(&denom)?;
-        match &self.scale {
-            Some(w) => y.broadcast_mul(w),
-            None => Ok(y),
-        }
+        // One CPU kernel replaces the separate square/reduce/sqrt/divide/scale chain.
+        candle_nn::ops::rms_norm(&x.contiguous()?, &self.scale, 1e-6)
     }
 }
 
@@ -435,15 +429,8 @@ impl Layer {
                 .reshape((1, n, self.kv_heads, self.head_dim))?
                 .transpose(1, 2)?,
         )?;
-        let rotate = |t: &Tensor| -> candle_core::Result<Tensor> {
-            let left = t.narrow(3, 0, self.head_dim / 2)?;
-            let right = t.narrow(3, self.head_dim / 2, self.head_dim / 2)?.neg()?;
-            let rotated = Tensor::cat(&[&right, &left], 3)?;
-            t.broadcast_mul(&rope.0)?
-                .add(&rotated.broadcast_mul(&rope.1)?)
-        };
-        let q = rotate(&q)?.contiguous()?;
-        let k = rotate(&k)?;
+        let q = candle_nn::rotary_emb::rope(&q.contiguous()?, &rope.0, &rope.1)?;
+        let k = candle_nn::rotary_emb::rope(&k.contiguous()?, &rope.0, &rope.1)?;
         let repeat = |t: &Tensor| -> candle_core::Result<Tensor> {
             t.unsqueeze(2)?
                 .broadcast_as((1, self.kv_heads, 4 / self.kv_heads, n, self.head_dim))?
@@ -559,18 +546,18 @@ impl Encoder {
             .ple_norm
             .forward(&(self.ple.forward(&h)? * (512f64).powf(-0.5))?.reshape((1, n, 24, 512))?)?;
         let rope = |hd: usize, theta: f32| -> candle_core::Result<(Tensor, Tensor)> {
-            let mut cos = Vec::with_capacity(n * hd);
-            let mut sin = Vec::with_capacity(n * hd);
+            let mut cos = Vec::with_capacity(n * hd / 2);
+            let mut sin = Vec::with_capacity(n * hd / 2);
             for pos in 0..n {
-                for d in 0..hd {
-                    let angle = pos as f32 * theta.powf(-(((d % (hd / 2)) * 2) as f32) / hd as f32);
+                for d in 0..hd / 2 {
+                    let angle = pos as f32 * theta.powf(-((d * 2) as f32) / hd as f32);
                     cos.push(angle.cos());
                     sin.push(angle.sin());
                 }
             }
             Ok((
-                Tensor::from_vec(cos, (1, 1, n, hd), &Device::Cpu)?,
-                Tensor::from_vec(sin, (1, 1, n, hd), &Device::Cpu)?,
+                Tensor::from_vec(cos, (n, hd / 2), &Device::Cpu)?,
+                Tensor::from_vec(sin, (n, hd / 2), &Device::Cpu)?,
             ))
         };
         let sliding_rope = rope(256, 10000.)?;
@@ -715,6 +702,9 @@ pub fn run_jsonl() -> Result<()> {
         serde_json::json!({
             "ready": true,
             "threads": rayon::current_num_threads(),
+            "fused_rms_norm": true,
+            "fused_rope": true,
+            "gemm_avx512_runtime_dispatch": cfg!(target_arch = "x86_64"),
             "cpu_backend": if candle_core::utils::has_accelerate() { "accelerate" } else { "gemm" },
             "load_ms": start.elapsed().as_secs_f64() * 1000.,
             "max_tokens": MAX_TOKENS,
@@ -964,3 +954,6 @@ pub fn verify_model(dir: &Path) -> Result<()> {
     }
     Ok(())
 }
+
+#[cfg(test)]
+mod kernel_tests;

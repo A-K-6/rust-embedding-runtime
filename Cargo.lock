@@ -1225,6 +1225,7 @@ dependencies = [
  "base64 0.22.1",
  "candle-core",
  "candle-nn",
+ "gemm",
  "rayon",
  "serde",
  "serde_json",

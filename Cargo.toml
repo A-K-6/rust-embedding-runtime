@@ -12,6 +12,10 @@ default-run = "embedding-runtime"
 [target.'cfg(target_os = "macos")'.dependencies]
 candle-core = { version = "=0.11.0", features = ["accelerate"] }
 
+# Enable portable runtime-dispatched AVX-512 kernels where supported.
+[target.'cfg(target_arch = "x86_64")'.dependencies]
+gemm = { version = "=0.19.0", features = ["x86-v4"] }
+
 [dependencies]
 anyhow = "1"
 candle-core = "=0.11.0"
