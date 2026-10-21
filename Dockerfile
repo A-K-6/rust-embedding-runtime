@@ -24,7 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends ninja-build \
       && ln -s ../runtime/libgomp.so.1 /opt/aocl/lib/libgomp.so \
       && ln -s ../runtime/libstdc++.so.6 /opt/aocl/lib/libstdc++.so \
       && ln -s ../runtime/libatomic.so.1 /opt/aocl/lib/libatomic.so \
-      && ln -s ../runtime/libgcc_s.so.1 /opt/aocl/lib/libgcc_s.so
+      && cp -L "$(gcc -print-libgcc-file-name)" /opt/aocl/lib/libgcc.a \
+      && printf 'GROUP ( /opt/aocl/runtime/libgcc_s.so.1 -lgcc )\n' > /opt/aocl/lib/libgcc_s.so
 
 FROM python-tools AS aocl-arm64
 RUN mkdir -p /opt/aocl/lib /opt/aocl/include /opt/aocl/share/licenses /opt/aocl/runtime
