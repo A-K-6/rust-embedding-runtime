@@ -4,8 +4,9 @@ The comparison uses the actual pinned `google/embeddinggemma-2` text weights
 with native CPU execution. Reference backends use the official Hugging Face
 Transformers model implementation on PyTorch, with eager and SDPA attention.
 Rust uses Candle 0.11.0 with fused RMS normalization and rotary embedding
-operations. Native macOS uses Apple Accelerate; x86 builds include
-runtime-dispatched AVX-512 GEMM kernels with fallbacks for older CPUs. All compute uses F32; the unchanged vocabulary table stays
+operations, plus parallel fused GELU/multiply on Linux. Native macOS uses
+Apple Accelerate; Linux uses portable GEMM. An AVX-512 experiment was rejected
+after it regressed measured latency on the tested AMD CPU. All compute uses F32; the unchanged vocabulary table stays
 stored in BF16 in Rust and is expanded to F32 by PyTorch.
 
 ## Reproduce

@@ -11,9 +11,11 @@ COPY src ./src
 RUN cargo build --release --locked --bin embedding-runtime
 
 FROM gcr.io/distroless/cc-debian12:nonroot
+ARG SOURCE_REVISION=unknown
 LABEL org.opencontainers.image.source="https://github.com/A-K-6/rust-embedding-runtime" \
       org.opencontainers.image.title="Rust Embedding Runtime" \
-      org.opencontainers.image.licenses="Apache-2.0"
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.revision=$SOURCE_REVISION
 COPY --from=build /build/target/release/embedding-runtime /usr/local/bin/embedding-runtime
 COPY --from=model /model /opt/model
 COPY LICENSE NOTICE THIRD_PARTY_LICENSES.txt /usr/share/licenses/rust-embedding-runtime/

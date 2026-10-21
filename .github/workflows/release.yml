@@ -35,7 +35,7 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
       - name: Build native image
-        run: docker build --tag runtime-test .
+        run: docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" --tag runtime-test .
       - name: Verify native architecture
         env:
           EXPECTED_ARCH: ${{ matrix.arch }}

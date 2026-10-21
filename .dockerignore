@@ -4,3 +4,4 @@ model
 __pycache__
 tests/reference
 .env
+.venv*

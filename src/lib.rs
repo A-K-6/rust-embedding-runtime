@@ -16,6 +16,7 @@ use std::{
     time::Instant,
 };
 use tokenizers::Tokenizer;
+mod activation;
 const MAX_TOKENS: usize = 1024;
 const MAX_INPUT_BYTES: usize = 65536;
 const MAX_HEADER_BYTES: u64 = 4 * 1024 * 1024;
@@ -452,9 +453,9 @@ impl Layer {
                 .reshape((1, n, 4 * self.head_dim))?;
         let h = x.add(&self.post_attn.forward(&self.o.forward(&attention)?)?)?;
         let f = self.pre_ff.forward(&h)?;
-        let f = self.gate.forward(&f)?.gelu()?.mul(&self.up.forward(&f)?)?;
+        let f = activation::gelu_mul(&self.gate.forward(&f)?, &self.up.forward(&f)?)?;
         let h = h.add(&self.post_ff.forward(&self.down.forward(&f)?)?)?;
-        let p = self.ple_gate.forward(&h)?.gelu()?.mul(ple)?;
+        let p = activation::gelu_mul(&self.ple_gate.forward(&h)?, ple)?;
         h.add(&self.ple_norm.forward(&self.ple_proj.forward(&p)?)?)?
             .broadcast_mul(&self.scalar)
     }
