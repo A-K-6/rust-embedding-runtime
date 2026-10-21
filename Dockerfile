@@ -55,7 +55,7 @@ COPY --from=model /model /opt/model
 COPY LICENSE NOTICE THIRD_PARTY_LICENSES.txt /usr/share/licenses/rust-embedding-runtime/
 COPY crates/aocl-kernels/licenses/ /usr/share/licenses/rust-embedding-runtime/backend/
 ENV MODEL_DIR=/opt/model LISTEN_ADDR=0.0.0.0:8080 THREADS=2 QUANTIZATION=f32 \
-    LD_LIBRARY_PATH=/opt/aocl-runtime
+    LD_LIBRARY_PATH=/opt/aocl-runtime OMP_WAIT_POLICY=PASSIVE GOMP_SPINCOUNT=0
 EXPOSE 8080
 USER 65532:65532
 ENTRYPOINT ["/usr/local/bin/embedding-runtime"]
