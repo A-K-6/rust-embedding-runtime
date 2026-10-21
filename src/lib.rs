@@ -704,7 +704,7 @@ pub fn run_jsonl() -> Result<()> {
             "threads": rayon::current_num_threads(),
             "fused_rms_norm": true,
             "fused_rope": true,
-            "gemm_avx512_runtime_dispatch": cfg!(target_arch = "x86_64"),
+            "gemm_avx512_runtime_dispatch": false,
             "cpu_backend": if candle_core::utils::has_accelerate() { "accelerate" } else { "gemm" },
             "load_ms": start.elapsed().as_secs_f64() * 1000.,
             "max_tokens": MAX_TOKENS,
