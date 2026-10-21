@@ -1,0 +1,17 @@
+Rust Embedding Runtime
+
+Community implementation; not affiliated with or endorsed by Google.
+
+Model: google/embeddinggemma-2, Google DeepMind, Apache License 2.0.
+Upstream: https://huggingface.co/google/embeddinggemma-2
+Pinned revision: 914f7f89142e33e77833254d9c9b90c3cef7303b
+The download tool extracts only upstream language_model.* tensors.
+Vision and audio tensors are removed; retained tensor values are unchanged.
+Tokenizer and config are unchanged upstream assets. Asset hashes are verified.
+
+The Rust model architecture was adapted from Hugging Face Transformers
+(Apache License 2.0): https://github.com/huggingface/transformers
+The community implementation adds CPU loading, packed quantization, bounded
+input validation, a Rust library, and an HTTP embeddings service.
+Dependencies retain their own licenses. The root Apache-2.0 license applies
+to this project's code; model and dependency licenses remain applicable.

@@ -1,0 +1,6 @@
+/target/
+/model/
+/tests/reference/
+__pycache__/
+.env
+*.tmp

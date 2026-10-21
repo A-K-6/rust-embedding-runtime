@@ -1,0 +1,6 @@
+.git
+target
+model
+__pycache__
+tests/reference
+.env
