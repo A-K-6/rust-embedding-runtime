@@ -238,9 +238,10 @@ cargo test --locked
 python3 tests/smoke.py --binary target/release/embedding-runtime --model model
 ```
 
-CI tests the Rust code. A `v*` tag builds native Linux AMD64 and ARM64 images, runs real-model
-smoke tests on each architecture, and publishes the combined image only after both pass.
-Image tags include the version and `latest`. Public image pulls need no login.
+CI tests the Rust code. A `v*` tag builds portable AMD64, ARM64 and optional
+AMD64-v3 images, checks real inference on each, and publishes the portable
+multi-platform image after all three pass. Version tags identify each variant;
+only stable versions update `latest`. Public image pulls need no login.
 
 The core model implementation lives in `src/lib.rs`; HTTP transport lives in
 `src/server.rs`. Future model backends should preserve this boundary and add
