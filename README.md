@@ -117,10 +117,10 @@ they do not establish the fastest runtime across all consumer or server CPUs.
 An [exploratory core sweep](benchmarks/AMD_REPORT.md#thread-scaling-and-openmp-waiting)
 reached 19.2 ms median / 21.3 ms p95 with eight Rust threads on this CPU.
 
-## Startup memory candidate
+## Allocator cleanup candidate
 
-The next candidate releases unused glibc heap pages once after loading the model
-and tokenizer. A separate four-process Ryzen probe reduced post-inference RSS
+A four-process Ryzen probe of releasing unused glibc heap pages after loading
+the model and tokenizer reduced post-inference RSS
 from **1,121.9–1,122.3 MiB to 924.8–929.8 MiB**, about 17%. Startup peak remained
 about 1,150 MiB, and this cleanup did not demonstrate a latency improvement.
 Weights, tokenizer and inference kernels are unchanged. The cleanup applies to
@@ -131,6 +131,21 @@ Linux/glibc AOCL builds; other targets retain their existing behavior.
 See the [protocol](benchmarks/STARTUP_MEMORY.md) and
 [all four raw trials](benchmarks/results/startup-memory-2026-10-22/REPORT.md).
 This short-input memory probe is separate from the v0.3 PyTorch comparison above.
+
+The candidate also releases freed activation buffers after inputs of at least
+512 tokens, once their inference temporaries have dropped. A separate 44-call
+probe reduced RSS after long inputs and short recovery requests from
+**1,103–1,109 MiB to 898–899 MiB**, about 19%, compared with startup-only cleanup.
+Every fresh trial and 512/1,024-token timing is shown below. Cleanup took
+**2.3–5.7 ms**, included in those timings, and increased subsequent minor page
+faults. Startup peak did not show a repeatable reduction, and this small probe
+does not establish a latency improvement from cleanup.
+
+![All fresh long-input trials, retained RSS, recovery and process peak](benchmarks/charts/large-input-memory.png)
+
+See [the full protocol, build identities and raw evidence](benchmarks/results/large-input-memory-2026-10-22/REPORT.md).
+Both cleanup policies preserve the F32 weights, tokenizer and inference kernels;
+the release candidate applies them to Linux/glibc AOCL builds.
 
 ## Build locally
 

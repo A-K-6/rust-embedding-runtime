@@ -1,0 +1,3947 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "trials": [
+    {
+      "trial": 0,
+      "runtime": "previous",
+      "status": "complete",
+      "rows": [
+        {
+          "kind": "official",
+          "case_index": 0,
+          "phase": "initial",
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 28.22408895008266,
+          "encoder_ms": 27.800497,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.4329220000000005,
+            "attention": 4.85786,
+            "attention_output": 1.8335790000000003,
+            "embedding_lookup": 0.031659,
+            "encoder_total": 27.800126000000002,
+            "ffn_total": 11.442776000000002,
+            "linear": 18.274479999999983,
+            "ple_block": 2.4935669999999996,
+            "ple_projection": 1.50139,
+            "pool_and_projection": 1.0487929999999999,
+            "positions_and_masks": 0.054322,
+            "qkv_and_norm": 3.9349059999999993,
+            "rms_norm": 1.2137230000000006,
+            "rope_and_repeat": 0.52807,
+            "tokenization": 0.066053
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 897.02734375,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 897.02734375,
+              "Pss": 894.484375,
+              "Anonymous": 887.24609375,
+              "Private_Dirty": 894.44921875
+            },
+            "minor_faults": 385895,
+            "major_faults": 0,
+            "cpu_ticks": 102,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 1415194\nuser_usec 1055145\nsystem_usec 360049\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 13\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "944025600",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "phase": "initial",
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 30.911628855392337,
+          "encoder_ms": 30.499138,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.722619000000001,
+            "attention": 1.7917820000000002,
+            "attention_output": 2.5379119999999995,
+            "embedding_lookup": 0.013986,
+            "encoder_total": 30.498626,
+            "ffn_total": 14.393814000000004,
+            "linear": 21.75619600000001,
+            "ple_block": 3.5939259999999997,
+            "ple_projection": 1.290536,
+            "pool_and_projection": 0.082134,
+            "positions_and_masks": 0.070612,
+            "qkv_and_norm": 5.917547000000001,
+            "rms_norm": 1.9145190000000016,
+            "rope_and_repeat": 0.7399919999999999,
+            "tokenization": 0.06798699999999999
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.1328125,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.1328125,
+              "Pss": 897.58984375,
+              "Anonymous": 890.3515625,
+              "Private_Dirty": 897.5546875
+            },
+            "minor_faults": 386690,
+            "major_faults": 0,
+            "cpu_ticks": 108,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 1476740\nuser_usec 1105801\nsystem_usec 370939\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 14\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947302400",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "phase": "initial",
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 31.178929843008518,
+          "encoder_ms": 30.690726,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 3.945577,
+            "attention": 1.8138469999999998,
+            "attention_output": 2.4913740000000004,
+            "embedding_lookup": 0.024927,
+            "encoder_total": 30.690245,
+            "ffn_total": 14.285456000000002,
+            "linear": 21.717671999999997,
+            "ple_block": 3.5680359999999998,
+            "ple_projection": 1.686156,
+            "pool_and_projection": 0.083887,
+            "positions_and_masks": 0.07917800000000001,
+            "qkv_and_norm": 5.824700999999999,
+            "rms_norm": 1.986573999999999,
+            "rope_and_repeat": 0.766284,
+            "tokenization": 0.147225
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.18359375,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.18359375,
+              "Pss": 897.640625,
+              "Anonymous": 890.40234375,
+              "Private_Dirty": 897.60546875
+            },
+            "minor_faults": 386703,
+            "major_faults": 0,
+            "cpu_ticks": 113,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 1539247\nuser_usec 1157707\nsystem_usec 381539\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 14\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947286016",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 521.3484219275415,
+          "encoder_ms": 520.955696,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 70.86603900000001,
+            "attention": 149.76984500000003,
+            "attention_output": 30.579847999999995,
+            "embedding_lookup": 1.16471,
+            "encoder_total": 520.9552659999999,
+            "ffn_total": 194.20643599999997,
+            "linear": 244.70851000000002,
+            "ple_block": 43.408768,
+            "ple_projection": 20.776963,
+            "pool_and_projection": 0.7828849999999999,
+            "positions_and_masks": 2.152028,
+            "qkv_and_norm": 65.76203200000002,
+            "rms_norm": 30.45023300000002,
+            "rope_and_repeat": 12.071371,
+            "tokenization": 0.00038
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1005.640625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1005.640625,
+              "Pss": 1003.09765625,
+              "Anonymous": 995.859375,
+              "Private_Dirty": 1003.0625
+            },
+            "minor_faults": 413700,
+            "major_faults": 0,
+            "cpu_ticks": 208,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 2490761\nuser_usec 2076308\nsystem_usec 414453\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 19\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1057902592",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.102461963891983,
+          "encoder_ms": 20.658600999999997,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.463892,
+            "attention": 0.9650889999999999,
+            "attention_output": 1.7061929999999998,
+            "embedding_lookup": 0.021931,
+            "encoder_total": 20.65799,
+            "ffn_total": 9.840116,
+            "linear": 15.039037000000004,
+            "ple_block": 2.428283,
+            "ple_projection": 1.1777339999999998,
+            "pool_and_projection": 0.06423999999999999,
+            "positions_and_masks": 0.045315,
+            "qkv_and_norm": 3.7556819999999997,
+            "rms_norm": 1.2402119999999999,
+            "rope_and_repeat": 0.575144,
+            "tokenization": 0.09674100000000001
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1005.64453125,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1005.64453125,
+              "Pss": 1003.1015625,
+              "Anonymous": 995.86328125,
+              "Private_Dirty": 1003.06640625
+            },
+            "minor_faults": 413701,
+            "major_faults": 0,
+            "cpu_ticks": 211,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 2535127\nuser_usec 2110753\nsystem_usec 424373\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 20\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1057882112",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1351.914273807779,
+          "encoder_ms": 1351.4952600000001,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 139.15539,
+            "attention": 620.6590429999999,
+            "attention_output": 59.913532000000004,
+            "embedding_lookup": 0.37000200000000005,
+            "encoder_total": 1351.4949279999998,
+            "ffn_total": 387.122466,
+            "linear": 478.15118400000034,
+            "ple_block": 81.57559299999998,
+            "ple_projection": 36.577051,
+            "pool_and_projection": 1.496841,
+            "positions_and_masks": 4.49941,
+            "qkv_and_norm": 130.97472299999998,
+            "rms_norm": 59.070263000000075,
+            "rope_and_repeat": 27.981346999999996,
+            "tokenization": 0.00017999999999999998
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 453,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 4956802\nuser_usec 4498230\nsystem_usec 458572\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 33\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166389248",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 29.545682948082685,
+          "encoder_ms": 29.078528,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.94303,
+            "attention": 1.8452420000000003,
+            "attention_output": 2.3194809999999997,
+            "embedding_lookup": 0.028704,
+            "encoder_total": 29.077968,
+            "ffn_total": 13.743928999999998,
+            "linear": 19.949585999999996,
+            "ple_block": 3.426931,
+            "ple_projection": 1.376826,
+            "pool_and_projection": 0.084438,
+            "positions_and_masks": 0.085109,
+            "qkv_and_norm": 5.27924,
+            "rms_norm": 2.0221190000000004,
+            "rope_and_repeat": 0.7952099999999998,
+            "tokenization": 0.105608
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 458,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 5016160\nuser_usec 4549727\nsystem_usec 466432\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 34\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166364672",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 507.69209396094084,
+          "encoder_ms": 507.264914,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 68.25340800000001,
+            "attention": 148.599905,
+            "attention_output": 29.051329,
+            "embedding_lookup": 0.592229,
+            "encoder_total": 507.26438399999995,
+            "ffn_total": 196.25498700000003,
+            "linear": 241.90367299999986,
+            "ple_block": 39.66636200000001,
+            "ple_projection": 14.397103,
+            "pool_and_projection": 0.7895880000000001,
+            "positions_and_masks": 1.835194,
+            "qkv_and_norm": 64.129456,
+            "rms_norm": 27.505659,
+            "rope_and_repeat": 11.670543000000002,
+            "tokenization": 0.0006309999999999999
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 551,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 5955235\nuser_usec 5479699\nsystem_usec 475535\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 39\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166340096",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 30.510177835822105,
+          "encoder_ms": 30.038175,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.181017000000001,
+            "attention": 1.877473,
+            "attention_output": 2.3447009999999997,
+            "embedding_lookup": 0.028051999999999997,
+            "encoder_total": 30.037723,
+            "ffn_total": 13.808397,
+            "linear": 20.533072999999998,
+            "ple_block": 3.4235809999999995,
+            "ple_projection": 1.630932,
+            "pool_and_projection": 0.084809,
+            "positions_and_masks": 0.080992,
+            "qkv_and_norm": 5.800285999999999,
+            "rms_norm": 2.072015999999999,
+            "rope_and_repeat": 0.875269,
+            "tokenization": 0.11248
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 556,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 6016755\nuser_usec 5531922\nsystem_usec 484833\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 39\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166311424",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1346.4443469420075,
+          "encoder_ms": 1345.999824,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 136.31465500000002,
+            "attention": 631.1901830000002,
+            "attention_output": 60.088581000000005,
+            "embedding_lookup": 0.786542,
+            "encoder_total": 1345.999494,
+            "ffn_total": 381.82239400000014,
+            "linear": 472.02265600000004,
+            "ple_block": 78.608671,
+            "ple_projection": 31.831711,
+            "pool_and_projection": 1.481182,
+            "positions_and_masks": 4.614115,
+            "qkv_and_norm": 128.143485,
+            "rms_norm": 58.02279499999997,
+            "rope_and_repeat": 27.102098000000005,
+            "tokenization": 0.000411
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 795,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 8419058\nuser_usec 7909116\nsystem_usec 509941\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 53\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166282752",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.894725039601326,
+          "encoder_ms": 21.445704,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.4724150000000003,
+            "attention": 0.9865959999999998,
+            "attention_output": 1.7468890000000004,
+            "embedding_lookup": 0.022933,
+            "encoder_total": 21.445253,
+            "ffn_total": 10.565693,
+            "linear": 15.753631999999998,
+            "ple_block": 2.4343640000000004,
+            "ple_projection": 1.179517,
+            "pool_and_projection": 0.06517200000000001,
+            "positions_and_masks": 0.044824,
+            "qkv_and_norm": 3.735031000000001,
+            "rms_norm": 1.2600699999999985,
+            "rope_and_repeat": 0.5754079999999999,
+            "tokenization": 0.09911600000000001
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1108.765625,
+            "peak_rss_mib": 1183.07421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1108.765625,
+              "Pss": 1106.22265625,
+              "Anonymous": 1098.921875,
+              "Private_Dirty": 1106.1875
+            },
+            "minor_faults": 440085,
+            "major_faults": 0,
+            "cpu_ticks": 799,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 8464542\nuser_usec 7946366\nsystem_usec 518175\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 53\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1166512128",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        }
+      ],
+      "ready": {
+        "threads": 2,
+        "device": "cpu",
+        "dtype": "f32",
+        "weight_quantization": "f32",
+        "cpu_backend": "aocl-dlp",
+        "load_ms": 958.0396810000001,
+        "linear_weight_bytes": 546832384,
+        "packed_weight_bytes": 0,
+        "max_tokens": 1024,
+        "startup_allocator_trimmed": true,
+        "fused_rope": true,
+        "fused_rms_norm": true,
+        "gemm_avx512_runtime_dispatch": false
+      },
+      "startup_wall_ms": 961.4812820218503,
+      "environment": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "BLIS_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false",
+        "OMP_WAIT_POLICY": "PASSIVE",
+        "GOMP_SPINCOUNT": "0"
+      },
+      "after_ready": {
+        "rss_mib": 892.2578125,
+        "peak_rss_mib": 1183.07421875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 892.2578125,
+          "Pss": 889.8896484375,
+          "Anonymous": 883.6015625,
+          "Private_Dirty": 889.8671875
+        },
+        "minor_faults": 384944,
+        "major_faults": 0,
+        "cpu_ticks": 99,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 1365042\nuser_usec 1018285\nsystem_usec 346756\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 13\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "940630016",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "affinity": {
+        "process_cpus": [
+          0,
+          1
+        ],
+        "thread_masks": [
+          {
+            "cpus": [
+              0,
+              1
+            ],
+            "threads": 4
+          }
+        ]
+      },
+      "timings_by_input": {
+        "official_0_15_tokens_initial": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 28.22408895008266,
+            "p95": 28.22408895008266,
+            "mean": 28.22408895008266,
+            "min": 28.22408895008266,
+            "max": 28.22408895008266
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 27.800497,
+            "p95": 27.800497,
+            "mean": 27.800497,
+            "min": 27.800497,
+            "max": 27.800497
+          },
+          "post_call_rss_mib": [
+            897.02734375
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "official_1_26_tokens_initial": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 30.911628855392337,
+            "p95": 30.911628855392337,
+            "mean": 30.911628855392337,
+            "min": 30.911628855392337,
+            "max": 30.911628855392337
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.499138,
+            "p95": 30.499138,
+            "mean": 30.499138,
+            "min": 30.499138,
+            "max": 30.499138
+          },
+          "post_call_rss_mib": [
+            900.1328125
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "official_2_27_tokens_initial": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.178929843008518,
+            "p95": 31.178929843008518,
+            "mean": 31.178929843008518,
+            "min": 31.178929843008518,
+            "max": 31.178929843008518
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.690726,
+            "p95": 30.690726,
+            "mean": 30.690726,
+            "min": 30.690726,
+            "max": 30.690726
+          },
+          "post_call_rss_mib": [
+            900.18359375
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "synthetic_512": {
+          "tokens": 512,
+          "wall_ms": {
+            "count": 2,
+            "median": 514.5202579442412,
+            "p95": 521.3484219275415,
+            "mean": 514.5202579442412,
+            "min": 507.69209396094084,
+            "max": 521.3484219275415
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 514.1103049999999,
+            "p95": 520.955696,
+            "mean": 514.1103049999999,
+            "min": 507.264914,
+            "max": 520.955696
+          },
+          "post_call_rss_mib": [
+            1005.640625,
+            1108.765625
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875,
+            1183.07421875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_512": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.102461963891983,
+            "p95": 21.102461963891983,
+            "mean": 21.102461963891983,
+            "min": 21.102461963891983,
+            "max": 21.102461963891983
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 20.658600999999997,
+            "p95": 20.658600999999997,
+            "mean": 20.658600999999997,
+            "min": 20.658600999999997,
+            "max": 20.658600999999997
+          },
+          "post_call_rss_mib": [
+            1005.64453125
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "synthetic_1024": {
+          "tokens": 1024,
+          "wall_ms": {
+            "count": 2,
+            "median": 1349.1793103748932,
+            "p95": 1351.914273807779,
+            "mean": 1349.1793103748932,
+            "min": 1346.4443469420075,
+            "max": 1351.914273807779
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 1348.747542,
+            "p95": 1351.4952600000001,
+            "mean": 1348.747542,
+            "min": 1345.999824,
+            "max": 1351.4952600000001
+          },
+          "post_call_rss_mib": [
+            1108.765625,
+            1108.765625
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875,
+            1183.07421875
+          ]
+        },
+        "official_1_26_tokens_recovery_after_1024": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 29.545682948082685,
+            "p95": 29.545682948082685,
+            "mean": 29.545682948082685,
+            "min": 29.545682948082685,
+            "max": 29.545682948082685
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 29.078528,
+            "p95": 29.078528,
+            "mean": 29.078528,
+            "min": 29.078528,
+            "max": 29.078528
+          },
+          "post_call_rss_mib": [
+            1108.765625
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "official_2_27_tokens_recovery_after_512": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 30.510177835822105,
+            "p95": 30.510177835822105,
+            "mean": 30.510177835822105,
+            "min": 30.510177835822105,
+            "max": 30.510177835822105
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.038175,
+            "p95": 30.038175,
+            "mean": 30.038175,
+            "min": 30.038175,
+            "max": 30.038175
+          },
+          "post_call_rss_mib": [
+            1108.765625
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_1024": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.894725039601326,
+            "p95": 21.894725039601326,
+            "mean": 21.894725039601326,
+            "min": 21.894725039601326,
+            "max": 21.894725039601326
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.445704,
+            "p95": 21.445704,
+            "mean": 21.445704,
+            "min": 21.445704,
+            "max": 21.445704
+          },
+          "post_call_rss_mib": [
+            1108.765625
+          ],
+          "process_peak_rss_mib": [
+            1183.07421875
+          ]
+        }
+      },
+      "after_all": {
+        "rss_mib": 1108.765625,
+        "peak_rss_mib": 1183.07421875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 1108.765625,
+          "Pss": 1106.22265625,
+          "Anonymous": 1098.921875,
+          "Private_Dirty": 1106.1875
+        },
+        "minor_faults": 440085,
+        "major_faults": 0,
+        "cpu_ticks": 799,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 8464542\nuser_usec 7946366\nsystem_usec 518175\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 53\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "1166512128",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "worker_exit_code": -15,
+      "worker_reaped": true
+    },
+    {
+      "trial": 1,
+      "runtime": "candidate",
+      "status": "complete",
+      "rows": [
+        {
+          "kind": "official",
+          "case_index": 0,
+          "phase": "initial",
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 28.12772896140814,
+          "encoder_ms": 27.722771,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.61813,
+            "attention": 4.800863999999999,
+            "attention_output": 1.814263,
+            "embedding_lookup": 0.028614,
+            "encoder_total": 27.72211,
+            "ffn_total": 11.428172,
+            "linear": 18.080432000000002,
+            "ple_block": 2.589987,
+            "ple_projection": 1.461174,
+            "pool_and_projection": 1.0621280000000002,
+            "positions_and_masks": 0.054771999999999994,
+            "qkv_and_norm": 3.8554280000000003,
+            "rms_norm": 1.2073900000000002,
+            "rope_and_repeat": 0.5609500000000001,
+            "tokenization": 0.070382
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 896.5,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 896.5,
+              "Pss": 893.9521484375,
+              "Anonymous": 887.08984375,
+              "Private_Dirty": 893.91796875
+            },
+            "minor_faults": 440155,
+            "major_faults": 0,
+            "cpu_ticks": 104,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 9577668\nuser_usec 8677941\nsystem_usec 899726\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 64\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943820800",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "phase": "initial",
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 31.845716992393136,
+          "encoder_ms": 31.439366000000003,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.8583309999999997,
+            "attention": 1.791591,
+            "attention_output": 2.551085,
+            "embedding_lookup": 0.009608,
+            "encoder_total": 31.439016,
+            "ffn_total": 15.148841,
+            "linear": 22.70277100000001,
+            "ple_block": 3.685423,
+            "ple_projection": 1.275948,
+            "pool_and_projection": 0.079298,
+            "positions_and_masks": 0.06951,
+            "qkv_and_norm": 6.006117000000001,
+            "rms_norm": 1.7730910000000002,
+            "rope_and_repeat": 0.7446659999999998,
+            "tokenization": 0.077425
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 899.6796875,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 899.6796875,
+              "Pss": 897.1318359375,
+              "Anonymous": 890.20703125,
+              "Private_Dirty": 897.09765625
+            },
+            "minor_faults": 440954,
+            "major_faults": 0,
+            "cpu_ticks": 109,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 9639348\nuser_usec 8733462\nsystem_usec 905885\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 64\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947122176",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "phase": "initial",
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 31.9531278219074,
+          "encoder_ms": 31.551466,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.104589999999999,
+            "attention": 1.8482709999999996,
+            "attention_output": 2.439594000000001,
+            "embedding_lookup": 0.008997,
+            "encoder_total": 31.551056000000003,
+            "ffn_total": 14.489576,
+            "linear": 22.484779000000003,
+            "ple_block": 3.804707,
+            "ple_projection": 1.4294049999999998,
+            "pool_and_projection": 0.082895,
+            "positions_and_masks": 0.07519100000000001,
+            "qkv_and_norm": 6.488394999999999,
+            "rms_norm": 1.860883,
+            "rope_and_repeat": 0.810839,
+            "tokenization": 0.068688
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 899.73828125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 899.73828125,
+              "Pss": 897.1904296875,
+              "Anonymous": 890.265625,
+              "Private_Dirty": 897.15625
+            },
+            "minor_faults": 440969,
+            "major_faults": 0,
+            "cpu_ticks": 114,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 9699789\nuser_usec 8787388\nsystem_usec 912401\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 65\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947335168",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 510.22900198586285,
+          "encoder_ms": 509.8318080000001,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 70.13566000000002,
+            "allocator_cleanup": 2.340821,
+            "attention": 144.949735,
+            "attention_output": 28.658896000000006,
+            "embedding_lookup": 0.724837,
+            "encoder_total": 509.83136799999994,
+            "ffn_total": 195.03277999999997,
+            "linear": 241.29702100000003,
+            "ple_block": 40.156099,
+            "ple_projection": 19.095897,
+            "pool_and_projection": 0.762427,
+            "positions_and_masks": 2.043134,
+            "qkv_and_norm": 63.425968000000005,
+            "rms_norm": 26.276411999999993,
+            "rope_and_repeat": 12.359829,
+            "tokenization": 0.000471
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.9999999999999972,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 894.8203125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 894.8203125,
+              "Pss": 892.2724609375,
+              "Anonymous": 885.34765625,
+              "Private_Dirty": 892.23828125
+            },
+            "minor_faults": 467140,
+            "major_faults": 0,
+            "cpu_ticks": 208,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 10642096\nuser_usec 9694747\nsystem_usec 947349\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 70\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "942223360",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.66813099756837,
+          "encoder_ms": 21.290093,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.551457,
+            "attention": 1.006175,
+            "attention_output": 1.7150930000000002,
+            "embedding_lookup": 0.03251,
+            "encoder_total": 21.289773,
+            "ffn_total": 10.280558000000001,
+            "linear": 15.489282000000005,
+            "ple_block": 2.435008,
+            "ple_projection": 1.347151,
+            "pool_and_projection": 0.06398,
+            "positions_and_masks": 0.046196,
+            "qkv_and_norm": 3.6948739999999995,
+            "rms_norm": 1.1929059999999998,
+            "rope_and_repeat": 0.593811,
+            "tokenization": 0.052228000000000004
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 897.0703125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 897.0703125,
+              "Pss": 894.5224609375,
+              "Anonymous": 887.59765625,
+              "Private_Dirty": 894.48828125
+            },
+            "minor_faults": 467716,
+            "major_faults": 0,
+            "cpu_ticks": 211,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 10685481\nuser_usec 9733180\nsystem_usec 952301\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 70\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "944451584",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1313.9429718721658,
+          "encoder_ms": 1313.710608,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 143.29322399999998,
+            "allocator_cleanup": 4.29082,
+            "attention": 570.130212,
+            "attention_output": 57.922095000000006,
+            "embedding_lookup": 0.8813799999999999,
+            "encoder_total": 1313.710187,
+            "ffn_total": 393.171905,
+            "linear": 481.55421100000007,
+            "ple_block": 79.42040199999997,
+            "ple_projection": 40.771511000000004,
+            "pool_and_projection": 1.520035,
+            "positions_and_masks": 5.401408,
+            "qkv_and_norm": 128.100935,
+            "rms_norm": 55.386475999999995,
+            "rope_and_repeat": 31.784602,
+            "tokenization": 0.000441
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.999999999999996,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 895.64453125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 895.64453125,
+              "Pss": 893.0966796875,
+              "Anonymous": 886.109375,
+              "Private_Dirty": 893.0625
+            },
+            "minor_faults": 529295,
+            "major_faults": 0,
+            "cpu_ticks": 450,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 13076512\nuser_usec 12080053\nsystem_usec 996458\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 83\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943013888",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 29.7951300162822,
+          "encoder_ms": 29.401813999999998,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 4.101373,
+            "attention": 1.9982010000000003,
+            "attention_output": 2.2924219999999997,
+            "embedding_lookup": 0.03222,
+            "encoder_total": 29.401403,
+            "ffn_total": 13.244535999999998,
+            "linear": 20.035752000000002,
+            "ple_block": 3.625894,
+            "ple_projection": 1.692097,
+            "pool_and_projection": 0.081112,
+            "positions_and_masks": 0.08023,
+            "qkv_and_norm": 5.447943999999999,
+            "rms_norm": 1.8223040000000006,
+            "rope_and_repeat": 0.8137019999999999,
+            "tokenization": 0.055874
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.484375,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.484375,
+              "Pss": 897.9365234375,
+              "Anonymous": 890.94921875,
+              "Private_Dirty": 897.90234375
+            },
+            "minor_faults": 530534,
+            "major_faults": 0,
+            "cpu_ticks": 455,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 13134668\nuser_usec 12132267\nsystem_usec 1002401\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 84\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947666944",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 517.2827921342105,
+          "encoder_ms": 516.882844,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 70.74930000000003,
+            "allocator_cleanup": 3.3240309999999997,
+            "attention": 146.990083,
+            "attention_output": 29.064531999999996,
+            "embedding_lookup": 0.848338,
+            "encoder_total": 516.882123,
+            "ffn_total": 194.88543800000002,
+            "linear": 243.1763540000001,
+            "ple_block": 41.10716999999999,
+            "ple_projection": 20.662989,
+            "pool_and_projection": 0.773638,
+            "positions_and_masks": 2.2640569999999998,
+            "qkv_and_norm": 64.448521,
+            "rms_norm": 26.805767999999986,
+            "rope_and_repeat": 12.227423000000002,
+            "tokenization": 0.001032
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.9999999999999972,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 895.64453125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 895.64453125,
+              "Pss": 893.0966796875,
+              "Anonymous": 886.109375,
+              "Private_Dirty": 893.0625
+            },
+            "minor_faults": 556715,
+            "major_faults": 0,
+            "cpu_ticks": 548,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 14082970\nuser_usec 13050353\nsystem_usec 1032617\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 89\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "942772224",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 30.5560240522027,
+          "encoder_ms": 30.155224,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.271400999999999,
+            "attention": 1.961033,
+            "attention_output": 2.3369110000000006,
+            "embedding_lookup": 0.03766,
+            "encoder_total": 30.154522,
+            "ffn_total": 13.937811999999997,
+            "linear": 20.49848600000001,
+            "ple_block": 3.592663,
+            "ple_projection": 1.442599,
+            "pool_and_projection": 0.0855,
+            "positions_and_masks": 0.081783,
+            "qkv_and_norm": 5.740729999999999,
+            "rms_norm": 1.8885340000000002,
+            "rope_and_repeat": 0.852638,
+            "tokenization": 0.055283
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.734375,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.734375,
+              "Pss": 898.1865234375,
+              "Anonymous": 891.19921875,
+              "Private_Dirty": 898.15234375
+            },
+            "minor_faults": 558018,
+            "major_faults": 0,
+            "cpu_ticks": 554,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 14142117\nuser_usec 13098237\nsystem_usec 1043880\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 89\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "947953664",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1312.1416009962559,
+          "encoder_ms": 1311.755508,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 141.64816699999997,
+            "allocator_cleanup": 5.680821,
+            "attention": 571.6783689999999,
+            "attention_output": 57.374190999999996,
+            "embedding_lookup": 0.593741,
+            "encoder_total": 1311.7550680000002,
+            "ffn_total": 387.88685499999997,
+            "linear": 480.2546090000001,
+            "ple_block": 79.411073,
+            "ple_projection": 41.943014,
+            "pool_and_projection": 1.5170590000000002,
+            "positions_and_masks": 5.534768,
+            "qkv_and_norm": 127.75081600000001,
+            "rms_norm": 52.69222799999997,
+            "rope_and_repeat": 32.071813,
+            "tokenization": 0.000261
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.999999999999996,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 895.64453125,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 895.64453125,
+              "Pss": 893.0966796875,
+              "Anonymous": 886.109375,
+              "Private_Dirty": 893.0625
+            },
+            "minor_faults": 619150,
+            "major_faults": 0,
+            "cpu_ticks": 792,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 16536590\nuser_usec 15444665\nsystem_usec 1091925\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 103\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943325184",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.453688852488995,
+          "encoder_ms": 21.067376,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.533651,
+            "attention": 1.005352,
+            "attention_output": 1.7304559999999993,
+            "embedding_lookup": 0.035356,
+            "encoder_total": 21.067036,
+            "ffn_total": 10.305349000000001,
+            "linear": 15.314525999999994,
+            "ple_block": 2.4173329999999997,
+            "ple_projection": 1.12778,
+            "pool_and_projection": 0.063519,
+            "positions_and_masks": 0.046356999999999995,
+            "qkv_and_norm": 3.670742,
+            "rms_norm": 1.15704,
+            "rope_and_repeat": 0.5846949999999999,
+            "tokenization": 0.048912000000000004
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 897.875,
+            "peak_rss_mib": 1149.8671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 897.875,
+              "Pss": 895.3271484375,
+              "Anonymous": 888.33984375,
+              "Private_Dirty": 895.29296875
+            },
+            "minor_faults": 619721,
+            "major_faults": 0,
+            "cpu_ticks": 796,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 16579937\nuser_usec 15480837\nsystem_usec 1099100\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 103\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "945070080",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        }
+      ],
+      "ready": {
+        "threads": 2,
+        "device": "cpu",
+        "dtype": "f32",
+        "weight_quantization": "f32",
+        "cpu_backend": "aocl-dlp",
+        "load_ms": 966.2881679999999,
+        "linear_weight_bytes": 546832384,
+        "packed_weight_bytes": 0,
+        "max_tokens": 1024,
+        "startup_allocator_trimmed": true,
+        "fused_rope": true,
+        "fused_rms_norm": true,
+        "gemm_avx512_runtime_dispatch": false
+      },
+      "startup_wall_ms": 969.6062379516661,
+      "environment": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "BLIS_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false",
+        "OMP_WAIT_POLICY": "PASSIVE",
+        "GOMP_SPINCOUNT": "0"
+      },
+      "after_ready": {
+        "rss_mib": 891.90234375,
+        "peak_rss_mib": 1149.8671875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 891.90234375,
+          "Pss": 889.5302734375,
+          "Anonymous": 883.5546875,
+          "Private_Dirty": 889.5078125
+        },
+        "minor_faults": 439233,
+        "major_faults": 0,
+        "cpu_ticks": 99,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 9528846\nuser_usec 8638778\nsystem_usec 890068\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 64\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "940449792",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "affinity": {
+        "process_cpus": [
+          0,
+          1
+        ],
+        "thread_masks": [
+          {
+            "cpus": [
+              0,
+              1
+            ],
+            "threads": 4
+          }
+        ]
+      },
+      "timings_by_input": {
+        "official_0_15_tokens_initial": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 28.12772896140814,
+            "p95": 28.12772896140814,
+            "mean": 28.12772896140814,
+            "min": 28.12772896140814,
+            "max": 28.12772896140814
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 27.722771,
+            "p95": 27.722771,
+            "mean": 27.722771,
+            "min": 27.722771,
+            "max": 27.722771
+          },
+          "post_call_rss_mib": [
+            896.5
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "official_1_26_tokens_initial": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.845716992393136,
+            "p95": 31.845716992393136,
+            "mean": 31.845716992393136,
+            "min": 31.845716992393136,
+            "max": 31.845716992393136
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 31.439366000000003,
+            "p95": 31.439366000000003,
+            "mean": 31.439366000000003,
+            "min": 31.439366000000003,
+            "max": 31.439366000000003
+          },
+          "post_call_rss_mib": [
+            899.6796875
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "official_2_27_tokens_initial": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.9531278219074,
+            "p95": 31.9531278219074,
+            "mean": 31.9531278219074,
+            "min": 31.9531278219074,
+            "max": 31.9531278219074
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 31.551466,
+            "p95": 31.551466,
+            "mean": 31.551466,
+            "min": 31.551466,
+            "max": 31.551466
+          },
+          "post_call_rss_mib": [
+            899.73828125
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "synthetic_512": {
+          "tokens": 512,
+          "wall_ms": {
+            "count": 2,
+            "median": 513.7558970600367,
+            "p95": 517.2827921342105,
+            "mean": 513.7558970600367,
+            "min": 510.22900198586285,
+            "max": 517.2827921342105
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 513.3573260000001,
+            "p95": 516.882844,
+            "mean": 513.3573260000001,
+            "min": 509.8318080000001,
+            "max": 516.882844
+          },
+          "post_call_rss_mib": [
+            894.8203125,
+            895.64453125
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875,
+            1149.8671875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_512": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.66813099756837,
+            "p95": 21.66813099756837,
+            "mean": 21.66813099756837,
+            "min": 21.66813099756837,
+            "max": 21.66813099756837
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.290093,
+            "p95": 21.290093,
+            "mean": 21.290093,
+            "min": 21.290093,
+            "max": 21.290093
+          },
+          "post_call_rss_mib": [
+            897.0703125
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "synthetic_1024": {
+          "tokens": 1024,
+          "wall_ms": {
+            "count": 2,
+            "median": 1313.0422864342108,
+            "p95": 1313.9429718721658,
+            "mean": 1313.0422864342108,
+            "min": 1312.1416009962559,
+            "max": 1313.9429718721658
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 1312.733058,
+            "p95": 1313.710608,
+            "mean": 1312.733058,
+            "min": 1311.755508,
+            "max": 1313.710608
+          },
+          "post_call_rss_mib": [
+            895.64453125,
+            895.64453125
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875,
+            1149.8671875
+          ]
+        },
+        "official_1_26_tokens_recovery_after_1024": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 29.7951300162822,
+            "p95": 29.7951300162822,
+            "mean": 29.7951300162822,
+            "min": 29.7951300162822,
+            "max": 29.7951300162822
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 29.401813999999998,
+            "p95": 29.401813999999998,
+            "mean": 29.401813999999998,
+            "min": 29.401813999999998,
+            "max": 29.401813999999998
+          },
+          "post_call_rss_mib": [
+            900.484375
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "official_2_27_tokens_recovery_after_512": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 30.5560240522027,
+            "p95": 30.5560240522027,
+            "mean": 30.5560240522027,
+            "min": 30.5560240522027,
+            "max": 30.5560240522027
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.155224,
+            "p95": 30.155224,
+            "mean": 30.155224,
+            "min": 30.155224,
+            "max": 30.155224
+          },
+          "post_call_rss_mib": [
+            900.734375
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_1024": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.453688852488995,
+            "p95": 21.453688852488995,
+            "mean": 21.453688852488995,
+            "min": 21.453688852488995,
+            "max": 21.453688852488995
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.067376,
+            "p95": 21.067376,
+            "mean": 21.067376,
+            "min": 21.067376,
+            "max": 21.067376
+          },
+          "post_call_rss_mib": [
+            897.875
+          ],
+          "process_peak_rss_mib": [
+            1149.8671875
+          ]
+        }
+      },
+      "after_all": {
+        "rss_mib": 897.875,
+        "peak_rss_mib": 1149.8671875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 897.875,
+          "Pss": 895.3271484375,
+          "Anonymous": 888.33984375,
+          "Private_Dirty": 895.29296875
+        },
+        "minor_faults": 619721,
+        "major_faults": 0,
+        "cpu_ticks": 796,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 16579937\nuser_usec 15480837\nsystem_usec 1099100\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 103\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "945070080",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "worker_exit_code": -15,
+      "worker_reaped": true
+    },
+    {
+      "trial": 2,
+      "runtime": "candidate",
+      "status": "complete",
+      "rows": [
+        {
+          "kind": "official",
+          "case_index": 0,
+          "phase": "initial",
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 28.161623049527407,
+          "encoder_ms": 27.924439,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.463451,
+            "attention": 4.872007999999999,
+            "attention_output": 1.819515,
+            "embedding_lookup": 0.029335,
+            "encoder_total": 27.924017999999997,
+            "ffn_total": 11.562478000000002,
+            "linear": 18.365778999999996,
+            "ple_block": 2.5493,
+            "ple_projection": 1.456325,
+            "pool_and_projection": 1.061647,
+            "positions_and_masks": 0.053940999999999996,
+            "qkv_and_norm": 3.893062,
+            "rms_norm": 1.2082279999999994,
+            "rope_and_repeat": 0.554428,
+            "tokenization": 0.068779
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 896.97265625,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 896.97265625,
+              "Pss": 894.3056640625,
+              "Anonymous": 887.265625,
+              "Private_Dirty": 894.25
+            },
+            "minor_faults": 383735,
+            "major_faults": 0,
+            "cpu_ticks": 100,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 17645869\nuser_usec 16233154\nsystem_usec 1412714\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 113\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "944254976",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "phase": "initial",
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 31.150124967098236,
+          "encoder_ms": 30.776196,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.8983849999999998,
+            "attention": 1.7426690000000002,
+            "attention_output": 2.5539270000000003,
+            "embedding_lookup": 0.009517999999999999,
+            "encoder_total": 30.775734,
+            "ffn_total": 14.682110999999999,
+            "linear": 22.08080899999999,
+            "ple_block": 3.627077,
+            "ple_projection": 1.2879,
+            "pool_and_projection": 0.077635,
+            "positions_and_masks": 0.070292,
+            "qkv_and_norm": 5.925608999999999,
+            "rms_norm": 1.756726,
+            "rope_and_repeat": 0.72103,
+            "tokenization": 0.076954
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.53515625,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.53515625,
+              "Pss": 897.8681640625,
+              "Anonymous": 890.828125,
+              "Private_Dirty": 897.8125
+            },
+            "minor_faults": 384647,
+            "major_faults": 0,
+            "cpu_ticks": 105,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 17708071\nuser_usec 16287406\nsystem_usec 1420664\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 114\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "948047872",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "phase": "initial",
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 31.257295981049538,
+          "encoder_ms": 30.884598,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.120388999999999,
+            "attention": 1.8101770000000001,
+            "attention_output": 2.4767770000000007,
+            "embedding_lookup": 0.009347999999999999,
+            "encoder_total": 30.884108,
+            "ffn_total": 14.362797,
+            "linear": 21.863937,
+            "ple_block": 3.7644540000000006,
+            "ple_projection": 1.6210040000000001,
+            "pool_and_projection": 0.080761,
+            "positions_and_masks": 0.07252600000000001,
+            "qkv_and_norm": 5.798757,
+            "rms_norm": 1.8289850000000003,
+            "rope_and_repeat": 0.8101040000000002,
+            "tokenization": 0.063199
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 900.88671875,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 900.88671875,
+              "Pss": 898.2197265625,
+              "Anonymous": 891.1796875,
+              "Private_Dirty": 898.1640625
+            },
+            "minor_faults": 384737,
+            "major_faults": 0,
+            "cpu_ticks": 110,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 17769628\nuser_usec 16332948\nsystem_usec 1436680\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 114\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "948490240",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 507.84280616790056,
+          "encoder_ms": 507.43774799999994,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 70.36777999999998,
+            "allocator_cleanup": 2.578375,
+            "attention": 143.13912899999997,
+            "attention_output": 28.606502,
+            "embedding_lookup": 0.819503,
+            "encoder_total": 507.437257,
+            "ffn_total": 193.31757199999998,
+            "linear": 241.82444200000006,
+            "ple_block": 39.239014,
+            "ple_projection": 20.387052999999998,
+            "pool_and_projection": 0.777475,
+            "positions_and_masks": 2.081977,
+            "qkv_and_norm": 64.063311,
+            "rms_norm": 25.684493,
+            "rope_and_repeat": 12.144979000000001,
+            "tokenization": 0.000401
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.9999999999999972,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 895.59375,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 895.59375,
+              "Pss": 892.9267578125,
+              "Anonymous": 885.88671875,
+              "Private_Dirty": 892.87109375
+            },
+            "minor_faults": 412571,
+            "major_faults": 0,
+            "cpu_ticks": 203,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 18709651\nuser_usec 17244946\nsystem_usec 1464705\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 119\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943210496",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.553135011345148,
+          "encoder_ms": 21.171101,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.5792560000000004,
+            "attention": 0.980899,
+            "attention_output": 1.7111089999999998,
+            "embedding_lookup": 0.032611,
+            "encoder_total": 21.17062,
+            "ffn_total": 10.316996999999999,
+            "linear": 15.407291999999998,
+            "ple_block": 2.6830270000000005,
+            "ple_projection": 1.0570480000000002,
+            "pool_and_projection": 0.06373899999999999,
+            "positions_and_masks": 0.045204999999999995,
+            "qkv_and_norm": 3.6223859999999997,
+            "rms_norm": 1.147982,
+            "rope_and_repeat": 0.5780310000000001,
+            "tokenization": 0.052738999999999994
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 898.4296875,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 898.4296875,
+              "Pss": 895.7626953125,
+              "Anonymous": 888.72265625,
+              "Private_Dirty": 895.70703125
+            },
+            "minor_faults": 413297,
+            "major_faults": 0,
+            "cpu_ticks": 207,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 18753649\nuser_usec 17281927\nsystem_usec 1471721\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 119\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "945672192",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1312.4369741417468,
+          "encoder_ms": 1312.0034729999998,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 141.51726400000004,
+            "allocator_cleanup": 4.675439,
+            "attention": 574.3558190000001,
+            "attention_output": 59.694365,
+            "embedding_lookup": 0.727441,
+            "encoder_total": 1312.003072,
+            "ffn_total": 388.1609570000001,
+            "linear": 480.35247500000025,
+            "ple_block": 78.11545899999999,
+            "ple_projection": 41.980262999999994,
+            "pool_and_projection": 1.522499,
+            "positions_and_masks": 5.399144,
+            "qkv_and_norm": 126.86181700000002,
+            "rms_norm": 52.97180699999998,
+            "rope_and_repeat": 30.193365,
+            "tokenization": 0.00043
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.999999999999996,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 896.41796875,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 896.41796875,
+              "Pss": 893.7509765625,
+              "Anonymous": 886.6484375,
+              "Private_Dirty": 893.6953125
+            },
+            "minor_faults": 478451,
+            "major_faults": 0,
+            "cpu_ticks": 445,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 21143730\nuser_usec 19619550\nsystem_usec 1524180\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 133\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943943680",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 29.630922013893723,
+          "encoder_ms": 29.220044,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 4.010628,
+            "attention": 2.1120900000000002,
+            "attention_output": 2.2798840000000005,
+            "embedding_lookup": 0.036227999999999996,
+            "encoder_total": 29.219442,
+            "ffn_total": 13.275505000000003,
+            "linear": 19.688950000000002,
+            "ple_block": 3.5195880000000006,
+            "ple_projection": 1.3615680000000001,
+            "pool_and_projection": 0.079859,
+            "positions_and_masks": 0.082304,
+            "qkv_and_norm": 5.466757,
+            "rms_norm": 1.8446530000000017,
+            "rope_and_repeat": 0.9162979999999998,
+            "tokenization": 0.066344
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 901.58984375,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 901.58984375,
+              "Pss": 898.9228515625,
+              "Anonymous": 891.8203125,
+              "Private_Dirty": 898.8671875
+            },
+            "minor_faults": 479775,
+            "major_faults": 0,
+            "cpu_ticks": 451,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 21203028\nuser_usec 19672530\nsystem_usec 1530498\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 133\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "949071872",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 521.6104709543288,
+          "encoder_ms": 521.217556,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 72.10820499999998,
+            "allocator_cleanup": 3.2072920000000003,
+            "attention": 147.52208000000002,
+            "attention_output": 28.561398000000004,
+            "embedding_lookup": 0.39887700000000004,
+            "encoder_total": 521.217205,
+            "ffn_total": 196.76417400000003,
+            "linear": 245.82373500000003,
+            "ple_block": 42.00402700000001,
+            "ple_projection": 19.542292,
+            "pool_and_projection": 0.776193,
+            "positions_and_masks": 2.091243,
+            "qkv_and_norm": 67.911352,
+            "rms_norm": 28.764086999999996,
+            "rope_and_repeat": 12.163042,
+            "tokenization": 0.000241
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.9999999999999972,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 896.4140625,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 896.4140625,
+              "Pss": 893.7470703125,
+              "Anonymous": 886.64453125,
+              "Private_Dirty": 893.69140625
+            },
+            "minor_faults": 508323,
+            "major_faults": 0,
+            "cpu_ticks": 544,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 22144746\nuser_usec 20582498\nsystem_usec 1562248\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 138\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943800320",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 29.681406915187836,
+          "encoder_ms": 29.276277999999998,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.254265000000001,
+            "attention": 1.9817510000000005,
+            "attention_output": 2.3034889999999995,
+            "embedding_lookup": 0.034454,
+            "encoder_total": 29.275848,
+            "ffn_total": 13.650640999999997,
+            "linear": 19.667688000000005,
+            "ple_block": 3.466589,
+            "ple_projection": 1.3708749999999998,
+            "pool_and_projection": 0.08394700000000001,
+            "positions_and_masks": 0.082194,
+            "qkv_and_norm": 5.397367999999998,
+            "rms_norm": 1.873484,
+            "rope_and_repeat": 0.819295,
+            "tokenization": 0.060643
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 901.64453125,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 901.64453125,
+              "Pss": 898.9775390625,
+              "Anonymous": 891.875,
+              "Private_Dirty": 898.921875
+            },
+            "minor_faults": 509662,
+            "major_faults": 0,
+            "cpu_ticks": 549,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 22204793\nuser_usec 20629215\nsystem_usec 1575577\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 139\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "949207040",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1312.4123779125512,
+          "encoder_ms": 1312.179973,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 143.94799100000003,
+            "allocator_cleanup": 4.997042,
+            "attention": 568.236278,
+            "attention_output": 59.87699700000001,
+            "embedding_lookup": 1.166913,
+            "encoder_total": 1312.179421,
+            "ffn_total": 389.52191899999997,
+            "linear": 482.02630499999975,
+            "ple_block": 81.000979,
+            "ple_projection": 41.833809,
+            "pool_and_projection": 1.52316,
+            "positions_and_masks": 5.46647,
+            "qkv_and_norm": 127.90653199999997,
+            "rms_norm": 55.67397799999997,
+            "rope_and_repeat": 30.337191999999998,
+            "tokenization": 0.000671
+          },
+          "parity": {
+            "max_absolute_error": 3.00000000119649e-08,
+            "cosine": 0.999999999999996,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 896.4140625,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 896.4140625,
+              "Pss": 893.7470703125,
+              "Anonymous": 886.64453125,
+              "Private_Dirty": 893.69140625
+            },
+            "minor_faults": 573797,
+            "major_faults": 0,
+            "cpu_ticks": 787,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 24594011\nuser_usec 22964190\nsystem_usec 1629820\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 152\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "943726592",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.599731873720884,
+          "encoder_ms": 21.394539,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.5684210000000007,
+            "attention": 0.985867,
+            "attention_output": 1.8319790000000002,
+            "embedding_lookup": 0.025347,
+            "encoder_total": 21.394126999999997,
+            "ffn_total": 10.371675,
+            "linear": 15.588753999999994,
+            "ple_block": 2.5653699999999993,
+            "ple_projection": 1.117652,
+            "pool_and_projection": 0.063699,
+            "positions_and_masks": 0.045736,
+            "qkv_and_norm": 3.724488,
+            "rms_norm": 1.1679159999999993,
+            "rope_and_repeat": 0.5825490000000002,
+            "tokenization": 0.067136
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 899.24609375,
+            "peak_rss_mib": 1166.57421875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 899.24609375,
+              "Pss": 896.5791015625,
+              "Anonymous": 889.4765625,
+              "Private_Dirty": 896.5234375
+            },
+            "minor_faults": 574522,
+            "major_faults": 0,
+            "cpu_ticks": 791,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 24637104\nuser_usec 22998315\nsystem_usec 1638789\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 152\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "946466816",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        }
+      ],
+      "ready": {
+        "threads": 2,
+        "device": "cpu",
+        "dtype": "f32",
+        "weight_quantization": "f32",
+        "cpu_backend": "aocl-dlp",
+        "load_ms": 931.28447,
+        "linear_weight_bytes": 546832384,
+        "packed_weight_bytes": 0,
+        "max_tokens": 1024,
+        "startup_allocator_trimmed": true,
+        "fused_rope": true,
+        "fused_rms_norm": true,
+        "gemm_avx512_runtime_dispatch": false
+      },
+      "startup_wall_ms": 934.2504208907485,
+      "environment": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "BLIS_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false",
+        "OMP_WAIT_POLICY": "PASSIVE",
+        "GOMP_SPINCOUNT": "0"
+      },
+      "after_ready": {
+        "rss_mib": 892.171875,
+        "peak_rss_mib": 1166.57421875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 892.171875,
+          "Pss": 889.77734375,
+          "Anonymous": 883.58203125,
+          "Private_Dirty": 889.75390625
+        },
+        "minor_faults": 382774,
+        "major_faults": 0,
+        "cpu_ticks": 95,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 17597288\nuser_usec 16196898\nsystem_usec 1400389\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 113\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "940601344",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "affinity": {
+        "process_cpus": [
+          0,
+          1
+        ],
+        "thread_masks": [
+          {
+            "cpus": [
+              0,
+              1
+            ],
+            "threads": 4
+          }
+        ]
+      },
+      "timings_by_input": {
+        "official_0_15_tokens_initial": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 28.161623049527407,
+            "p95": 28.161623049527407,
+            "mean": 28.161623049527407,
+            "min": 28.161623049527407,
+            "max": 28.161623049527407
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 27.924439,
+            "p95": 27.924439,
+            "mean": 27.924439,
+            "min": 27.924439,
+            "max": 27.924439
+          },
+          "post_call_rss_mib": [
+            896.97265625
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "official_1_26_tokens_initial": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.150124967098236,
+            "p95": 31.150124967098236,
+            "mean": 31.150124967098236,
+            "min": 31.150124967098236,
+            "max": 31.150124967098236
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.776196,
+            "p95": 30.776196,
+            "mean": 30.776196,
+            "min": 30.776196,
+            "max": 30.776196
+          },
+          "post_call_rss_mib": [
+            900.53515625
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "official_2_27_tokens_initial": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.257295981049538,
+            "p95": 31.257295981049538,
+            "mean": 31.257295981049538,
+            "min": 31.257295981049538,
+            "max": 31.257295981049538
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.884598,
+            "p95": 30.884598,
+            "mean": 30.884598,
+            "min": 30.884598,
+            "max": 30.884598
+          },
+          "post_call_rss_mib": [
+            900.88671875
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "synthetic_512": {
+          "tokens": 512,
+          "wall_ms": {
+            "count": 2,
+            "median": 514.7266385611147,
+            "p95": 521.6104709543288,
+            "mean": 514.7266385611147,
+            "min": 507.84280616790056,
+            "max": 521.6104709543288
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 514.327652,
+            "p95": 521.217556,
+            "mean": 514.327652,
+            "min": 507.43774799999994,
+            "max": 521.217556
+          },
+          "post_call_rss_mib": [
+            895.59375,
+            896.4140625
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875,
+            1166.57421875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_512": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.553135011345148,
+            "p95": 21.553135011345148,
+            "mean": 21.553135011345148,
+            "min": 21.553135011345148,
+            "max": 21.553135011345148
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.171101,
+            "p95": 21.171101,
+            "mean": 21.171101,
+            "min": 21.171101,
+            "max": 21.171101
+          },
+          "post_call_rss_mib": [
+            898.4296875
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "synthetic_1024": {
+          "tokens": 1024,
+          "wall_ms": {
+            "count": 2,
+            "median": 1312.424676027149,
+            "p95": 1312.4369741417468,
+            "mean": 1312.424676027149,
+            "min": 1312.4123779125512,
+            "max": 1312.4369741417468
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 1312.091723,
+            "p95": 1312.179973,
+            "mean": 1312.091723,
+            "min": 1312.0034729999998,
+            "max": 1312.179973
+          },
+          "post_call_rss_mib": [
+            896.41796875,
+            896.4140625
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875,
+            1166.57421875
+          ]
+        },
+        "official_1_26_tokens_recovery_after_1024": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 29.630922013893723,
+            "p95": 29.630922013893723,
+            "mean": 29.630922013893723,
+            "min": 29.630922013893723,
+            "max": 29.630922013893723
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 29.220044,
+            "p95": 29.220044,
+            "mean": 29.220044,
+            "min": 29.220044,
+            "max": 29.220044
+          },
+          "post_call_rss_mib": [
+            901.58984375
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "official_2_27_tokens_recovery_after_512": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 29.681406915187836,
+            "p95": 29.681406915187836,
+            "mean": 29.681406915187836,
+            "min": 29.681406915187836,
+            "max": 29.681406915187836
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 29.276277999999998,
+            "p95": 29.276277999999998,
+            "mean": 29.276277999999998,
+            "min": 29.276277999999998,
+            "max": 29.276277999999998
+          },
+          "post_call_rss_mib": [
+            901.64453125
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        },
+        "official_0_15_tokens_recovery_after_1024": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.599731873720884,
+            "p95": 21.599731873720884,
+            "mean": 21.599731873720884,
+            "min": 21.599731873720884,
+            "max": 21.599731873720884
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.394539,
+            "p95": 21.394539,
+            "mean": 21.394539,
+            "min": 21.394539,
+            "max": 21.394539
+          },
+          "post_call_rss_mib": [
+            899.24609375
+          ],
+          "process_peak_rss_mib": [
+            1166.57421875
+          ]
+        }
+      },
+      "after_all": {
+        "rss_mib": 899.24609375,
+        "peak_rss_mib": 1166.57421875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 899.24609375,
+          "Pss": 896.5791015625,
+          "Anonymous": 889.4765625,
+          "Private_Dirty": 896.5234375
+        },
+        "minor_faults": 574522,
+        "major_faults": 0,
+        "cpu_ticks": 791,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 24637104\nuser_usec 22998315\nsystem_usec 1638789\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 152\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "946466816",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "worker_exit_code": -15,
+      "worker_reaped": true
+    },
+    {
+      "trial": 3,
+      "runtime": "previous",
+      "status": "complete",
+      "rows": [
+        {
+          "kind": "official",
+          "case_index": 0,
+          "phase": "initial",
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 27.561148861423135,
+          "encoder_ms": 27.160019000000002,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.410413,
+            "attention": 4.9033370000000005,
+            "attention_output": 1.7847080000000004,
+            "embedding_lookup": 0.034234,
+            "encoder_total": 27.159657,
+            "ffn_total": 11.080348999999998,
+            "linear": 17.648420000000016,
+            "ple_block": 2.4155510000000002,
+            "ple_projection": 1.4832560000000001,
+            "pool_and_projection": 1.0591220000000001,
+            "positions_and_masks": 0.05393,
+            "qkv_and_norm": 3.7459899999999995,
+            "rms_norm": 1.2045229999999991,
+            "rope_and_repeat": 0.531282,
+            "tokenization": 0.067677
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 897.04296875,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 897.04296875,
+              "Pss": 894.478515625,
+              "Anonymous": 887.43359375,
+              "Private_Dirty": 894.4296875
+            },
+            "minor_faults": 438847,
+            "major_faults": 0,
+            "cpu_ticks": 103,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 25739645\nuser_usec 23745608\nsystem_usec 1994036\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 163\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "944738304",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "phase": "initial",
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 31.67061903513968,
+          "encoder_ms": 31.262576,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.9763420000000007,
+            "attention": 1.77233,
+            "attention_output": 2.526529,
+            "embedding_lookup": 0.009969,
+            "encoder_total": 31.262185,
+            "ffn_total": 14.652568999999998,
+            "linear": 22.270442000000003,
+            "ple_block": 3.6827140000000003,
+            "ple_projection": 1.311013,
+            "pool_and_projection": 0.082063,
+            "positions_and_masks": 0.076183,
+            "qkv_and_norm": 6.3455629999999985,
+            "rms_norm": 1.9198340000000003,
+            "rope_and_repeat": 0.728363,
+            "tokenization": 0.074089
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 901.0,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 901.0,
+              "Pss": 898.435546875,
+              "Anonymous": 891.390625,
+              "Private_Dirty": 898.38671875
+            },
+            "minor_faults": 439860,
+            "major_faults": 0,
+            "cpu_ticks": 109,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 25800948\nuser_usec 23799029\nsystem_usec 2001918\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 163\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "948445184",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "phase": "initial",
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 30.654026893898845,
+          "encoder_ms": 30.336433,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 3.978508,
+            "attention": 1.8146150000000003,
+            "attention_output": 2.497265,
+            "embedding_lookup": 0.025668,
+            "encoder_total": 30.335942000000003,
+            "ffn_total": 14.130487,
+            "linear": 21.414534999999983,
+            "ple_block": 3.550963,
+            "ple_projection": 1.437219,
+            "pool_and_projection": 0.081592,
+            "positions_and_masks": 0.074459,
+            "qkv_and_norm": 5.9232429999999985,
+            "rms_norm": 1.9384690000000007,
+            "rope_and_repeat": 0.730858,
+            "tokenization": 0.147476
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 901.046875,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 901.046875,
+              "Pss": 898.482421875,
+              "Anonymous": 891.4375,
+              "Private_Dirty": 898.43359375
+            },
+            "minor_faults": 439872,
+            "major_faults": 0,
+            "cpu_ticks": 114,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 25861700\nuser_usec 23851786\nsystem_usec 2009914\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 164\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "948592640",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 512.397269019857,
+          "encoder_ms": 511.99937500000004,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 69.21829499999998,
+            "attention": 148.391579,
+            "attention_output": 28.922646999999994,
+            "embedding_lookup": 0.5024,
+            "encoder_total": 511.999035,
+            "ffn_total": 193.76594200000002,
+            "linear": 242.272489,
+            "ple_block": 39.641587,
+            "ple_projection": 21.040376,
+            "pool_and_projection": 0.788345,
+            "positions_and_masks": 2.15343,
+            "qkv_and_norm": 64.506191,
+            "rms_norm": 27.894958,
+            "rope_and_repeat": 12.019585000000003,
+            "tokenization": 0.00023999999999999998
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1010.26171875,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1010.26171875,
+              "Pss": 1007.697265625,
+              "Anonymous": 1000.65234375,
+              "Private_Dirty": 1007.6484375
+            },
+            "minor_faults": 467831,
+            "major_faults": 0,
+            "cpu_ticks": 208,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 26812504\nuser_usec 24783764\nsystem_usec 2028739\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 169\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1063297024",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.257031010463834,
+          "encoder_ms": 20.795388000000003,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.5254350000000008,
+            "attention": 0.9790999999999997,
+            "attention_output": 1.7154539999999998,
+            "embedding_lookup": 0.021921,
+            "encoder_total": 20.794916,
+            "ffn_total": 10.021855,
+            "linear": 15.122901999999998,
+            "ple_block": 2.461864,
+            "ple_projection": 1.275477,
+            "pool_and_projection": 0.06241699999999999,
+            "positions_and_masks": 0.043812,
+            "qkv_and_norm": 3.568607000000001,
+            "rms_norm": 1.2244679999999997,
+            "rope_and_repeat": 0.5653279999999999,
+            "tokenization": 0.105116
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1010.26171875,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1010.26171875,
+              "Pss": 1007.697265625,
+              "Anonymous": 1000.65234375,
+              "Private_Dirty": 1007.6484375
+            },
+            "minor_faults": 467831,
+            "major_faults": 0,
+            "cpu_ticks": 212,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 26856220\nuser_usec 24819558\nsystem_usec 2036662\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 169\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1063440384",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 0,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1323.5632360447198,
+          "encoder_ms": 1323.145394,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 137.78845699999997,
+            "attention": 595.048478,
+            "attention_output": 59.989677,
+            "embedding_lookup": 1.214142,
+            "encoder_total": 1323.144943,
+            "ffn_total": 384.777986,
+            "linear": 475.3168660000001,
+            "ple_block": 79.54092499999999,
+            "ple_projection": 39.404834,
+            "pool_and_projection": 1.537107,
+            "positions_and_masks": 4.511503,
+            "qkv_and_norm": 128.935294,
+            "rms_norm": 58.87575900000003,
+            "rope_and_repeat": 27.863655999999995,
+            "tokenization": 0.000381
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.1328125,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.1328125,
+              "Pss": 1100.568359375,
+              "Anonymous": 1093.4609375,
+              "Private_Dirty": 1100.51953125
+            },
+            "minor_faults": 503880,
+            "major_faults": 0,
+            "cpu_ticks": 453,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 29277873\nuser_usec 27204605\nsystem_usec 2073267\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 182\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1161064448",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 1,
+          "repeat": 0,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 26,
+          "status": "complete",
+          "wall_ms": 28.777345083653927,
+          "encoder_ms": 28.371595,
+          "tokens": 26,
+          "profile_ms": {
+            "activation": 3.8529089999999995,
+            "attention": 1.808083,
+            "attention_output": 2.3008860000000007,
+            "embedding_lookup": 0.026078,
+            "encoder_total": 28.371035,
+            "ffn_total": 13.081740999999997,
+            "linear": 19.484067,
+            "ple_block": 3.2845280000000003,
+            "ple_projection": 1.331091,
+            "pool_and_projection": 0.081383,
+            "positions_and_masks": 0.076122,
+            "qkv_and_norm": 5.511885999999999,
+            "rms_norm": 1.9499910000000005,
+            "rope_and_repeat": 0.7826140000000001,
+            "tokenization": 0.058399
+          },
+          "parity": {
+            "max_absolute_error": 1.714870681776559e-07,
+            "cosine": 0.99999999999925,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.1328125,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.1328125,
+              "Pss": 1100.568359375,
+              "Anonymous": 1093.4609375,
+              "Private_Dirty": 1100.51953125
+            },
+            "minor_faults": 503880,
+            "major_faults": 0,
+            "cpu_ticks": 458,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 29336047\nuser_usec 27253674\nsystem_usec 2082373\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 183\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1160941568",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 512,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 512,
+          "status": "complete",
+          "wall_ms": 500.3650109283626,
+          "encoder_ms": 499.9421,
+          "tokens": 512,
+          "profile_ms": {
+            "activation": 67.52953199999999,
+            "attention": 147.50591400000005,
+            "attention_output": 28.999109999999998,
+            "embedding_lookup": 0.594662,
+            "encoder_total": 499.94164,
+            "ffn_total": 190.11178,
+            "linear": 236.58625199999997,
+            "ple_block": 39.654461000000005,
+            "ple_projection": 14.562984,
+            "pool_and_projection": 0.802843,
+            "positions_and_masks": 1.890358,
+            "qkv_and_norm": 63.837264,
+            "rms_norm": 27.205610999999987,
+            "rope_and_repeat": 11.712469,
+            "tokenization": 0.00042
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.13671875,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.13671875,
+              "Pss": 1100.572265625,
+              "Anonymous": 1093.46484375,
+              "Private_Dirty": 1100.5234375
+            },
+            "minor_faults": 503881,
+            "major_faults": 0,
+            "cpu_ticks": 552,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 30275867\nuser_usec 28182265\nsystem_usec 2093602\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 188\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1161342976",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 2,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 512,
+          "expected_tokens": 27,
+          "status": "complete",
+          "wall_ms": 29.98654800467193,
+          "encoder_ms": 29.583544,
+          "tokens": 27,
+          "profile_ms": {
+            "activation": 4.064389,
+            "attention": 1.931111,
+            "attention_output": 2.34412,
+            "embedding_lookup": 0.014978,
+            "encoder_total": 29.583202999999997,
+            "ffn_total": 13.749449999999998,
+            "linear": 20.080178999999994,
+            "ple_block": 3.3952529999999994,
+            "ple_projection": 1.155493,
+            "pool_and_projection": 0.08547,
+            "positions_and_masks": 0.11887199999999999,
+            "qkv_and_norm": 5.834080999999999,
+            "rms_norm": 2.0622069999999995,
+            "rope_and_repeat": 0.8662479999999998,
+            "tokenization": 0.059682
+          },
+          "parity": {
+            "max_absolute_error": 2.2047884004118036e-07,
+            "cosine": 0.9999999999983193,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.40234375,
+            "peak_rss_mib": 1149.71484375,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.40234375,
+              "Pss": 1100.837890625,
+              "Anonymous": 1093.73046875,
+              "Private_Dirty": 1100.7890625
+            },
+            "minor_faults": 503949,
+            "major_faults": 0,
+            "cpu_ticks": 556,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 30335292\nuser_usec 28228828\nsystem_usec 2106464\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 188\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1161740288",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "synthetic_ids",
+          "length": 1024,
+          "repeat": 1,
+          "phase": "long",
+          "expected_tokens": 1024,
+          "status": "complete",
+          "wall_ms": 1312.6030550338328,
+          "encoder_ms": 1312.160757,
+          "tokens": 1024,
+          "profile_ms": {
+            "activation": 136.786268,
+            "attention": 589.543184,
+            "attention_output": 60.122864,
+            "embedding_lookup": 1.281638,
+            "encoder_total": 1312.160216,
+            "ffn_total": 382.40151,
+            "linear": 471.78931399999993,
+            "ple_block": 78.990197,
+            "ple_projection": 36.871172,
+            "pool_and_projection": 1.535012,
+            "positions_and_masks": 4.506193000000001,
+            "qkv_and_norm": 129.152551,
+            "rms_norm": 58.64607700000001,
+            "rope_and_repeat": 27.430473000000003,
+            "tokenization": 0.000381
+          },
+          "parity": {
+            "max_absolute_error": 0.0,
+            "cosine": 1.0,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.40234375,
+            "peak_rss_mib": 1150.671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.40234375,
+              "Pss": 1100.837890625,
+              "Anonymous": 1093.73046875,
+              "Private_Dirty": 1100.7890625
+            },
+            "minor_faults": 516238,
+            "major_faults": 0,
+            "cpu_ticks": 797,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 32744395\nuser_usec 30617862\nsystem_usec 2126533\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 201\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1161871360",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        },
+        {
+          "kind": "official",
+          "case_index": 0,
+          "repeat": 1,
+          "phase": "recovery",
+          "after_length": 1024,
+          "expected_tokens": 15,
+          "status": "complete",
+          "wall_ms": 21.618046099320054,
+          "encoder_ms": 21.167093,
+          "tokens": 15,
+          "profile_ms": {
+            "activation": 2.485207,
+            "attention": 0.9876809999999999,
+            "attention_output": 1.7271830000000001,
+            "embedding_lookup": 0.022813,
+            "encoder_total": 21.166582,
+            "ffn_total": 10.337916,
+            "linear": 15.515458000000004,
+            "ple_block": 2.5346239999999995,
+            "ple_projection": 1.1038059999999998,
+            "pool_and_projection": 0.066164,
+            "positions_and_masks": 0.044643,
+            "qkv_and_norm": 3.689501,
+            "rms_norm": 1.2185310000000003,
+            "rope_and_repeat": 0.569718,
+            "tokenization": 0.097182
+          },
+          "parity": {
+            "max_absolute_error": 2.353927612275264e-07,
+            "cosine": 0.9999999999996869,
+            "passed": true
+          },
+          "resources": {
+            "rss_mib": 1103.40234375,
+            "peak_rss_mib": 1150.671875,
+            "threads": 4,
+            "smaps_rollup_mib": {
+              "Rss": 1103.40234375,
+              "Pss": 1100.837890625,
+              "Anonymous": 1093.73046875,
+              "Private_Dirty": 1100.7890625
+            },
+            "minor_faults": 516238,
+            "major_faults": 0,
+            "cpu_ticks": 800,
+            "cgroup": {
+              "cpu.max": "200000 100000",
+              "cpu.stat": "usage_usec 32788424\nuser_usec 30655002\nsystem_usec 2133421\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 202\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+              "memory.max": "3221225472",
+              "memory.current": "1161740288",
+              "memory.peak": "1246171136",
+              "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+            }
+          }
+        }
+      ],
+      "ready": {
+        "threads": 2,
+        "device": "cpu",
+        "dtype": "f32",
+        "weight_quantization": "f32",
+        "cpu_backend": "aocl-dlp",
+        "load_ms": 970.354568,
+        "linear_weight_bytes": 546832384,
+        "packed_weight_bytes": 0,
+        "max_tokens": 1024,
+        "startup_allocator_trimmed": true,
+        "fused_rope": true,
+        "fused_rms_norm": true,
+        "gemm_avx512_runtime_dispatch": false
+      },
+      "startup_wall_ms": 973.1697170063853,
+      "environment": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "OPENBLAS_NUM_THREADS": "2",
+        "VECLIB_MAXIMUM_THREADS": "2",
+        "BLIS_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false",
+        "OMP_WAIT_POLICY": "PASSIVE",
+        "GOMP_SPINCOUNT": "0"
+      },
+      "after_ready": {
+        "rss_mib": 892.0546875,
+        "peak_rss_mib": 1149.71484375,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 892.0546875,
+          "Pss": 889.7138671875,
+          "Anonymous": 883.5703125,
+          "Private_Dirty": 889.69140625
+        },
+        "minor_faults": 437840,
+        "major_faults": 0,
+        "cpu_ticks": 99,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 25692744\nuser_usec 23709733\nsystem_usec 1983010\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 163\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "941166592",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "affinity": {
+        "process_cpus": [
+          0,
+          1
+        ],
+        "thread_masks": [
+          {
+            "cpus": [
+              0,
+              1
+            ],
+            "threads": 4
+          }
+        ]
+      },
+      "timings_by_input": {
+        "official_0_15_tokens_initial": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 27.561148861423135,
+            "p95": 27.561148861423135,
+            "mean": 27.561148861423135,
+            "min": 27.561148861423135,
+            "max": 27.561148861423135
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 27.160019000000002,
+            "p95": 27.160019000000002,
+            "mean": 27.160019000000002,
+            "min": 27.160019000000002,
+            "max": 27.160019000000002
+          },
+          "post_call_rss_mib": [
+            897.04296875
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "official_1_26_tokens_initial": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 31.67061903513968,
+            "p95": 31.67061903513968,
+            "mean": 31.67061903513968,
+            "min": 31.67061903513968,
+            "max": 31.67061903513968
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 31.262576,
+            "p95": 31.262576,
+            "mean": 31.262576,
+            "min": 31.262576,
+            "max": 31.262576
+          },
+          "post_call_rss_mib": [
+            901.0
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "official_2_27_tokens_initial": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 30.654026893898845,
+            "p95": 30.654026893898845,
+            "mean": 30.654026893898845,
+            "min": 30.654026893898845,
+            "max": 30.654026893898845
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 30.336433,
+            "p95": 30.336433,
+            "mean": 30.336433,
+            "min": 30.336433,
+            "max": 30.336433
+          },
+          "post_call_rss_mib": [
+            901.046875
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "synthetic_512": {
+          "tokens": 512,
+          "wall_ms": {
+            "count": 2,
+            "median": 506.38113997410983,
+            "p95": 512.397269019857,
+            "mean": 506.38113997410983,
+            "min": 500.3650109283626,
+            "max": 512.397269019857
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 505.97073750000004,
+            "p95": 511.99937500000004,
+            "mean": 505.97073750000004,
+            "min": 499.9421,
+            "max": 511.99937500000004
+          },
+          "post_call_rss_mib": [
+            1010.26171875,
+            1103.13671875
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375,
+            1149.71484375
+          ]
+        },
+        "official_0_15_tokens_recovery_after_512": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.257031010463834,
+            "p95": 21.257031010463834,
+            "mean": 21.257031010463834,
+            "min": 21.257031010463834,
+            "max": 21.257031010463834
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 20.795388000000003,
+            "p95": 20.795388000000003,
+            "mean": 20.795388000000003,
+            "min": 20.795388000000003,
+            "max": 20.795388000000003
+          },
+          "post_call_rss_mib": [
+            1010.26171875
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "synthetic_1024": {
+          "tokens": 1024,
+          "wall_ms": {
+            "count": 2,
+            "median": 1318.0831455392763,
+            "p95": 1323.5632360447198,
+            "mean": 1318.0831455392763,
+            "min": 1312.6030550338328,
+            "max": 1323.5632360447198
+          },
+          "encoder_ms": {
+            "count": 2,
+            "median": 1317.6530754999999,
+            "p95": 1323.145394,
+            "mean": 1317.6530754999999,
+            "min": 1312.160757,
+            "max": 1323.145394
+          },
+          "post_call_rss_mib": [
+            1103.1328125,
+            1103.40234375
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375,
+            1150.671875
+          ]
+        },
+        "official_1_26_tokens_recovery_after_1024": {
+          "tokens": 26,
+          "wall_ms": {
+            "count": 1,
+            "median": 28.777345083653927,
+            "p95": 28.777345083653927,
+            "mean": 28.777345083653927,
+            "min": 28.777345083653927,
+            "max": 28.777345083653927
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 28.371595,
+            "p95": 28.371595,
+            "mean": 28.371595,
+            "min": 28.371595,
+            "max": 28.371595
+          },
+          "post_call_rss_mib": [
+            1103.1328125
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "official_2_27_tokens_recovery_after_512": {
+          "tokens": 27,
+          "wall_ms": {
+            "count": 1,
+            "median": 29.98654800467193,
+            "p95": 29.98654800467193,
+            "mean": 29.98654800467193,
+            "min": 29.98654800467193,
+            "max": 29.98654800467193
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 29.583544,
+            "p95": 29.583544,
+            "mean": 29.583544,
+            "min": 29.583544,
+            "max": 29.583544
+          },
+          "post_call_rss_mib": [
+            1103.40234375
+          ],
+          "process_peak_rss_mib": [
+            1149.71484375
+          ]
+        },
+        "official_0_15_tokens_recovery_after_1024": {
+          "tokens": 15,
+          "wall_ms": {
+            "count": 1,
+            "median": 21.618046099320054,
+            "p95": 21.618046099320054,
+            "mean": 21.618046099320054,
+            "min": 21.618046099320054,
+            "max": 21.618046099320054
+          },
+          "encoder_ms": {
+            "count": 1,
+            "median": 21.167093,
+            "p95": 21.167093,
+            "mean": 21.167093,
+            "min": 21.167093,
+            "max": 21.167093
+          },
+          "post_call_rss_mib": [
+            1103.40234375
+          ],
+          "process_peak_rss_mib": [
+            1150.671875
+          ]
+        }
+      },
+      "after_all": {
+        "rss_mib": 1103.40234375,
+        "peak_rss_mib": 1150.671875,
+        "threads": 4,
+        "smaps_rollup_mib": {
+          "Rss": 1103.40234375,
+          "Pss": 1100.837890625,
+          "Anonymous": 1093.73046875,
+          "Private_Dirty": 1100.7890625
+        },
+        "minor_faults": 516238,
+        "major_faults": 0,
+        "cpu_ticks": 800,
+        "cgroup": {
+          "cpu.max": "200000 100000",
+          "cpu.stat": "usage_usec 32788424\nuser_usec 30655002\nsystem_usec 2133421\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 202\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+          "memory.max": "3221225472",
+          "memory.current": "1161740288",
+          "memory.peak": "1246171136",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+        }
+      },
+      "worker_exit_code": -15,
+      "worker_reaped": true
+    }
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "work_seconds": 294,
+    "cleanup_seconds": 6,
+    "startup_seconds": 60,
+    "response_seconds": 30,
+    "inferences_per_trial": 11,
+    "total_inferences": 44
+  },
+  "protocol": {
+    "threads": 2,
+    "order": [
+      "previous",
+      "candidate",
+      "candidate",
+      "previous"
+    ],
+    "synthetic_lengths": [
+      512,
+      1024
+    ],
+    "official_initial_calls": 3,
+    "long_and_recovery_rounds": 2,
+    "timings_include_first_use": true,
+    "quantile_method": "nearest rank",
+    "latency_groups": "exact token length, case and initial/recovery phase",
+    "peak_memory_includes_startup": true,
+    "driver_shares_cpu_quota": true,
+    "synthetic_reference": "first previous result for each length; agreement only"
+  },
+  "environment": {
+    "RAYON_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2",
+    "VECLIB_MAXIMUM_THREADS": "2",
+    "BLIS_NUM_THREADS": "2",
+    "TOKENIZERS_PARALLELISM": "false",
+    "OMP_WAIT_POLICY": "PASSIVE",
+    "GOMP_SPINCOUNT": "0"
+  },
+  "attempted_inferences": 44,
+  "clock_ticks_per_second": 100,
+  "driver_python": "3.12.13",
+  "reference_sha256": "d1dc177ea465ef242e44d254a5c004e3cbcffc35df481891304a825cef21ffbb",
+  "model_revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+  "model_asset_sha256": {
+    "model.safetensors": "1535bba554267ed2eb95d24c9eab0b7d19a9855d347adcbd44b354e74c7e13d9",
+    "tokenizer.json": "4d777ef5bdc1aa36227abdfb77c3e49e7b9c892d16e1b6bda41c393504828be4",
+    "config.json": "b8f1e9931b57fbc054acdb445c41765d55b0074c58d145fa82839941ad1b5bb3"
+  },
+  "binary_sha256": {
+    "previous": "5ce680e4e33a6ec953265843af7a13555a4d15a6b166d45e7290a9015033a460",
+    "candidate": "8accc7ff2bc951f87421f501e774a5d891a8f9acb8e4345b677ea5cd5961a662"
+  },
+  "declared_source_revisions": {
+    "previous": "297524b4f5df1f4876cc9a905dfeebab587b14d3",
+    "candidate": "7e6469616838eaec658a1a768e98a43c3ede0eea"
+  },
+  "helper_sha256": {
+    "large_input_memory.py": "c06fa371eb0cb8f83dbb3d52089b2a5712d547af76a23d5255b755d62e751437",
+    "startup_memory.py": "1e07e30d1edd7cb4edf9b6fc381055ffe9b75cb93ffd3976b0676bf6ba6c708b",
+    "compare.py": "fa87086f49a3f6d871e2aca5df852b3afdd4dd638dbb820fc9efb804452465ed"
+  },
+  "driver_cgroup": {
+    "cpu.max": "200000 100000",
+    "cpu.stat": "usage_usec 353987\nuser_usec 315988\nsystem_usec 37998\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 3\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0",
+    "memory.max": "3221225472",
+    "memory.current": "11214848",
+    "memory.peak": "13135872",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0"
+  },
+  "resource_conditions_met": true,
+  "cpu_selection": {
+    "requested_cpus": [
+      0,
+      1
+    ],
+    "distinct_physical_cores": true,
+    "same_last_level_cache_domain": true,
+    "topology": [
+      {
+        "cpu": 0,
+        "core_id": 0,
+        "physical_package_id": 0,
+        "last_level_cache": {
+          "level": 3,
+          "type": "Unified",
+          "shared_cpus": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      },
+      {
+        "cpu": 1,
+        "core_id": 1,
+        "physical_package_id": 0,
+        "last_level_cache": {
+          "level": 3,
+          "type": "Unified",
+          "shared_cpus": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      }
+    ]
+  },
+  "driver_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "cpu_model": "AMD Ryzen 9 9955HX 16-Core Processor",
+  "elapsed_seconds": 20.23909826995805,
+  "build_provenance": {
+    "candidate_source_revision": "7e6469616838eaec658a1a768e98a43c3ede0eea",
+    "previous_source_revision": "297524b4f5df1f4876cc9a905dfeebab587b14d3",
+    "previous_binary_sha256": "5ce680e4e33a6ec953265843af7a13555a4d15a6b166d45e7290a9015033a460",
+    "source_tree_sha256": "198bd9faea9d9d3be9f411da17266eb377085f9761f25a8048db92e450a5c0d8",
+    "lib_rs_sha256": "cdd68b7cbe829e21b0d0de752a1b850332d2d6450085f82dc638b554320b2d6c",
+    "source_archive_sha256": "0f135c644084a446ebe0b0ca1a27e9051f11831aa2ed5d39f71f0283ba7917ef",
+    "driver_sha256": "c06fa371eb0cb8f83dbb3d52089b2a5712d547af76a23d5255b755d62e751437",
+    "compiler_toolchain_requested": "1.98.0",
+    "target_cpu": "x86-64-v3",
+    "features": [
+      "aocl",
+      "profile"
+    ],
+    "aocl_static_runtime": true,
+    "build_jobs": 2,
+    "request_budget": 44,
+    "candidate_binary_sha256": "8accc7ff2bc951f87421f501e774a5d891a8f9acb8e4345b677ea5cd5961a662",
+    "compiler": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+    "aocl_library_sha256": "8c768b57e2dcb3374a814a0cfdf5b915f4d402e74018a603cca2ed67a35c1ebe",
+    "glibc": "glibc 2.43",
+    "source_tree_verified_after_build": true,
+    "driver_verified_after_build": true
+  },
+  "cleanup_verification": {
+    "unit_active_state": "inactive",
+    "unit_load_state": "not-found",
+    "unit_sub_state": "dead",
+    "owned_encoder_processes": 0
+  },
+  "production_reads": 0,
+  "evidence_note": "Build and cleanup metadata appended after the run; recorded trial rows are unchanged."
+}
