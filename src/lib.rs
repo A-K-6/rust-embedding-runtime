@@ -27,6 +27,8 @@ const MAX_INPUT_BYTES: usize = 65536;
 const MAX_HEADER_BYTES: u64 = 4 * 1024 * 1024;
 const VOCABULARY: usize = 262144;
 
+// Return freed startup and large-input temporary buffers to the OS while keeping
+// live model weights, tokenizer data and output vectors owned by their callers.
 fn release_startup_scratch() -> bool {
     #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
     return aocl_kernels::release_unused_memory();
@@ -610,6 +612,16 @@ impl Encoder {
     fn encode(&self, ids: &[u32], dims: usize) -> Result<Vec<f32>> {
         let _span = profile::span("encoder_total");
         validate_input(ids, dims)?;
+        let result = self.encode_inner(ids, dims);
+        // The inner call has dropped its Tensor temporaries, including on error.
+        // Reclaim large-input scratch without adding cleanup to short requests.
+        if ids.len() >= 512 {
+            let _cleanup_span = profile::span("allocator_cleanup");
+            release_startup_scratch();
+        }
+        result
+    }
+    fn encode_inner(&self, ids: &[u32], dims: usize) -> Result<Vec<f32>> {
         let n = ids.len();
         let embedding_span = profile::span("embedding_lookup");
         let t = Tensor::new(ids, &Device::Cpu)?;
