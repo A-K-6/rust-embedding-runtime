@@ -16,8 +16,19 @@ jobs:
         include:
           - arch: amd64
             runner: ubuntu-24.04
+            cpu_target: x86-64
+            image_suffix: amd64
+            cpu_requirement: x86-64
           - arch: arm64
             runner: ubuntu-24.04-arm
+            cpu_target: x86-64
+            image_suffix: arm64
+            cpu_requirement: aarch64+fp16
+          - arch: amd64
+            runner: ubuntu-24.04
+            cpu_target: x86-64-v3
+            image_suffix: amd64-v3
+            cpu_requirement: x86-64-v3
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 45
     steps:
@@ -36,11 +47,27 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "IMAGE=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_ENV"
       - name: Build native image
-        run: docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" --tag runtime-test .
-      - name: Verify native architecture
+        env:
+          CPU_TARGET: ${{ matrix.cpu_target }}
+          CPU_REQUIREMENT: ${{ matrix.cpu_requirement }}
+        run: |
+          docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" \
+            --build-arg AMD64_CPU_TARGET="$CPU_TARGET" \
+            --label org.opencontainers.image.source="https://github.com/$GITHUB_REPOSITORY" \
+            --label org.opencontainers.image.revision="$GITHUB_SHA" \
+            --label org.opencontainers.image.version="$VERSION" \
+            --label io.github.a-k-6.cpu-requirement="$CPU_REQUIREMENT" \
+            --tag runtime-test .
+      - name: Verify native architecture and image metadata
         env:
           EXPECTED_ARCH: ${{ matrix.arch }}
-        run: test "$(docker image inspect --format '{{.Architecture}}' runtime-test)" = "$EXPECTED_ARCH"
+          EXPECTED_CPU_REQUIREMENT: ${{ matrix.cpu_requirement }}
+        run: |
+          test "$(docker image inspect --format '{{.Architecture}}' runtime-test)" = "$EXPECTED_ARCH"
+          test "$(docker image inspect --format '{{index .Config.Labels "io.github.a-k-6.cpu-requirement"}}' runtime-test)" = "$EXPECTED_CPU_REQUIREMENT"
+          test "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.source"}}' runtime-test)" = "https://github.com/$GITHUB_REPOSITORY"
+          test "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.revision"}}' runtime-test)" = "$GITHUB_SHA"
+          test "$(docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.version"}}' runtime-test)" = "$VERSION"
       - name: Test real inference
         run: python3 tests/smoke.py --image runtime-test
       - name: Authenticate to GHCR
@@ -49,10 +76,10 @@ jobs:
         run: printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
       - name: Publish verified platform image
         env:
-          ARCH: ${{ matrix.arch }}
+          IMAGE_SUFFIX: ${{ matrix.image_suffix }}
         run: |
-          docker tag runtime-test "$IMAGE:$VERSION-$ARCH"
-          docker push "$IMAGE:$VERSION-$ARCH"
+          docker tag runtime-test "$IMAGE:$VERSION-$IMAGE_SUFFIX"
+          docker push "$IMAGE:$VERSION-$IMAGE_SUFFIX"
   publish:
     needs: build
     runs-on: ubuntu-24.04

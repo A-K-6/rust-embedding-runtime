@@ -188,6 +188,9 @@ docker build --build-arg AMD64_CPU_TARGET=x86-64-v3 --tag embedding-runtime-v3 .
 This optional image requires the full x86-64-v3 instruction set. ARM64 keeps its
 existing target and the standard image retains its existing CPU compatibility.
 Native image CI checks both AMD64 targets and ARM64 against the pinned model.
+The candidate release workflow prepares a separate `<version>-amd64-v3` GHCR
+tag for this option. It keeps the default multi-platform tag portable; the
+candidate remains unpublished until its release is approved.
 
 The downloader pins upstream revision
 `914f7f89142e33e77833254d9c9b90c3cef7303b`, verifies source checksums, and extracts
