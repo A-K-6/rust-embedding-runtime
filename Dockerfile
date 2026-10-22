@@ -33,6 +33,10 @@ RUN mkdir -p /opt/aocl/lib /opt/aocl/include /opt/aocl/share/licenses /opt/aocl/
 FROM aocl-${TARGETARCH} AS aocl
 
 FROM rust:1.98-bookworm AS build
+ARG TARGETARCH
+# The default retains portable AMD64 behavior. An explicit v3 build enables
+# Candle's compile-time AVX2 reductions and requires an x86-64-v3 CPU.
+ARG AMD64_CPU_TARGET=x86-64
 WORKDIR /build
 COPY Cargo.toml Cargo.lock ./
 COPY .cargo ./.cargo
@@ -40,7 +44,12 @@ COPY src ./src
 COPY crates ./crates
 COPY --from=aocl /opt/aocl /opt/aocl
 ENV AOCL_ROOT=/opt/aocl LD_LIBRARY_PATH=/opt/aocl/runtime
-RUN RAYON_NUM_THREADS=2 cargo test --workspace --locked --features aocl \
+RUN case "$TARGETARCH:$AMD64_CPU_TARGET" in \
+      amd64:x86-64|amd64:x86-64-v3) export RUSTFLAGS="-C target-cpu=$AMD64_CPU_TARGET" ;; \
+      arm64:*) ;; \
+      *) exit 1 ;; \
+    esac \
+    && RAYON_NUM_THREADS=2 cargo test --workspace --locked --features aocl \
     && cargo build --release --locked --features aocl --bin embedding-runtime
 
 FROM gcr.io/distroless/cc-debian12:nonroot

@@ -25,10 +25,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+        include:
+          - runner: ubuntu-24.04
+            cpu_target: x86-64
+          - runner: ubuntu-24.04-arm
+            cpu_target: x86-64
+          - runner: ubuntu-24.04
+            cpu_target: x86-64-v3
     runs-on: ${{ matrix.runner }}
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - run: docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" --tag runtime-test .
+      - run: docker build --build-arg SOURCE_REVISION="$GITHUB_SHA" --build-arg AMD64_CPU_TARGET="${{ matrix.cpu_target }}" --tag runtime-test .
       - run: python3 tests/smoke.py --image runtime-test

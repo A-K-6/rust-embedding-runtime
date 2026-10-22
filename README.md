@@ -177,6 +177,18 @@ The Docker build selects this backend automatically for AMD64.
 The image also uses passive OpenMP waiting to reduce contention with Rayon
 between linear operations. Source builds can select the same environment above.
 
+Docker source builds keep a portable AMD64 Rust target by default. For a known
+**x86-64-v3 CPU**, an explicit build option also enables Candle's Rust AVX2
+reductions, in addition to AOCL's matrix kernels. Build on a native AMD64 host:
+
+```sh
+docker build --build-arg AMD64_CPU_TARGET=x86-64-v3 --tag embedding-runtime-v3 .
+```
+
+This optional image requires the full x86-64-v3 instruction set. ARM64 keeps its
+existing target and the standard image retains its existing CPU compatibility.
+Native image CI checks both AMD64 targets and ARM64 against the pinned model.
+
 The downloader pins upstream revision
 `914f7f89142e33e77833254d9c9b90c3cef7303b`, verifies source checksums, and extracts
 the unchanged text tensors. It downloads approximately 1.49 GB of source
