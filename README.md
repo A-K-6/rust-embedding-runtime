@@ -117,6 +117,36 @@ they do not establish the fastest runtime across all consumer or server CPUs.
 An [exploratory core sweep](benchmarks/AMD_REPORT.md#thread-scaling-and-openmp-waiting)
 reached 19.2 ms median / 21.3 ms p95 with eight Rust threads on this CPU.
 
+## Allocator cleanup candidate
+
+A four-process Ryzen probe of releasing unused glibc heap pages after loading
+the model and tokenizer reduced post-inference RSS
+from **1,121.9–1,122.3 MiB to 924.8–929.8 MiB**, about 17%. Startup peak remained
+about 1,150 MiB, and this cleanup did not demonstrate a latency improvement.
+Weights, tokenizer and inference kernels are unchanged. The cleanup applies to
+Linux/glibc AOCL builds; other targets retain their existing behavior.
+
+![Startup cleanup: every fresh process, retained RSS and startup peak](benchmarks/charts/startup-memory.png)
+
+See the [protocol](benchmarks/STARTUP_MEMORY.md) and
+[all four raw trials](benchmarks/results/startup-memory-2026-10-22/REPORT.md).
+This short-input memory probe is separate from the v0.3 PyTorch comparison above.
+
+The candidate also releases freed activation buffers after inputs of at least
+512 tokens, once their inference temporaries have dropped. A separate 44-call
+probe reduced RSS after long inputs and short recovery requests from
+**1,103–1,109 MiB to 898–899 MiB**, about 19%, compared with startup-only cleanup.
+Every fresh trial and 512/1,024-token timing is shown below. Cleanup took
+**2.3–5.7 ms**, included in those timings, and increased subsequent minor page
+faults. Startup peak did not show a repeatable reduction, and this small probe
+does not establish a latency improvement from cleanup.
+
+![All fresh long-input trials, retained RSS, recovery and process peak](benchmarks/charts/large-input-memory.png)
+
+See [the full protocol, build identities and raw evidence](benchmarks/results/large-input-memory-2026-10-22/REPORT.md).
+Both cleanup policies preserve the F32 weights, tokenizer and inference kernels;
+the release candidate applies them to Linux/glibc AOCL builds.
+
 ## Build locally
 
 Requires Rust 1.98+ and a C build toolchain; model acquisition uses Python 3.10+
@@ -146,6 +176,21 @@ linear weights and encoder arithmetic remain F32. See the
 The Docker build selects this backend automatically for AMD64.
 The image also uses passive OpenMP waiting to reduce contention with Rayon
 between linear operations. Source builds can select the same environment above.
+
+Docker source builds keep a portable AMD64 Rust target by default. For a known
+**x86-64-v3 CPU**, an explicit build option also enables Candle's Rust AVX2
+reductions, in addition to AOCL's matrix kernels. Build on a native AMD64 host:
+
+```sh
+docker build --build-arg AMD64_CPU_TARGET=x86-64-v3 --tag embedding-runtime-v3 .
+```
+
+This optional image requires the full x86-64-v3 instruction set. ARM64 keeps its
+existing target and the standard image retains its existing CPU compatibility.
+Native image CI checks both AMD64 targets and ARM64 against the pinned model.
+The candidate release workflow prepares a separate `<version>-amd64-v3` GHCR
+tag for this option. It keeps the default multi-platform tag portable; the
+candidate remains unpublished until its release is approved.
 
 The downloader pins upstream revision
 `914f7f89142e33e77833254d9c9b90c3cef7303b`, verifies source checksums, and extracts
@@ -193,9 +238,10 @@ cargo test --locked
 python3 tests/smoke.py --binary target/release/embedding-runtime --model model
 ```
 
-CI tests the Rust code. A `v*` tag builds native Linux AMD64 and ARM64 images, runs real-model
-smoke tests on each architecture, and publishes the combined image only after both pass.
-Image tags include the version and `latest`. Public image pulls need no login.
+CI tests the Rust code. A `v*` tag builds portable AMD64, ARM64 and optional
+AMD64-v3 images, checks real inference on each, and publishes the portable
+multi-platform image after all three pass. Version tags identify each variant;
+only stable versions update `latest`. Public image pulls need no login.
 
 The core model implementation lives in `src/lib.rs`; HTTP transport lives in
 `src/server.rs`. Future model backends should preserve this boundary and add

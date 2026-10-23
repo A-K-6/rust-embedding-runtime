@@ -27,6 +27,15 @@ const MAX_INPUT_BYTES: usize = 65536;
 const MAX_HEADER_BYTES: u64 = 4 * 1024 * 1024;
 const VOCABULARY: usize = 262144;
 
+// Return freed startup and large-input temporary buffers to the OS while keeping
+// live model weights, tokenizer data and output vectors owned by their callers.
+fn release_startup_scratch() -> bool {
+    #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
+    return aocl_kernels::release_unused_memory();
+    #[cfg(not(all(feature = "aocl", target_os = "linux", target_arch = "x86_64")))]
+    false
+}
+
 fn f32_backend() -> &'static str {
     #[cfg(all(feature = "aocl", target_os = "linux", target_arch = "x86_64"))]
     if aocl_kernels::available() {
@@ -464,6 +473,7 @@ impl Layer {
         mask: &Tensor,
     ) -> candle_core::Result<Tensor> {
         let n = x.dim(1)?;
+        let qkv_span = profile::span("qkv_and_norm");
         let h = self.input.forward(x)?;
         let q = self.qn.forward(
             &self
@@ -486,6 +496,8 @@ impl Layer {
                 .reshape((1, n, self.kv_heads, self.head_dim))?
                 .transpose(1, 2)?,
         )?;
+        drop(qkv_span);
+        let rope_span = profile::span("rope_and_repeat");
         let q = candle_nn::rotary_emb::rope(&q.contiguous()?, &rope.0, &rope.1)?;
         let k = candle_nn::rotary_emb::rope(&k.contiguous()?, &rope.0, &rope.1)?;
         let repeat = |t: &Tensor| -> candle_core::Result<Tensor> {
@@ -496,6 +508,7 @@ impl Layer {
         };
         let k = repeat(&k)?;
         let v = repeat(&v)?;
+        drop(rope_span);
         // Reference attention scaling is 1.0, not 1/sqrt(head_dim).
         let attention_span = profile::span("attention");
         let scores = q
@@ -509,10 +522,15 @@ impl Layer {
                 .contiguous()?
                 .reshape((1, n, 4 * self.head_dim))?;
         drop(attention_span);
+        let attention_output_span = profile::span("attention_output");
         let h = x.add(&self.post_attn.forward(&self.o.forward(&attention)?)?)?;
+        drop(attention_output_span);
+        let ffn_span = profile::span("ffn_total");
         let f = self.pre_ff.forward(&h)?;
         let f = activation::gelu_mul(&self.gate.forward(&f)?, &self.up.forward(&f)?)?;
         let h = h.add(&self.post_ff.forward(&self.down.forward(&f)?)?)?;
+        drop(ffn_span);
+        let _ple_span = profile::span("ple_block");
         let p = activation::gelu_mul(&self.ple_gate.forward(&h)?, ple)?;
         h.add(&self.ple_norm.forward(&self.ple_proj.forward(&p)?)?)?
             .broadcast_mul(&self.scalar)
@@ -594,6 +612,16 @@ impl Encoder {
     fn encode(&self, ids: &[u32], dims: usize) -> Result<Vec<f32>> {
         let _span = profile::span("encoder_total");
         validate_input(ids, dims)?;
+        let result = self.encode_inner(ids, dims);
+        // The inner call has dropped its Tensor temporaries, including on error.
+        // Reclaim large-input scratch without adding cleanup to short requests.
+        if ids.len() >= 512 {
+            let _cleanup_span = profile::span("allocator_cleanup");
+            release_startup_scratch();
+        }
+        result
+    }
+    fn encode_inner(&self, ids: &[u32], dims: usize) -> Result<Vec<f32>> {
         let n = ids.len();
         let embedding_span = profile::span("embedding_lookup");
         let t = Tensor::new(ids, &Device::Cpu)?;
@@ -604,9 +632,11 @@ impl Encoder {
             .unsqueeze(0)?
             * (512f64).sqrt())?;
         drop(embedding_span);
+        let ple_span = profile::span("ple_projection");
         let ple = self
             .ple_norm
             .forward(&(self.ple.forward(&h)? * (512f64).powf(-0.5))?.reshape((1, n, 24, 512))?)?;
+        drop(ple_span);
         let positions_span = profile::span("positions_and_masks");
         let rope = |hd: usize, theta: f32| -> candle_core::Result<(Tensor, Tensor)> {
             let mut cos = Vec::with_capacity(n * hd / 2);
@@ -647,6 +677,7 @@ impl Encoder {
                 if l.full { &full_mask } else { &sliding_mask },
             )?;
         }
+        let _pool_span = profile::span("pool_and_projection");
         let pooled = self.norm.forward(&h)?.mean(1)?;
         let projected = self
             .projection
@@ -763,10 +794,14 @@ pub fn run_jsonl() -> Result<()> {
     let model = Encoder::load(dir, mode)?;
     let tokenizer = Tokenizer::from_file(dir.join("tokenizer.json"))
         .map_err(|e| anyhow::anyhow!(e.to_string()))?;
+    // Loading/parsing leaves large freed buffers in glibc arenas. Release those
+    // pages once before readiness; live weights and tokenizer data stay owned.
+    let startup_allocator_trimmed = release_startup_scratch();
     eprintln!(
         "{}",
         serde_json::json!({
             "ready": true,
+            "startup_allocator_trimmed": startup_allocator_trimmed,
             "threads": rayon::current_num_threads(),
             "fused_rms_norm": true,
             "fused_rope": true,
@@ -947,11 +982,13 @@ impl Runtime {
     /// Load the pinned text checkpoint after checking every bundled asset hash.
     pub fn load(dir: &Path, mode: QuantMode) -> Result<Self> {
         verify_model(dir)?;
-        Ok(Self {
+        let runtime = Self {
             encoder: Encoder::load(dir, mode)?,
             tokenizer: Tokenizer::from_file(dir.join("tokenizer.json"))
                 .map_err(|_| anyhow::anyhow!("cannot load tokenizer"))?,
-        })
+        };
+        release_startup_scratch();
+        Ok(runtime)
     }
 
     /// Encode raw text without adding a task prefix, returning normalized vectors.

@@ -41,6 +41,19 @@ pub fn available() -> bool {
     backend::available()
 }
 
+/// Ask the process allocator to return unused glibc heap pages to the OS.
+///
+/// This process-wide allocator operation preserves live allocations, including
+/// source weights, inputs, and persistent [`PackedLinear`] storage. It does not
+/// change kernels or release packed weights. Callers choose when to request it;
+/// construction and inference never call it automatically.
+///
+/// Returns whether glibc reported releasing memory. `false` can mean there were
+/// no releasable pages, and is also returned on unsupported platforms/allocators.
+pub fn release_unused_memory() -> bool {
+    backend::release_unused_memory()
+}
+
 /// A single owned packed F32 weight matrix with shape `[output, input]`.
 ///
 /// Source weights may be released after construction. Packed bytes are specific
@@ -154,6 +167,7 @@ mod backend {
 
     unsafe extern "C" {
         fn runtime_aocl_available() -> std::ffi::c_int;
+        fn runtime_aocl_release_unused_memory() -> std::ffi::c_int;
         fn runtime_aocl_packed_create(
             weights: *const f32,
             weights_len: usize,
@@ -192,6 +206,12 @@ mod backend {
     pub(super) fn available() -> bool {
         // SAFETY: this function has no pointer arguments and performs CPU checks.
         unsafe { runtime_aocl_available() != 0 }
+    }
+
+    pub(super) fn release_unused_memory() -> bool {
+        // SAFETY: the shim has no pointer arguments. glibc's allocator manages
+        // its own synchronization and only releases unused heap pages.
+        unsafe { runtime_aocl_release_unused_memory() != 0 }
     }
 
     pub(super) fn create(
@@ -261,6 +281,9 @@ mod backend {
     pub(super) fn available() -> bool {
         false
     }
+    pub(super) fn release_unused_memory() -> bool {
+        false
+    }
     pub(super) fn create(_: &[f32], _: usize, _: usize, _: usize) -> Result<(Handle, usize)> {
         Err(Error::Unsupported)
     }
@@ -271,3 +294,60 @@ mod backend {
 
 #[cfg(test)]
 mod tests;
+
+#[cfg(test)]
+mod allocator_tests {
+    use super::{available, release_unused_memory, PackedLinear};
+
+    #[test]
+    fn repeated_heap_cleanup_preserves_live_data_and_packed_forward() {
+        // Hardware support is independent of the allocator: a compiled glibc
+        // backend can trim even when AVX2/FMA is unavailable.
+        if !available() {
+            #[cfg(not(all(target_os = "linux", target_arch = "x86_64")))]
+            {
+                assert!(!release_unused_memory());
+                assert!(!release_unused_memory());
+            }
+            #[cfg(all(target_os = "linux", target_arch = "x86_64"))]
+            {
+                let _ = release_unused_memory();
+                let _ = release_unused_memory();
+            }
+            return;
+        }
+        // Cross packing panels and heap pages while keeping source weights,
+        // input, output and packed storage live throughout every cleanup call.
+        let (outputs, inputs, rows) = (67, 513, 24);
+        let weights: Vec<f32> = (0..outputs * inputs)
+            .map(|i| ((i * 11 % 37) as f32 - 18.0) / 32.0)
+            .collect();
+        let input: Vec<f32> = (0..rows * inputs)
+            .map(|i| ((i * 7 % 41) as f32 - 20.0) / 32.0)
+            .collect();
+        let original_weights = weights.clone();
+        let original_input = input.clone();
+        let linear = PackedLinear::new(&weights, outputs, inputs, 2).unwrap();
+        let before = linear.forward(&input, rows).unwrap();
+        for row in 0..rows {
+            for output in 0..outputs {
+                let expected: f64 = (0..inputs)
+                    .map(|i| {
+                        f64::from(input[row * inputs + i]) * f64::from(weights[output * inputs + i])
+                    })
+                    .sum();
+                let actual = before[row * outputs + output];
+                assert!(actual.is_finite());
+                assert!((f64::from(actual) - expected).abs() <= 0.00002);
+            }
+        }
+        for _ in 0..4 {
+            // A return value of false is valid: allocator state and concurrent
+            // tests determine whether any pages can actually be returned.
+            let _released = release_unused_memory();
+            assert_eq!(weights, original_weights);
+            assert_eq!(input, original_input);
+            assert_eq!(linear.forward(&input, rows).unwrap(), before);
+        }
+    }
+}
